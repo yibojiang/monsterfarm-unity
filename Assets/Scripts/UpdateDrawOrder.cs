@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class UpdateDrawOrder : MonoBehaviour {
 	private SpriteRenderer sprite_;
 	// Use this for initialization
@@ -9,6 +10,10 @@ public class UpdateDrawOrder : MonoBehaviour {
 		sprite_ = this.gameObject.GetComponent<SpriteRenderer>();
 	}
 	
+	void Reset () {
+		sprite_ = this.gameObject.GetComponent<SpriteRenderer>();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		sprite_.sortingOrder = (int)((100-transform.position.y) * 10);

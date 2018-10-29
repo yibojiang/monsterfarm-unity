@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
  
  [System.Serializable]
 public class InventoryItem {
@@ -10,6 +11,16 @@ public class InventoryItem {
 }
 
 public class PlayerController : MonoBehaviour {
+
+	private static PlayerController instance_;
+	public static PlayerController Instance {
+		get {
+			if (!instance_) {
+				instance_ = (PlayerController) FindObjectOfType(typeof(PlayerController));
+			}
+			return instance_;
+		}
+	}
 	
 	public SpriteRenderer sprite_;
 	public float maxMovingSpeed = 1.0f;
@@ -31,7 +42,24 @@ public class PlayerController : MonoBehaviour {
 
 	public bool buildingMode;
 
+	public Interact interactTarget;
+	public Text textInteract;
+
+	public bool isTalkeing = false;
+
 	private Camera cam;
+
+	private int coins_;
+	public int Coins {
+		get {
+			return coins_;
+		}
+		set {
+			coins_ = value;
+		}
+	}
+	public Text textCoins;
+	public Dictionary<string, int> items = new Dictionary<string, int>();
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +67,11 @@ public class PlayerController : MonoBehaviour {
 		animSM_ = sprite_.gameObject.GetComponent<Animator>();
 		cam = Camera.main;
 		Debug.Log(cam);
+	}
+
+	public void AddCoins(int coins) {
+		coins_ += coins;
+		textCoins.text = string.Format("X {0}", coins_.ToString("N0"));
 	}
 
 	void Update() {
@@ -76,6 +109,23 @@ public class PlayerController : MonoBehaviour {
 				Destroy(bp);
 				curBlueprint = null;
 			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.E)) {
+			if (interactTarget != null && !isTalkeing) {
+				interactTarget.InteractAction();
+			}
+			else {
+				var dm = DialogManager.Instance;
+				dm.Next();
+			}
+		}
+
+		if (interactTarget!= null) {
+			textInteract.gameObject.SetActive(true);
+		}
+		else {
+			textInteract.gameObject.SetActive(false);
 		}
 		
 		// Debug.Log("idx: " + inventoryIdx.ToString());

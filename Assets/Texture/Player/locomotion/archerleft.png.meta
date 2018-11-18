@@ -1,15 +1,18 @@
 fileFormatVersion: 2
-guid: ce13e55d27c1bdb4497319755d0071dc
+guid: bbb15c72a4f569848a9a14d48d7504fa
 TextureImporter:
   fileIDToRecycleName:
-    21300000: leftwalk_0
-    21300002: leftwalk_1
-    21300004: leftwalk_2
-    21300006: leftwalk_3
-    21300008: leftwalk_4
-    21300010: leftwalk_5
-    21300012: leftwalk_6
-    21300014: leftwalk_7
+    21300000: archerleft
+    21300002: archerleft_0
+    21300004: archerleft_1
+    21300006: archerleft_2
+    21300008: archerleft_3
+    21300010: archerleft_4
+    21300012: archerleft_5
+    21300014: archerleft_6
+    21300016: archerleft_7
+    21300018: archerleft_8
+    21300020: archerleft_9
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -44,7 +47,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -92,13 +95,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: leftwalk_0
+      name: archerleft_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 1
-        width: 32
-        height: 44
+        x: 21
+        y: 12
+        width: 108
+        height: 120
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,19 +109,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cff7024b91d78e24ea1574e857471666
+      spriteID: bc859d8608c307146bff7f076bf3d12d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leftwalk_1
+      name: archerleft_1
       rect:
         serializedVersion: 2
-        x: 62
-        y: 1
-        width: 32
-        height: 43
+        x: 189
+        y: 12
+        width: 48
+        height: 120
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,19 +129,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ee8dddef2806f34eb94df5b29d64f09
+      spriteID: 8f2663221ed02094a82a7dbd51490558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leftwalk_2
+      name: archerleft_2
       rect:
         serializedVersion: 2
-        x: 110
-        y: 1
-        width: 32
-        height: 43
+        x: 321
+        y: 12
+        width: 63
+        height: 132
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,19 +149,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0049f61a2b87cf04fb386e232dd617f6
+      spriteID: c28b331e5a0988d408aef2a13e388234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leftwalk_3
+      name: archerleft_3
       rect:
         serializedVersion: 2
-        x: 158
-        y: 1
-        width: 32
-        height: 45
+        x: 453
+        y: 12
+        width: 75
+        height: 129
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,19 +169,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: beef00c6befa50947b9f5f8ad9f26e8d
+      spriteID: 0317fa4c38285cf468b6b2a537598e66
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leftwalk_4
+      name: archerleft_4
       rect:
         serializedVersion: 2
-        x: 206
-        y: 1
-        width: 32
-        height: 44
+        x: 618
+        y: 12
+        width: 57
+        height: 129
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,19 +189,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfae659a2eb265f41ba3f17f01de7f29
+      spriteID: 2d93e148a4656e8449747958a5c77443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leftwalk_5
+      name: archerleft_5
       rect:
         serializedVersion: 2
-        x: 254
-        y: 1
-        width: 32
-        height: 43
+        x: 762
+        y: 12
+        width: 57
+        height: 129
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,19 +209,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4af10b496dbbc2540b2abb7352b8e9ec
+      spriteID: a791063b6026a9b459fd7af50faf3581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leftwalk_6
+      name: archerleft_6
       rect:
         serializedVersion: 2
-        x: 302
-        y: 1
-        width: 32
-        height: 43
+        x: 909
+        y: 12
+        width: 57
+        height: 129
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,19 +229,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b56dd43849b4447bf47166b48f90fa
+      spriteID: 7bdef902d543d204daf9832f0a8066c1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leftwalk_7
+      name: archerleft_7
       rect:
         serializedVersion: 2
-        x: 350
-        y: 1
-        width: 32
-        height: 45
+        x: 1053
+        y: 12
+        width: 51
+        height: 129
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,7 +249,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1bf9024235c86c4fb3b9761484a5891
+      spriteID: bdee43813e18b6e45b0da3ff4f317674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archerleft_8
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 12
+        width: 51
+        height: 129
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474e1236d6d6fe045bde80428006de4a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archerleft_9
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 1283
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e80883345795d242a32e0c316d3a7fa
       vertices: []
       indices: 
       edges: []
@@ -254,7 +297,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 748198d42d197c348a3184ec46ceb224
+    spriteID: be9d4fa8d17366f46b157a8ca6f7ce0b
     vertices: []
     indices: 
     edges: []

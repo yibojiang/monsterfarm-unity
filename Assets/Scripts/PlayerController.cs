@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour {
 	private Camera cam;
 
 	private int coins_;
+	private bool isAiming = false;
+
 	public int Coins {
 		get {
 			return coins_;
@@ -138,7 +140,6 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		var playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
-		// Debug.Log(playerInput);
 		
 		playerInput = Vector3.Normalize(playerInput);
 

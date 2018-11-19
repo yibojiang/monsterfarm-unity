@@ -207,6 +207,7 @@ public class PlayerController : MonoBehaviour {
 			var mousePos = Input.mousePosition;
 			var pos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
 			var shootingDir = pos - shootTarget.position;
+			shootingDir.Normalize();
 			Vector3.Normalize(shootingDir);
 				// curBlueprint.transform.position = pos - new Vector3(0f, 0f, 0f);
 				// if (Input.GetMouseButton(0)) {

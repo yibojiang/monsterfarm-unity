@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour {
 	public Transform shootTarget;
 	private GameObject arrow_;
 
+	public AudioClip arrowSFX;
+
 	public int Coins {
 		get {
 			return coins_;
@@ -165,9 +167,12 @@ public class PlayerController : MonoBehaviour {
 		arrow_ = (GameObject)GameObject.Instantiate(arrowPrefab, shootTarget.position, Quaternion.identity);
 		arrow_.transform.parent = shootTarget;
 		arrow_.transform.localRotation = Quaternion.identity;
+		arrow_.GetComponent<BoxCollider2D>().enabled = false;
 	}
 	
 	void Shoot() {
+		var am = AudioManager.Instance;
+		am.PlaySFX(arrowSFX);
 		var arrowSmokePrefab = Resources.Load("Prefab/Smoke_Arrow");
 		var arrowSmoke_ = (GameObject)GameObject.Instantiate(arrowSmokePrefab, shootTarget.position, Quaternion.identity);
 		arrowSmoke_.transform.eulerAngles = shootTarget.eulerAngles;
@@ -177,8 +182,10 @@ public class PlayerController : MonoBehaviour {
 		var pos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
 		var shootingDir = pos - shootTarget.position;
 		arrow_.GetComponent<Arrow>().Shoot(shootingDir);
+		arrow_.GetComponent<BoxCollider2D>().enabled = true;
 		arrow_ = null;
 		isAiming_ = false;
+
 		// var arrowPrefab = Resources.Load("Prefab/Arrow");
 		// var arrow = (GameObject)GameObject.Instantiate(arrowPrefab, shootTarget.position, Quaternion.identity);
 		// arrow.transform.parent = shootTarget;

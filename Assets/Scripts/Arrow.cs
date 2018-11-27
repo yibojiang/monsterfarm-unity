@@ -31,7 +31,16 @@ public class Arrow : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-
 		transform.position = transform.position + movingVel_ * Time.fixedDeltaTime * 20f;
+	}
+
+	void OnCollisionEnter2D (Collision2D col) {
+		Debug.Log("hit " + col.gameObject.name);
+		if (col.gameObject.CompareTag("Monster")) {
+			var monster = col.gameObject.GetComponent<Monster>();
+			var contact = col.GetContact(0);
+			monster.GetHit(new Vector3(contact.point.x, contact.point.y, 0));
+			Destroy(this.gameObject);
+		}
 	}
 }

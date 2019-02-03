@@ -12,7 +12,10 @@ public class CameraFollow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (followTarget)
-			transform.position = new Vector3(target.transform.position.x, target.transform.position.y, -10f);
+		var newPos = new Vector3(target.transform.position.x, target.transform.position.y, -10f);
+		// newPos.y =Mathf.Clamp(newPos.y, -6.28f, 6.28f);
+		if (followTarget) {
+			transform.position = newPos;
+		}
 	}
 }

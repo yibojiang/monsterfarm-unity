@@ -168,6 +168,10 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Shoot() {
+		var arrowSmokePrefab = Resources.Load("Prefab/Smoke_Arrow");
+		var arrowSmoke_ = (GameObject)GameObject.Instantiate(arrowSmokePrefab, shootTarget.position, Quaternion.identity);
+		arrowSmoke_.transform.eulerAngles = shootTarget.eulerAngles;
+
 		arrow_.transform.parent = null;
 		var mousePos = Input.mousePosition;
 		var pos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
@@ -181,29 +185,37 @@ public class PlayerController : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (!isAiming_) {
-			var playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
-			playerInput = Vector3.Normalize(playerInput);
+		
+		var playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
+		playerInput = Vector3.Normalize(playerInput);
 
-			movingVel += playerInput * acc;
+		movingVel += playerInput * acc;
 
-			if (movingVel.magnitude > 0.1) {
-				movingVel -= movingVel * drag;
-				movingVel = Vector3.ClampMagnitude(movingVel, maxMovingSpeed);
-				lastMovingVel_ = movingVel;
-			}
-			else {
-				movingVel = Vector3.zero;
-			}
-			// Debug.Log(movingVel);
-
-			transform.position = transform.position + movingVel * Time.fixedDeltaTime;
-			animSM_.SetFloat("Speed", movingVel.magnitude);
-			// var direction = (Mathf.Atan2(movingVel.y, movingVel.x));
-			animSM_.SetFloat("DirectionX", lastMovingVel_.x);
-			animSM_.SetFloat("DirectionY", lastMovingVel_.y);
+		if (movingVel.magnitude > 0.1) {
+			movingVel -= movingVel * drag;
+			movingVel = Vector3.ClampMagnitude(movingVel, maxMovingSpeed);
+			lastMovingVel_ = movingVel;
 		}
 		else {
+			movingVel = Vector3.zero;
+		}
+		// Debug.Log(movingVel);
+		if (isAiming_) {
+			movingVel = Vector3.zero;
+			shootTarget.gameObject.SetActive(true);
+		}
+		else {
+			shootTarget.gameObject.SetActive(false);
+		}
+
+		transform.position = transform.position + movingVel * Time.fixedDeltaTime;
+		animSM_.SetFloat("Speed", movingVel.magnitude);
+		// var direction = (Mathf.Atan2(movingVel.y, movingVel.x));
+		animSM_.SetFloat("DirectionX", lastMovingVel_.x);
+		animSM_.SetFloat("DirectionY", lastMovingVel_.y);
+		
+		if (isAiming_) {
+			shootTarget.gameObject.SetActive(true);
 			var mousePos = Input.mousePosition;
 			var pos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
 			var shootingDir = pos - shootTarget.position;

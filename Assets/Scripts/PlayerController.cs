@@ -11,8 +11,17 @@ public class InventoryItem {
 }
 
 public class PlayerController : MonoBehaviour {
+    enum GameMode {
+        Paused,
+        InGame
+    }
 
-	private static PlayerController instance_;
+    enum InGameState {
+        Play,
+        UI
+    }
+
+    private static PlayerController instance_;
 	public static PlayerController Instance {
 		get {
 			if (!instance_) {
@@ -57,7 +66,13 @@ public class PlayerController : MonoBehaviour {
 
 	public AudioClip arrowSFX;
 
-	public int Coins {
+    public Image uiFade;
+    public Image uiBook;
+
+    private GameMode gameMode = GameMode.InGame;
+    private InGameState ingameState = InGameState.Play;
+
+    public int Coins {
 		get {
 			return coins_;
 		}
@@ -146,7 +161,23 @@ public class PlayerController : MonoBehaviour {
 			isAiming_ = false;
 		}
 
-		animSM_.SetBool("IsAiming", isAiming_);
+        // Show Inventory
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            if (ingameState == InGameState.Play)
+            {
+                ingameState = InGameState.UI;
+                uiFade.gameObject.SetActive(true);
+                uiBook.gameObject.SetActive(true);
+            }
+            else if (ingameState == InGameState.UI)
+            {
+                ingameState = InGameState.Play;
+                uiFade.gameObject.SetActive(false);
+                uiBook.gameObject.SetActive(false);
+            }
+        }
+
+        animSM_.SetBool("IsAiming", isAiming_);
 
 		if (interactTarget!= null) {
 			textInteract.gameObject.SetActive(true);

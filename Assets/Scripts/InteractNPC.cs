@@ -19,7 +19,6 @@ public class InteractNPC : Interact {
 		var dm = DialogManager.Instance;
 		var allTexts = new List<string>();
 		
-
 		var pc = PlayerController.Instance;
 
 		if (pc.items.ContainsKey("egg") && pc.items["egg"] > 0) {

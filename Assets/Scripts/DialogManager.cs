@@ -42,7 +42,7 @@ public class DialogManager : MonoBehaviour {
 
 	public void Next() {
 		textIdx += 1;
-		if (textIdx == allTexts.Count) {
+		if (textIdx >= allTexts.Count) {
 			Hide();
 		}
 		else {

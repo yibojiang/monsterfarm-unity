@@ -22,7 +22,7 @@ public class Portal : MonoBehaviour {
 		if (col.CompareTag("Player")) {
 			var playerCon = col.GetComponent<PlayerController>();
 			var body = col.gameObject.GetComponent<Rigidbody2D>();
-			Debug.Log(body.gameObject.name);
+			//Debug.Log(body.gameObject.name);
 			// Not working
 			// body.MovePosition(targetAnchor.position);
 			body.transform.position = targetAnchor.position;

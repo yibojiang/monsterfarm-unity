@@ -15,6 +15,5 @@ namespace DefaultNamespace
         }
 
         public PlayerPawn playerPawn;
-        
     }
 }

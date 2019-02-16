@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
- 
+
+
  [System.Serializable]
 public class InventoryItem {
 	public string itemName;
@@ -10,18 +11,18 @@ public class InventoryItem {
 	public int count;
 }
 
-public class PlayerPawn : MonoBehaviour {
-    enum GameMode {
-        Paused,
-        InGame
-    }
+public class PlayerPawn : MobPawn {
+	enum GameMode {
+		Paused,
+		InGame
+	}
 
-    enum InGameState {
-        Play,
-        UI
-    }
+	enum InGameState {
+		Play,
+		UI
+	}
 
-    private static PlayerPawn instance_;
+	private static PlayerPawn instance_;
 	public static PlayerPawn Instance {
 		get {
 			if (!instance_) {
@@ -50,11 +51,8 @@ public class PlayerPawn : MonoBehaviour {
 	public GameObject curBlueprint;
 
 	public bool buildingMode;
-
-	public Interact interactTarget;
+ 
 	public Text textInteract;
-
-	public bool isTalkeing = false;
 
 	private Camera cam;
 
@@ -66,13 +64,15 @@ public class PlayerPawn : MonoBehaviour {
 
 	public AudioClip arrowSFX;
 
-    public Image uiFade;
-    public Image uiBook;
+	public Image uiFade;
+	public Image uiBook;
 
-    private GameMode gameMode = GameMode.InGame;
-    private InGameState ingameState = InGameState.Play;
+	public bool isTalking = false;
+		
+	private GameMode gameMode = GameMode.InGame;
+	private InGameState ingameState = InGameState.Play;
 
-    public int Coins {
+	public int Coins {
 		get {
 			return coins_;
 		}
@@ -94,6 +94,12 @@ public class PlayerPawn : MonoBehaviour {
 	public void AddCoins(int coins) {
 		coins_ += coins;
 		textCoins.text = string.Format("X {0}", coins_.ToString("N0"));
+	}
+
+	public virtual void SetInteractTarget(Interact target)
+	{
+		interactTarget = target;
+		textInteract.text = target.interactMessage;
 	}
 
 	private void Update() {
@@ -132,9 +138,9 @@ public class PlayerPawn : MonoBehaviour {
 				curBlueprint = null;
 			}
 		}
-
+		
 		if (Input.GetKeyDown(KeyCode.E)) {
-			if (interactTarget != null && !isTalkeing) {
+			if (interactTarget != null && !isTalking) {
 				interactTarget.InteractAction();
 			}
 			else {
@@ -161,23 +167,23 @@ public class PlayerPawn : MonoBehaviour {
 			isAiming_ = false;
 		}
 
-        // Show Inventory
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            if (ingameState == InGameState.Play)
-            {
-                ingameState = InGameState.UI;
-                uiFade.gameObject.SetActive(true);
-                uiBook.gameObject.SetActive(true);
-            }
-            else if (ingameState == InGameState.UI)
-            {
-                ingameState = InGameState.Play;
-                uiFade.gameObject.SetActive(false);
-                uiBook.gameObject.SetActive(false);
-            }
-        }
+		// Show Inventory
+		if (Input.GetKeyDown(KeyCode.Tab)) {
+			if (ingameState == InGameState.Play)
+			{
+				ingameState = InGameState.UI;
+				uiFade.gameObject.SetActive(true);
+				uiBook.gameObject.SetActive(true);
+			}
+			else if (ingameState == InGameState.UI)
+			{
+				ingameState = InGameState.Play;
+				uiFade.gameObject.SetActive(false);
+				uiBook.gameObject.SetActive(false);
+			}
+		}
 
-        animSM_.SetBool("IsAiming", isAiming_);
+		animSM_.SetBool("IsAiming", isAiming_);
 
 		if (interactTarget!= null) {
 			textInteract.gameObject.SetActive(true);

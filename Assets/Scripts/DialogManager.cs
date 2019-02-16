@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,8 +36,8 @@ public class DialogManager : MonoBehaviour {
 		if (textIdx < allTexts.Count) {
 			dialog.SetActive(true);
 			textDialog.text = allTexts[textIdx];
-			var pc = PlayerPawn.Instance;
-			pc.isTalkeing = true;
+			var pc = PlayerController.Instance;
+			pc.playerPawn.isTalking = true;
 		}
 	}
 
@@ -52,8 +53,8 @@ public class DialogManager : MonoBehaviour {
 
 	public void Hide() {
 		dialog.SetActive(false);
-		var pc = PlayerPawn.Instance;
-		pc.isTalkeing = false;
+		var pc = PlayerController.Instance;
+		pc.playerPawn.isTalking = false;
 		if (finishAction != null) {
 			Debug.Log("finishAction");
 			finishAction();

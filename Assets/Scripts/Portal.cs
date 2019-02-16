@@ -11,7 +11,7 @@ public class Portal : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		// Debug.Log(col.gameObject.name);
 		if (col.CompareTag("Player")) {
-			var playerCon = col.GetComponent<PlayerController>();
+			var playerCon = col.GetComponent<PlayerPawn>();
 			var body = col.gameObject.GetComponent<Rigidbody2D>();
 			//Debug.Log(body.gameObject.name);
 			// Not working

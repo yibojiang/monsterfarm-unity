@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FacingPlayer : MonoBehaviour {
-	private PlayerController pc_;
+	private PlayerPawn pc_;
 	// Use this for initialization
 	void Awake () {
-		pc_ = PlayerController.Instance;
+		pc_ = PlayerPawn.Instance;
 	}
 	
 	// Update is called once per frame

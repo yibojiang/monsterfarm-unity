@@ -11,7 +11,7 @@ public class InteractItem : Interact {
 	}
 	
 	public override void InteractAction() {
-		var pc = PlayerController.Instance;
+		var pc = PlayerPawn.Instance;
 		if (!pc.items.ContainsKey(itemName)) {
 			pc.items[itemName] = 0;
 		}

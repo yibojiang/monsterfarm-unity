@@ -35,7 +35,7 @@ public class DialogManager : MonoBehaviour {
 		if (textIdx < allTexts.Count) {
 			dialog.SetActive(true);
 			textDialog.text = allTexts[textIdx];
-			var pc = PlayerController.Instance;
+			var pc = PlayerPawn.Instance;
 			pc.isTalkeing = true;
 		}
 	}
@@ -52,7 +52,7 @@ public class DialogManager : MonoBehaviour {
 
 	public void Hide() {
 		dialog.SetActive(false);
-		var pc = PlayerController.Instance;
+		var pc = PlayerPawn.Instance;
 		pc.isTalkeing = false;
 		if (finishAction != null) {
 			Debug.Log("finishAction");

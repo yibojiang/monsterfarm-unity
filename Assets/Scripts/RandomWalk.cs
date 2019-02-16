@@ -15,7 +15,6 @@ public class RandomWalk : MonoBehaviour {
 		StartCoroutine("RandomWalkAction");
 		var anim = sprite.gameObject.GetComponent<Animator>();
 		var randomIdleStart = Random.Range(0,anim.GetCurrentAnimatorStateInfo(0).length); //Set a random part of the animation to start from
-		Debug.Log("randomIdleStart:" + randomIdleStart);
         anim.Play("Idle", 0, randomIdleStart);
         rigidBody = this.GetComponent<Rigidbody2D>();
     }
@@ -25,10 +24,8 @@ public class RandomWalk : MonoBehaviour {
 			movingVel = new Vector2(Random.value - 0.5f, Random.value - 0.5f);
 			movingVel.Normalize();
 			animSM_.SetBool("IsAttacking", false);
-			// Debug.Log("walk");
 			yield return new WaitForSeconds(Random.Range(0.5f, 0.6f));
 			animSM_.SetBool("IsAttacking", true);
-			// Debug.Log("idle");
 			movingVel = Vector2.zero;
 			yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
 			animSM_.SetBool("IsAttacking", false);
@@ -41,7 +38,7 @@ public class RandomWalk : MonoBehaviour {
 		if (movingVel.magnitude > 0.1) {
 			lastMovingVel_ = movingVel;
 		}
-        //transform.position += movingVel * Time.fixedDeltaTime;
+
         rigidBody.MovePosition(rigidBody.position + movingVel * Time.fixedDeltaTime);
         animSM_.SetFloat("DirectionX", lastMovingVel_.x);
 		animSM_.SetFloat("DirectionY", lastMovingVel_.y);

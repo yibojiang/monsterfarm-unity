@@ -98,8 +98,17 @@ public class PlayerPawn : MobPawn {
 
 	public virtual void SetInteractTarget(Interact target)
 	{
-		interactTarget = target;
-		textInteract.text = target.interactMessage;
+		if (target == null)
+		{
+			interactTarget = null;
+			textInteract.gameObject.SetActive(false);
+		}
+		else
+		{
+			interactTarget = target;
+			textInteract.text = target.interactMessage;
+			textInteract.gameObject.SetActive(true);
+		}
 	}
 
 	private void Update() {

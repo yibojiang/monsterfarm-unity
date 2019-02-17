@@ -4,149 +4,60 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
- [System.Serializable]
-public class InventoryItem {
-	public string itemName;
-	public string prefabPath;
-	public int count;
-}
-
 public class PlayerPawn : MobPawn {
-	enum GameMode {
-		Paused,
-		InGame
-	}
-
-	enum InGameState {
-		Play,
-		UI
-	}
-
-	private static PlayerPawn instance_;
-	public static PlayerPawn Instance {
-		get {
-			if (!instance_) {
-				instance_ = (PlayerPawn) FindObjectOfType(typeof(PlayerPawn));
-			}
-			return instance_;
-		}
-	}
 	
 	public SpriteRenderer sprite_;
 	public float maxMovingSpeed = 1.0f;
-	private Vector3 movingVel;
-	private Animator animSM_;
-	// private bool faceingRight_ = false;
+	private Vector3 _movingVel;
+	private Animator _animSm;
+
 	public float acc = 3f;
 	public float drag = 10f;
 
-	private Vector3 lastMovingVel_;
-	private bool inDoor;
-
-	[SerializeField]
-	public List<InventoryItem> inventoryList;
-
-	public int maxInvertory = 7;
-	public int inventoryIdx = 0;
-	public GameObject curBlueprint;
-
+	private Vector3 _lastMovingVel;
+	private bool _inDoor;
+	
 	public bool buildingMode;
- 
-	public Text textInteract;
 
-	private Camera cam;
-
-	private int coins_;
-	private bool isAiming_ = false;
+	private int _coins;
+	private bool _isAiming = false;
 
 	public Transform shootTarget;
-	private GameObject arrow_;
+	private GameObject _arrow;
 
 	public AudioClip arrowSFX;
 
-	public Image uiFade;
-	public Image uiBook;
-
 	public bool isTalking = false;
 		
-	private GameMode gameMode = GameMode.InGame;
-	private InGameState ingameState = InGameState.Play;
+	
+	public Vector3 controlMovement;
 
-	public int Coins {
-		get {
-			return coins_;
-		}
-		set {
-			coins_ = value;
-		}
-	}
-	public Text textCoins;
-	public Dictionary<string, int> items = new Dictionary<string, int>();
+	
+	private Camera _cam;
 
-	// Use this for initialization
-	void Start () {
-		// sprite_ = this.gameObject.GetComponent<SpriteRenderer>();
-		animSM_ = sprite_.gameObject.GetComponent<Animator>();
-		cam = Camera.main;
-		Debug.Log(cam);
+	private void Awake()
+	{
+		_animSm = sprite_.gameObject.GetComponent<Animator>();
+		_cam = Camera.main;
 	}
 
-	public void AddCoins(int coins) {
-		coins_ += coins;
-		textCoins.text = string.Format("X {0}", coins_.ToString("N0"));
-	}
-
-	public virtual void SetInteractTarget(Interact target)
+	public override void SetInteractTarget(Interact target)
 	{
 		if (target == null)
 		{
 			interactTarget = null;
-			textInteract.gameObject.SetActive(false);
+			PlayerController.Instance.textInteract.gameObject.SetActive(false);
 		}
 		else
 		{
 			interactTarget = target;
-			textInteract.text = target.interactMessage;
-			textInteract.gameObject.SetActive(true);
+			PlayerController.Instance.textInteract.text = target.interactMessage;
+			PlayerController.Instance.textInteract.gameObject.SetActive(true);
 		}
 	}
 
 	private void Update() {
-		for (int i = 1; i <= 9; i++) {
-			if (Input.GetKeyDown(i.ToString())) {
-				inventoryIdx = i - 1;
-				if (inventoryIdx < maxInvertory) {
-					if (curBlueprint != null) {
-						Destroy(curBlueprint);
-					}
 
-					var item = inventoryList[inventoryIdx];
-
-					if (item != null) {
-						try {
-							curBlueprint = Instantiate(Resources.Load(item.prefabPath, typeof(GameObject))) as GameObject;
-							var bp = curBlueprint.AddComponent<BuildBlueprint>();
-							bp.DisableCollider();
-						}
-						catch (System.Exception ex) {
-							Debug.Log(ex);
-						}	
-					}
-				}
-			}
-		}
-
-		var mousePos = Input.mousePosition;
-		if (curBlueprint) {
-			var pos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
-			curBlueprint.transform.position = pos - new Vector3(0f, 0.5f, 0f);
-			if (Input.GetMouseButton(0)) {
-				var bp = curBlueprint.GetComponent<BuildBlueprint>();
-				bp.EnableCollider();
-				Destroy(bp);
-				curBlueprint = null;
-			}
-		}
 		
 		if (Input.GetKeyDown(KeyCode.E)) {
 			if (interactTarget != null && !isTalking) {
@@ -159,46 +70,30 @@ public class PlayerPawn : MobPawn {
 		}
 
 		if (Input.GetMouseButton(1)) {
-			if (!isAiming_) {
+			if (!_isAiming) {
 				AimStart();
 			}
-			isAiming_ = true;
+			_isAiming = true;
 
 			if (Input.GetMouseButtonUp(0)) {
-				animSM_.SetTrigger("Shoot");
+				_animSm.SetTrigger("Shoot");
 				Shoot();
 			}
 		}
 		else {
-			if (arrow_) {
-				Destroy(arrow_);
+			if (_arrow) {
+				Destroy(_arrow);
 			}
-			isAiming_ = false;
+			_isAiming = false;
 		}
 
-		// Show Inventory
-		if (Input.GetKeyDown(KeyCode.Tab)) {
-			if (ingameState == InGameState.Play)
-			{
-				ingameState = InGameState.UI;
-				uiFade.gameObject.SetActive(true);
-				uiBook.gameObject.SetActive(true);
-			}
-			else if (ingameState == InGameState.UI)
-			{
-				ingameState = InGameState.Play;
-				uiFade.gameObject.SetActive(false);
-				uiBook.gameObject.SetActive(false);
-			}
-		}
-
-		animSM_.SetBool("IsAiming", isAiming_);
+		_animSm.SetBool("IsAiming", _isAiming);
 
 		if (interactTarget!= null) {
-			textInteract.gameObject.SetActive(true);
+			PlayerController.Instance.textInteract.gameObject.SetActive(true);
 		}
 		else {
-			textInteract.gameObject.SetActive(false);
+			PlayerController.Instance.textInteract.gameObject.SetActive(false);
 		}
 		
 		// Debug.Log("idx: " + inventoryIdx.ToString());
@@ -210,10 +105,10 @@ public class PlayerPawn : MobPawn {
 
 	void AimStart() {
 		var arrowPrefab = Resources.Load("Prefab/Arrow");
-		arrow_ = (GameObject)GameObject.Instantiate(arrowPrefab, shootTarget.position, Quaternion.identity);
-		arrow_.transform.parent = shootTarget;
-		arrow_.transform.localRotation = Quaternion.identity;
-		arrow_.GetComponent<BoxCollider2D>().enabled = false;
+		_arrow = (GameObject)GameObject.Instantiate(arrowPrefab, shootTarget.position, Quaternion.identity);
+		_arrow.transform.parent = shootTarget;
+		_arrow.transform.localRotation = Quaternion.identity;
+		_arrow.GetComponent<BoxCollider2D>().enabled = false;
 	}
 	
 	void Shoot() {
@@ -223,84 +118,66 @@ public class PlayerPawn : MobPawn {
 		var arrowSmoke_ = (GameObject)GameObject.Instantiate(arrowSmokePrefab, shootTarget.position, Quaternion.identity);
 		arrowSmoke_.transform.eulerAngles = shootTarget.eulerAngles;
 
-		arrow_.transform.parent = null;
+		_arrow.transform.parent = null;
 		var mousePos = Input.mousePosition;
-		var pos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
+		var pos = _cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, _cam.nearClipPlane));
 		var shootingDir = pos - shootTarget.position;
-		arrow_.GetComponent<Arrow>().Shoot(shootingDir);
-		arrow_.GetComponent<BoxCollider2D>().enabled = true;
-		arrow_ = null;
-		isAiming_ = false;
+		_arrow.GetComponent<Arrow>().Shoot(shootingDir);
+		_arrow.GetComponent<BoxCollider2D>().enabled = true;
+		_arrow = null;
+		_isAiming = false;
 
 		// var arrowPrefab = Resources.Load("Prefab/Arrow");
 		// var arrow = (GameObject)GameObject.Instantiate(arrowPrefab, shootTarget.position, Quaternion.identity);
 		// arrow.transform.parent = shootTarget;
 	}
+
+	
+
+	public void SetControlMovement(Vector3 dir)
+	{
+		controlMovement = dir.normalized * acc;
+	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		
-		var playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
-		playerInput = Vector3.Normalize(playerInput);
+		_movingVel += controlMovement * Time.fixedDeltaTime;
 
-		movingVel += playerInput * acc;
-
-		if (movingVel.magnitude > 0.1) {
-			movingVel -= movingVel * drag;
-			movingVel = Vector3.ClampMagnitude(movingVel, maxMovingSpeed);
-			lastMovingVel_ = movingVel;
+		if (_movingVel.magnitude > 0.1) {
+			_movingVel -= _movingVel * drag;
+			_movingVel = Vector3.ClampMagnitude(_movingVel, maxMovingSpeed);
+			_lastMovingVel = _movingVel;
 		}
 		else {
-			movingVel = Vector3.zero;
+			_movingVel = Vector3.zero;
 		}
-		// Debug.Log(movingVel);
-		if (isAiming_) {
-			movingVel = Vector3.zero;
+
+		if (_isAiming) {
+			_movingVel = Vector3.zero;
 			shootTarget.gameObject.SetActive(true);
 		}
 		else {
 			shootTarget.gameObject.SetActive(false);
 		}
 
-		transform.position = transform.position + movingVel * Time.fixedDeltaTime;
-		animSM_.SetFloat("Speed", movingVel.magnitude);
+		transform.position = transform.position + _movingVel * Time.fixedDeltaTime;
+		_animSm.SetFloat("Speed", _movingVel.magnitude);
 		// var direction = (Mathf.Atan2(movingVel.y, movingVel.x));
-		animSM_.SetFloat("DirectionX", lastMovingVel_.x);
-		animSM_.SetFloat("DirectionY", lastMovingVel_.y);
+		_animSm.SetFloat("DirectionX", _lastMovingVel.x);
+		_animSm.SetFloat("DirectionY", _lastMovingVel.y);
 		
-		if (isAiming_) {
+		if (_isAiming) {
 			shootTarget.gameObject.SetActive(true);
 			var mousePos = Input.mousePosition;
-			var pos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
+			var pos = _cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, _cam.nearClipPlane));
 			var shootingDir = pos - shootTarget.position;
 			shootingDir.Normalize();
 			Vector3.Normalize(shootingDir);
-				// curBlueprint.transform.position = pos - new Vector3(0f, 0f, 0f);
-				// if (Input.GetMouseButton(0)) {
-				// 	var bp = curBlueprint.GetComponent<BuildBlueprint>();
-				// 	bp.EnableCollider();
-				// 	Destroy(bp);
-				// 	curBlueprint = null;
-				// }
-			// }
-			animSM_.SetFloat("ShootingDirectionX", shootingDir.x);
-			animSM_.SetFloat("ShootingDirectionY", shootingDir.y);
+
+			_animSm.SetFloat("ShootingDirectionX", shootingDir.x);
+			_animSm.SetFloat("ShootingDirectionY", shootingDir.y);
 			var eulerAngles = shootTarget.transform.localEulerAngles;
 			eulerAngles.z = Mathf.Atan2(shootingDir.y, shootingDir.x) * Mathf.Rad2Deg;
 			shootTarget.transform.localEulerAngles = eulerAngles;
 		}
-		
-		// Debug.Log(direction);
-		// Debug.Log(movingVel.magnitude);
-		// if (movingVel.x > 0)
-		// 	sprite_.flipX = true;
-		// else if (movingVel.x < 0)
-		// 	sprite_.flipX = false;
-
-		// if (faceingRight_)
-		// if (movingVel.x)
-		// sprite_.flipX = faceingRight_;
-		// movingSpeed += 
-		// Debug.Log(Input.GetAxis("Horizontal"));
-		// Debug.Log(Input.GetAxis("Vertical"));
 	}
 }

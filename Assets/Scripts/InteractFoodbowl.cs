@@ -12,7 +12,7 @@ public class InteractFoodbowl : InteractItem {
     public override void InteractAction()
     {
         var dm = DialogManager.Instance;
-        var pc = PlayerPawn.Instance;
+        var pc = PlayerController.Instance;
         if (pc.items.ContainsKey(itemName) && pc.items[itemName] + itemCount >= 0)
         {
             pc.items[itemName]+=itemCount;

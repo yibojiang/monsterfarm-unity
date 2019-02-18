@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PostProcessing;
+using UnityEngine.UI;
 
 public class GameTimeManager : MonoBehaviour {
     private static GameTimeManager Instance_;
@@ -21,20 +22,18 @@ public class GameTimeManager : MonoBehaviour {
         }
     }
 
-    private float currentTime_;
+    private float _currentTime;
     private Camera cam_;
     ColorGradingModel colorGrading_;
     ColorGradingModel.Settings colorGradingSettings_;
+    public Image pointer;
 
     // Use this for initialization
     void Start () {
         cam_ = Camera.main;
         var postProcess = cam_.GetComponent<PostProcessingBehaviour>();
         colorGrading_ = postProcess.profile.colorGrading;
-        currentTime_ = 0;
-
-        //PostProcessVolume volume = cam_.GetComponent<PostProcessVolume>();
-        //volume.profile.TryGetSettings(out colorGradingLayer);
+        _currentTime = 0;
     }
 
     void ApplyTimeChanged(float time)
@@ -47,9 +46,11 @@ public class GameTimeManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        currentTime_ += Time.deltaTime;
-        currentTime_ = currentTime_ % 200;
-        ApplyTimeChanged(currentTime_ - 100);
-        //Debug.Log(currentTime_);
+        _currentTime += Time.deltaTime;
+        _currentTime = _currentTime % 200;
+        var tmpRotation = pointer.transform.eulerAngles;
+        tmpRotation.z = (1f - _currentTime / 200) * 360;
+        pointer.transform.eulerAngles = tmpRotation;
+        ApplyTimeChanged(_currentTime - 100);
     }
 }

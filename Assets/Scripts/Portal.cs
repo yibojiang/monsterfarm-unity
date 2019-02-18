@@ -5,27 +5,18 @@ using UnityEngine;
 public class Portal : MonoBehaviour {
 
 	public Transform targetAnchor;
+	public Vector3 offset = new Vector3(0, -0.3f, 0);
 	public bool toOutDoor;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		// Debug.Log(col.gameObject.name);
 		if (col.CompareTag("Player")) {
-			var playerCon = col.GetComponent<PlayerController>();
+			var playerCon = col.GetComponent<PlayerPawn>();
 			var body = col.gameObject.GetComponent<Rigidbody2D>();
-			Debug.Log(body.gameObject.name);
+			//Debug.Log(body.gameObject.name);
 			// Not working
 			// body.MovePosition(targetAnchor.position);
-			body.transform.position = targetAnchor.position;
+			body.transform.position = targetAnchor.position + offset;
 			if (toOutDoor) {
 				playerCon.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
 			}

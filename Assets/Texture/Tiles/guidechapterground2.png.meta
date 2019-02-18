@@ -5,6 +5,7 @@ TextureImporter:
     21300000: guidechapterground2_0
     21300002: guidechapterground2_1
     21300004: guidechapterground2_2
+    21300006: guidechapterground2_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -101,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 326efb8e4050eaf4ca9803d9d83154f2
+      spriteID: c3afdd48118ab9d46b4258cca37ce222
       vertices: []
       indices: 
       edges: []
@@ -121,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 872cad6dc0b1c5e419008d181a81c72d
+      spriteID: ae96448dd31426743a8a331d4953193c
       vertices: []
       indices: 
       edges: []
@@ -141,7 +142,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4601af997aef25d4886c1b694cd852f5
+      spriteID: ac7a174993bc00943be47f1e11905701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guidechapterground2_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f2b3366bbf4fa742af07e9cea5609a4
       vertices: []
       indices: 
       edges: []

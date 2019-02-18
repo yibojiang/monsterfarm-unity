@@ -4,22 +4,11 @@ using UnityEngine;
 
 public class InteractNPC : Interact {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public override void InteractAction() {
 		// Debug.Log("npc");
 		var dm = DialogManager.Instance;
 		var allTexts = new List<string>();
 		
-
 		var pc = PlayerController.Instance;
 
 		if (pc.items.ContainsKey("egg") && pc.items["egg"] > 0) {

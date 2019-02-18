@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,13 +37,13 @@ public class DialogManager : MonoBehaviour {
 			dialog.SetActive(true);
 			textDialog.text = allTexts[textIdx];
 			var pc = PlayerController.Instance;
-			pc.isTalkeing = true;
+			pc.playerPawn.isTalking = true;
 		}
 	}
 
 	public void Next() {
 		textIdx += 1;
-		if (textIdx == allTexts.Count) {
+		if (textIdx >= allTexts.Count) {
 			Hide();
 		}
 		else {
@@ -53,7 +54,7 @@ public class DialogManager : MonoBehaviour {
 	public void Hide() {
 		dialog.SetActive(false);
 		var pc = PlayerController.Instance;
-		pc.isTalkeing = false;
+		pc.playerPawn.isTalking = false;
 		if (finishAction != null) {
 			Debug.Log("finishAction");
 			finishAction();

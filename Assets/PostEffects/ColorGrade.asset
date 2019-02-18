@@ -42,7 +42,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 0
     m_Settings:
-      intensity: 1
+      intensity: 1.26
       radius: 0.3
       sampleCount: 10
       downsampling: 1
@@ -113,34 +113,34 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: -0.0052
-        neutralWhiteIn: 10
-        neutralBlackOut: 0
+        neutralBlackIn: 0.014
+        neutralWhiteIn: 10.4
+        neutralBlackOut: 0.004
         neutralWhiteOut: 10.48
-        neutralWhiteLevel: 9.66
-        neutralWhiteClip: 10
+        neutralWhiteLevel: 6.5
+        neutralWhiteClip: 9.14
       basic:
         postExposure: 0
-        temperature: 36.1
-        tint: 6.1
+        temperature: 9
+        tint: 27
         hueShift: 5
         saturation: 0.946
-        contrast: 1
+        contrast: 1.21
       channelMixer:
-        red: {x: 1, y: 0, z: 0}
+        red: {x: 1.04, y: 0.09, z: 0.04}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
         currentEditingChannel: 0
       colorWheels:
-        mode: 1
+        mode: 0
         log:
           slope: {r: 0.72575855, g: 1, b: 0.600278, a: 0}
           power: {r: 1, g: 0.7423632, b: 0.98825485, a: 0}
           offset: {r: 1, g: 0.7479528, b: 0.8441108, a: 0}
         linear:
-          lift: {r: 1, g: 1, b: 1, a: 0}
-          gamma: {r: 1, g: 1, b: 1, a: 0}
-          gain: {r: 1, g: 1, b: 1, a: 0}
+          lift: {r: 0.7284275, g: 0.76839286, b: 1, a: 0}
+          gamma: {r: 1, g: 0.97683436, b: 0.8235021, a: 0}
+          gain: {r: 0.8319258, g: 1, b: 0.7530755, a: 0}
       curves:
         master:
           curve:
@@ -308,7 +308,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.1
+      intensity: 0
   grain:
     m_Enabled: 0
     m_Settings:

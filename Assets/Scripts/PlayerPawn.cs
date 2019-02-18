@@ -16,8 +16,6 @@ public class PlayerPawn : MobPawn {
 
 	private Vector3 _lastMovingVel;
 	private bool _inDoor;
-	
-	public bool buildingMode;
 
 	private int _coins;
 	private bool _isAiming = false;

@@ -15,8 +15,8 @@ public class Portal : MonoBehaviour {
 			var body = col.gameObject.GetComponent<Rigidbody2D>();
 			//Debug.Log(body.gameObject.name);
 			// Not working
-			body.MovePosition(targetAnchor.position);
-			//body.transform.position = targetAnchor.position + offset;
+//			body.MovePosition(targetAnchor.position);
+			body.transform.position = targetAnchor.position + offset;
 			if (toOutDoor) {
 				playerPawn.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
 			}

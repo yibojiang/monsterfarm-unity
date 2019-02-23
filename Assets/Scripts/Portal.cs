@@ -11,17 +11,17 @@ public class Portal : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		// Debug.Log(col.gameObject.name);
 		if (col.CompareTag("Player")) {
-			var playerCon = col.GetComponent<PlayerPawn>();
+			var playerPawn = col.GetComponent<PlayerPawn>();
 			var body = col.gameObject.GetComponent<Rigidbody2D>();
 			//Debug.Log(body.gameObject.name);
 			// Not working
-			// body.MovePosition(targetAnchor.position);
-			body.transform.position = targetAnchor.position + offset;
+			body.MovePosition(targetAnchor.position);
+			//body.transform.position = targetAnchor.position + offset;
 			if (toOutDoor) {
-				playerCon.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+				playerPawn.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
 			}
 			else {
-				playerCon.transform.localScale = new Vector3(1f, 1f, 1f);
+				playerPawn.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 		}
 	}

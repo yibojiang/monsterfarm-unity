@@ -30,7 +30,6 @@ public class PlayerPawn : MobPawn {
 	
 	public Vector3 controlMovement;
 
-	
 	private Camera _cam;
 
 	private void Awake()

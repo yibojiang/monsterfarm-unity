@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 public class PlayerStart : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+	}
+
+	void Start() {
 		PlayerController.Instance.playerPawn.transform.position = transform.position;
 	}
 }

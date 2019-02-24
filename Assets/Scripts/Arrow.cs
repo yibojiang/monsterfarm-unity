@@ -35,7 +35,6 @@ public class Arrow : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-		Debug.Log("hit " + col.gameObject.name);
 		if (col.gameObject.CompareTag("Monster")) {
 			var monster = col.gameObject.GetComponent<Monster>();
 			var contact = col.GetContact(0);

@@ -31,6 +31,7 @@ namespace MonsterFarm
 		{
 			if (!_isWondering)
 			{
+				this.enabled = true;
 				_isWondering = true;
 				StartCoroutine("RandomWalkAction");
 				var randomIdleStart = Random.Range(0,animSM_.GetCurrentAnimatorStateInfo(0).length); //Set a random part of the animation to start from
@@ -42,6 +43,7 @@ namespace MonsterFarm
 		{
 			if (_isWondering)
 			{
+				this.enabled = false;
 				StopCoroutine("RandomWalkAction");
 			}
 		}
@@ -61,14 +63,17 @@ namespace MonsterFarm
 		
 		// Update is called once per frame
 		void FixedUpdate () {
-			movingVel = Vector2.ClampMagnitude(movingVel, maxSpeed);
-			if (movingVel.magnitude > 0.1) {
-				lastMovingVel_ = movingVel;
-			}
+			if (_isWondering)
+			{
+				movingVel = Vector2.ClampMagnitude(movingVel, maxSpeed);
+				if (movingVel.magnitude > 0.1) {
+					lastMovingVel_ = movingVel;
+				}
 	
-			rigidBody.MovePosition(rigidBody.position + movingVel * Time.fixedDeltaTime);
-			animSM_.SetFloat("DirectionX", lastMovingVel_.x);
-			animSM_.SetFloat("DirectionY", lastMovingVel_.y);
+				rigidBody.MovePosition(rigidBody.position + movingVel * Time.fixedDeltaTime);
+				animSM_.SetFloat("DirectionX", lastMovingVel_.x);
+				animSM_.SetFloat("DirectionY", lastMovingVel_.y);	
+			}
 		}
 	}
 }

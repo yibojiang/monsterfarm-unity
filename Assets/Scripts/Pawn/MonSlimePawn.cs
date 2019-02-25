@@ -18,20 +18,24 @@ public class MonSlimePawn : MonsterPawn
         {
             var monsterObj = Instantiate(Resources.Load(slimePrefabPaths[1], typeof(GameObject))) as GameObject;
             monsterObj.transform.position = transform.position;
-            monsterObj.GetComponent<MonsterPawn>().Age = Age;
+            var monster = monsterObj.GetComponent<MonsterPawn>();
+            monster.Age = Age;
+            monster.AddFriendShip(Friendship);
             Destroy(this.gameObject);
         }
         
         
-        if (Age == 2)
+        if (Age == 3)
         {
             var monsterObj = Instantiate(Resources.Load(slimePrefabPaths[2], typeof(GameObject))) as GameObject;
             monsterObj.transform.position = transform.position;
             monsterObj.GetComponent<MonsterPawn>().Age = Age;
+            var monster = monsterObj.GetComponent<MonsterPawn>();
+            monster.AddFriendShip(Friendship);
             Destroy(this.gameObject);
         }
 
-        if (Age >= 3)
+        if (Age >= 5)
         {
             for (int i = 0; i < spawnCount; i++)
             {

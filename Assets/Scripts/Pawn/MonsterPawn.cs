@@ -13,7 +13,7 @@ public class MonsterPawn : MobPawn {
 	private IAstarAI _ai;
 	public bool canFeed;
 	public string favouriteItem;
-	public int Friendship { get; private set; }
+	public int Friendship { get; protected set; }
 	public int Age;
 	public RandomWalk behaviorWonder;
 	public void GetHit (Vector3 pos) {
@@ -75,19 +75,6 @@ public class MonsterPawn : MobPawn {
 	
 	// Update is called once per frame
 	void Update () {
-//		if (Input.GetKeyDown(KeyCode.K))
-//		{
-//			if (!_isFollowing)
-//			{
-//				Debug.Log("Follow player");
-//				FollowTarget(PlayerController.Instance.playerPawn.transform);	
-//			}
-//			else
-//			{
-//				Debug.Log("unfollowe player");
-//				UnFollowTarget();
-//			}
-//		}
 
 		if (_ai != null && _target != null)
 		{
@@ -106,7 +93,7 @@ public class MonsterPawn : MobPawn {
 		_target = target;
 		if (behaviorWonder != null)
 		{
-			behaviorWonder.StartWondering();
+			behaviorWonder.StopWondering();
 		}
 	}
 
@@ -117,7 +104,7 @@ public class MonsterPawn : MobPawn {
 		
 		if (behaviorWonder != null)
 		{
-			behaviorWonder.StopWondering();
+			behaviorWonder.StartWondering();
 		}
 	}
 }

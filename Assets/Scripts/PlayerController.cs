@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         }
         
         if (_ingameState == InGameState.Play)
-        {   
+        {
             var mousePos = Input.mousePosition;
             if (curBlueprint) {
                 var pos = _cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, _cam.nearClipPlane));

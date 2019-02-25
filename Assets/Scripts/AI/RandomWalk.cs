@@ -11,14 +11,39 @@ namespace MonsterFarm
 		private Animator animSM_;
 		private Vector3 lastMovingVel_;
 		private Rigidbody2D rigidBody;
+
+		private bool _isWondering = false;
 		// Use this for initialization
-		void Start () {
+
+		void Awake()
+		{
+			sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
 			animSM_ = sprite.gameObject.GetComponent<Animator>();
-			StartCoroutine("RandomWalkAction");
-			var anim = sprite.gameObject.GetComponent<Animator>();
-			var randomIdleStart = Random.Range(0,anim.GetCurrentAnimatorStateInfo(0).length); //Set a random part of the animation to start from
-			anim.Play("Idle", 0, randomIdleStart);
 			rigidBody = this.GetComponent<Rigidbody2D>();
+		}
+		
+		void Start ()
+		{
+			StartWondering();
+		}
+
+		public void StartWondering()
+		{
+			if (!_isWondering)
+			{
+				_isWondering = true;
+				StartCoroutine("RandomWalkAction");
+				var randomIdleStart = Random.Range(0,animSM_.GetCurrentAnimatorStateInfo(0).length); //Set a random part of the animation to start from
+				animSM_.Play("Idle", 0, randomIdleStart);	
+			}
+		}
+
+		public void StopWondering()
+		{
+			if (_isWondering)
+			{
+				StopCoroutine("RandomWalkAction");
+			}
 		}
 	
 		IEnumerator RandomWalkAction() {

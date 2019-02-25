@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using MonsterFarm;
 using Pathfinding;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ public class MonsterPawn : MobPawn {
 	public bool canFeed;
 	public string favouriteItem;
 	public int Friendship { get; private set; }
-
+	public int Age;
+	public RandomWalk behaviorWonder;
 	public void GetHit (Vector3 pos) {
 		var hurtParticlePrefab = Resources.Load("Prefab/Effect_BloodHit");
 		var hurtPS = (GameObject)GameObject.Instantiate(hurtParticlePrefab, pos, Quaternion.identity);
@@ -36,12 +38,18 @@ public class MonsterPawn : MobPawn {
 		StartCoroutine(RandomOffsetCoroutine());
 	}
 
+	public virtual void AddAge()
+	{
+		Age++;
+	}
+
 	public void AddFriendShip(int friendship)
 	{
 		Friendship += friendship;
 		if (Friendship >= 1)
 		{
 			FollowTarget(PlayerController.Instance.playerPawn.transform);
+			PlayerController.Instance.playerPawn.AddFollower(this);
 		}
 	}
 
@@ -96,11 +104,20 @@ public class MonsterPawn : MobPawn {
 		}
 
 		_target = target;
+		if (behaviorWonder != null)
+		{
+			behaviorWonder.StartWondering();
+		}
 	}
 
 	public void UnFollowTarget()
 	{
 		_isFollowing = false;
 		_target = null;
+		
+		if (behaviorWonder != null)
+		{
+			behaviorWonder.StopWondering();
+		}
 	}
 }

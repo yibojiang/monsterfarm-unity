@@ -27,6 +27,8 @@ public class GameTimeManager : MonoBehaviour {
     ColorGradingModel colorGrading_;
     ColorGradingModel.Settings colorGradingSettings_;
     public Image pointer;
+    private const float _daySeconds = 10f;
+    public int Day { get; private set; }
 
     // Use this for initialization
     void Start () {
@@ -43,13 +45,29 @@ public class GameTimeManager : MonoBehaviour {
         colorGrading_.settings = colorGradingSettings_;
     }
 
+    public void NewDay()
+    {
+        Day++;
+        var monsters = FindObjectsOfType<MonsterPawn>();
+        for (int i = 0; i < monsters.Length; i++)
+        {
+            var monster = monsters[i];
+            monster.AddAge();
+        }
+    }
+
     // Update is called once per frame
     void Update () {
 
         _currentTime += Time.deltaTime;
-        _currentTime = _currentTime % 200;
+        if (_currentTime > _daySeconds)
+        {
+            _currentTime -= _daySeconds;
+            NewDay();
+        }
+        //_currentTime = _currentTime % 200;
         var tmpRotation = pointer.transform.eulerAngles;
-        tmpRotation.z = (1f - _currentTime / 200) * 360;
+        tmpRotation.z = (1f - _currentTime / _daySeconds) * 360;
         pointer.transform.eulerAngles = tmpRotation;
         ApplyTimeChanged(_currentTime - 100);
     }

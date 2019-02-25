@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public int maxInvertory = 7;
     public int inventoryIdx = 0;
     public Dictionary<string, int> items = new Dictionary<string, int>();
-    private int _coins;
+    public int Coins { get; set; }
     public Text textCoins;
     public Text textInteract;
     public GameObject curBlueprint;
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
     }
     
     public void AddCoins(int coins) {
-        _coins += coins;
-        textCoins.text = string.Format("X {0}", _coins.ToString("N0"));
+        Coins += coins;
+        textCoins.text = string.Format("X {0}", Coins.ToString("N0"));
     }
 }

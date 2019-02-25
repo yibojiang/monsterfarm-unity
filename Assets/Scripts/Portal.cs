@@ -7,6 +7,8 @@ public class Portal : MonoBehaviour {
 	public Transform targetAnchor;
 	public Vector3 offset = new Vector3(0, -0.3f, 0);
 	public bool toOutDoor;
+	public bool changeBgm = false;
+	public AudioClip bgmClip;
 
 	void OnTriggerEnter2D(Collider2D col) {
 		// Debug.Log(col.gameObject.name);
@@ -38,6 +40,11 @@ public class Portal : MonoBehaviour {
 			}
 			else {
 				playerPawn.transform.localScale = new Vector3(1f, 1f, 1f);
+			}
+
+			if (changeBgm)
+			{
+				AudioManager.Instance.PlayBGM(bgmClip);
 			}
 		}
 	}

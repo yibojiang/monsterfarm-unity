@@ -2584,7 +2584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &75870064
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13470,6 +13470,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1014895513}
   offset: {x: 0.5, y: 0, z: 0}
   toOutDoor: 1
+  changeBgm: 1
+  bgmClip: {fileID: 8300000, guid: af8120f4b85280643881b597f6ddb568, type: 3}
 --- !u!61 &535238579
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14100,6 +14102,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1942879564}
   offset: {x: 0, y: -0.3, z: 0}
   toOutDoor: 1
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &557698285
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23203,6 +23207,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1762582045}
   offset: {x: 0, y: 0.3, z: 0}
   toOutDoor: 0
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &851130445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33719,6 +33725,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 535238577}
   offset: {x: -0.5, y: 0, z: 0}
   toOutDoor: 1
+  changeBgm: 1
+  bgmClip: {fileID: 8300000, guid: d90377b68b634e44b834fee52ae32b8a, type: 3}
 --- !u!61 &1014895512
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -49539,6 +49547,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1959935791}
   offset: {x: 0, y: 0.3, z: 0}
   toOutDoor: 0
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &1584764225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51527,6 +51537,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1967475272}
   offset: {x: 0, y: 0.3, z: 0}
   toOutDoor: 0
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &1672031113
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54233,6 +54245,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 2118618786}
   offset: {x: 0, y: -0.3, z: 0}
   toOutDoor: 1
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &1752026875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54526,6 +54540,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 851130446}
   offset: {x: 0, y: -0.3, z: 0}
   toOutDoor: 1
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &1762582047
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -59102,6 +59118,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 557698283}
   offset: {x: 0, y: 0.3, z: 0}
   toOutDoor: 0
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &1942879563
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -59712,6 +59730,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1584764226}
   offset: {x: 0, y: -0.3, z: 0}
   toOutDoor: 1
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &1959935790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -60043,6 +60063,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1672031114}
   offset: {x: 0, y: -0.3, z: 0}
   toOutDoor: 1
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!1001 &1968097701
 Prefab:
   m_ObjectHideFlags: 0
@@ -64662,6 +64684,8 @@ MonoBehaviour:
   targetAnchor: {fileID: 1752026873}
   offset: {x: 0, y: 0.3, z: 0}
   toOutDoor: 0
+  changeBgm: 0
+  bgmClip: {fileID: 0}
 --- !u!61 &2118618785
 BoxCollider2D:
   m_ObjectHideFlags: 0

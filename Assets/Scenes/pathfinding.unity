@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074902, b: 0.3587254, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7810,148 +7810,41 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.44
+      value: 6.39
       objectReference: {fileID: 0}
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.91
+      value: -1.55
       objectReference: {fileID: 0}
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_LocalPosition.z
       value: -0.060546875
       objectReference: {fileID: 0}
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4248274201929146, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+    - target: {fileID: 4471374878311246, guid: 2893e874ac6732e41ae868998893559b, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 212984335631503740, guid: 0d5af99dbc2684a23ae22c6103d05120,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 970
-      objectReference: {fileID: 0}
-    - target: {fileID: 114055192604741316, guid: 0d5af99dbc2684a23ae22c6103d05120,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534218029047908, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
+  m_SourcePrefab: {fileID: 100100000, guid: 2893e874ac6732e41ae868998893559b, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1995471320 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1534218029047908, guid: 0d5af99dbc2684a23ae22c6103d05120,
-    type: 2}
-  m_PrefabInternal: {fileID: 1995471319}
---- !u!114 &1995471321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1995471320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36fbf21168a44f2dbf98258102ec5533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 2098820070}
-  dest: {fileID: 0}
---- !u!114 &1995471322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1995471320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 2098820070}
---- !u!114 &1995471323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1995471320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 2
-  radius: 0.5
-  height: 0.5
-  repathRate: 0.5
-  canSearch: 1
-  canMove: 1
-  maxSpeed: 1
-  gravity: {x: 0, y: 0, z: 0}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  orientation: 1
-  enableRotation: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 1
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
---- !u!114 &1995471324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1995471320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
 --- !u!1 &2098820069
 GameObject:
   m_ObjectHideFlags: 0

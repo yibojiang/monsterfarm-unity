@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4362942045842368}
   - component: {fileID: 61196540004704896}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: collison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: 0
 --- !u!212 &212473320014526354
 SpriteRenderer:
   m_ObjectHideFlags: 1

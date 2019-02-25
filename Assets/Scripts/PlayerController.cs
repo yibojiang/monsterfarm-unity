@@ -58,6 +58,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool HasItem(string itemName, int itemCount)
+    {
+        return (items.ContainsKey(itemName) && items[itemName] - itemCount >= 0);
+    }
+    
+    public void GetItem(string itemName, int itemCount)
+    {
+        //return (items.ContainsKey(itemName) && items[itemName] - itemCount >= 0);
+        items[itemName] += itemCount;
+    }
+
+    public void LoseItem(string itemName, int itemCount)
+    {
+        items[itemName] -= itemCount;
+    } 
+
     private void Awake()
     {
         _cam = Camera.main;

@@ -36,7 +36,7 @@ public class Arrow : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col) {
 		if (col.gameObject.CompareTag("Monster")) {
-			var monster = col.gameObject.GetComponent<Monster>();
+			var monster = col.gameObject.GetComponent<MonsterPawn>();
 			var contact = col.GetContact(0);
 			monster.GetHit(new Vector3(contact.point.x, contact.point.y, 0));
 			Destroy(this.gameObject);

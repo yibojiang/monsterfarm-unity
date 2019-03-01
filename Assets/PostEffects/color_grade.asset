@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: ColorGrade
+  m_Name: color_grade
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -115,13 +115,13 @@ MonoBehaviour:
         tonemapper: 2
         neutralBlackIn: 0.014
         neutralWhiteIn: 10.4
-        neutralBlackOut: 0.004
+        neutralBlackOut: 0
         neutralWhiteOut: 10.48
         neutralWhiteLevel: 6.5
         neutralWhiteClip: 9.14
       basic:
         postExposure: 0
-        temperature: 9
+        temperature: 30.441492
         tint: 27
         hueShift: 5
         saturation: 0.946

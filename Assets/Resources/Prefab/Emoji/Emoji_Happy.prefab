@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212053922014376394}
   - component: {fileID: 114288514746436850}
   m_Layer: 0
-  m_Name: Emoji_Happy
+  m_Name: emoji_happy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

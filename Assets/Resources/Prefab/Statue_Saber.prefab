@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4073608038030788}
   m_Layer: 0
-  m_Name: Statue_Saber
+  m_Name: statue_saber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: 0
 --- !u!212 &212084515533187426
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074902, b: 0.3587254, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15642,7 +15642,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4893661457459066, guid: 80eb59809c114d94298cc0fee8587ea8, type: 2}
       propertyPath: m_RootOrder
-      value: 32
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80eb59809c114d94298cc0fee8587ea8, type: 2}
@@ -16577,7 +16577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingVel: {x: 0, y: 0}
   maxSpeed: 5
-  sprite: {fileID: 704512899}
 --- !u!1001 &648484078
 Prefab:
   m_ObjectHideFlags: 0
@@ -47529,7 +47528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingVel: {x: 0, y: 0}
   maxSpeed: 5
-  sprite: {fileID: 255682452}
 --- !u!1001 &1501518270
 Prefab:
   m_ObjectHideFlags: 0
@@ -52004,7 +52002,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1687280182
 Prefab:
@@ -53397,7 +53395,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingVel: {x: 0, y: 0}
   maxSpeed: 5
-  sprite: {fileID: 1451066595}
 --- !u!1001 &1733694439
 Prefab:
   m_ObjectHideFlags: 0
@@ -63454,7 +63451,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingVel: {x: 0, y: 0}
   maxSpeed: 5
-  sprite: {fileID: 776139213}
 --- !u!1001 &2079714556
 Prefab:
   m_ObjectHideFlags: 0

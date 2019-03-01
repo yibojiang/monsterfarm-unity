@@ -14,8 +14,6 @@ public enum InGameState {
 }
 public class PlayerController : MonoBehaviour
 {
-    
-    
     private static PlayerController _instance;
     public static PlayerController Instance {
         get {
@@ -80,13 +78,13 @@ public class PlayerController : MonoBehaviour
         inventoryList = new List<InventoryItem>(
             new InventoryItem[]
             {
-                new InventoryItem("statue_archer", "Prefab/Statue_Archer", 2),
-                new InventoryItem("tree", "Prefab/Tree", 0),
-                new InventoryItem("woodvat", "Prefab/Woodvat", 0),
-                new InventoryItem("statue_archer", "Prefab/Statue_Archer", 2),
-                new InventoryItem("statue_archer", "Prefab/Statue_Archer", 2),
-                new InventoryItem("statue_archer", "Prefab/Statue_Archer", 2),
-                new InventoryItem("statue_archer", "Prefab/Statue_Archer", 2),
+                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+                new InventoryItem("tree", "Prefab/tree", 0),
+                new InventoryItem("woodvat", "Prefab/woodvat", 0),
+                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
             });
     }
 

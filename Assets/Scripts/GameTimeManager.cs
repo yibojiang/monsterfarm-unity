@@ -5,20 +5,20 @@ using UnityEngine.PostProcessing;
 using UnityEngine.UI;
 
 public class GameTimeManager : MonoBehaviour {
-    private static GameTimeManager Instance_;
+    private static GameTimeManager _instance;
     public static GameTimeManager Instance
     {
         get
         {
-            if (!Instance_)
+            if (!_instance)
             {
-                Instance_ = GameObject.FindObjectOfType<GameTimeManager>();
-                if (!Instance_) {
+                _instance = GameObject.FindObjectOfType<GameTimeManager>();
+                if (!_instance) {
                     var gameObj = new GameObject();
-                    Instance_ = gameObj.AddComponent<GameTimeManager>();
+                    _instance = gameObj.AddComponent<GameTimeManager>();
                 }
             }
-            return Instance_;
+            return _instance;
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using MonsterFarm;
 using Pathfinding;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class MonsterPawn : MobPawn {
 	public string favouriteItem;
 	public int Friendship { get; protected set; }
 	public int Age;
-	public RandomWalk behaviorWonder;
+	[CanBeNull] private RandomWalk behaviorWonder;
+	[CanBeNull] private AIPath _aiPath;
 	public void GetHit (Vector3 pos) {
 		var hurtParticlePrefab = Resources.Load("Prefab/Effect_BloodHit");
 		var hurtPS = (GameObject)GameObject.Instantiate(hurtParticlePrefab, pos, Quaternion.identity);
@@ -31,12 +33,13 @@ public class MonsterPawn : MobPawn {
 	void OnDisable () {
 		if (_ai != null) _ai.onSearchPath -= Update;
 	}
-	
-	// Use this for initialization
-	void Start ()
+
+	private void Awake()
 	{
-		StartCoroutine(RandomOffsetCoroutine());
+		behaviorWonder = GetComponent<RandomWalk>();
+		_aiPath = GetComponent<AIPath>();
 	}
+
 
 	public virtual void AddAge()
 	{
@@ -85,6 +88,7 @@ public class MonsterPawn : MobPawn {
 	public void FollowTarget(Transform target)
 	{
 		_isFollowing = true;
+		_aiPath.canMove = true;
 		if (!_seeker)
 		{
 			_seeker = gameObject.AddComponent<Seeker>();	
@@ -95,16 +99,21 @@ public class MonsterPawn : MobPawn {
 		{
 			behaviorWonder.StopWondering();
 		}
+		
+		StartCoroutine("RandomOffsetCoroutine");
 	}
 
 	public void UnFollowTarget()
 	{
 		_isFollowing = false;
+		_aiPath.canMove = false;
 		_target = null;
 		
 		if (behaviorWonder != null)
 		{
 			behaviorWonder.StartWondering();
 		}
+		
+		StopCoroutine("RandomOffsetCoroutine");
 	}
 }

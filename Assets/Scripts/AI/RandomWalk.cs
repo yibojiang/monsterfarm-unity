@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using Pathfinding;
 using UnityEngine;
 
 namespace MonsterFarm
@@ -7,7 +9,7 @@ namespace MonsterFarm
 	public class RandomWalk : MonoBehaviour {
 		public Vector2 movingVel;
 		public float maxSpeed = 5f;
-		public SpriteRenderer sprite;
+		private SpriteRenderer sprite;
 		private Animator animSM_;
 		private Vector3 lastMovingVel_;
 		private Rigidbody2D rigidBody;
@@ -69,7 +71,7 @@ namespace MonsterFarm
 				if (movingVel.magnitude > 0.1) {
 					lastMovingVel_ = movingVel;
 				}
-	
+
 				rigidBody.MovePosition(rigidBody.position + movingVel * Time.fixedDeltaTime);
 				animSM_.SetFloat("DirectionX", lastMovingVel_.x);
 				animSM_.SetFloat("DirectionY", lastMovingVel_.y);	

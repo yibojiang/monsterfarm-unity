@@ -25,7 +25,6 @@ namespace MonsterFarm
 //            }
 //            _destinationSetter.target = PlayerController.Instance.playerPawn.transform;
             //_seeker.GetCurrentPath();
-//            transform.position += 
 
         }
     }

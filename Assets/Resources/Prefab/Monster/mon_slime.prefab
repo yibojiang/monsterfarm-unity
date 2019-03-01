@@ -268,7 +268,7 @@ MonoBehaviour:
   height: 0.3
   repathRate: 0.5
   canSearch: 1
-  canMove: 1
+  canMove: 0
   maxSpeed: 1
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
@@ -326,7 +326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingVel: {x: 0, y: 0}
   maxSpeed: 5
-  sprite: {fileID: 0}
 --- !u!114 &114694480323813104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -346,7 +345,6 @@ MonoBehaviour:
   canFeed: 1
   favouriteItem: apple
   Age: 1
-  behaviorWonder: {fileID: 114561288341256604}
 --- !u!212 &212022899688471906
 SpriteRenderer:
   m_ObjectHideFlags: 1

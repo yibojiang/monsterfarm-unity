@@ -2289,7 +2289,6 @@ GameObject:
   - component: {fileID: 1590985004}
   - component: {fileID: 1590985005}
   - component: {fileID: 1590985006}
-  - component: {fileID: 1590985007}
   - component: {fileID: 1590985008}
   m_Layer: 9
   m_Name: Sprite
@@ -2375,20 +2374,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &1590985007
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1590985003}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0be0b63322e485148861cee533fc79ad, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &1590985008
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class InteractFeed : Interact
 			{
 				pc.LoseItem(mob.favouriteItem, 1);
 				mob.AddFriendShip(1);
-				var emoji = Instantiate(happyEmojiPrefab, mob.transform.position + new Vector3(0f, 0.2f, 0f), Quaternion.identity);
+				Instantiate(happyEmojiPrefab, mob.transform.position + new Vector3(0f, 0.2f, 0f), Quaternion.identity);
 			}
 		}
 	}

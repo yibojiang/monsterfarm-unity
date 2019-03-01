@@ -10,8 +10,6 @@ public class InteractAppleDealer : Interact {
 		
         var pc = PlayerController.Instance;
 
-        var player = pc.playerPawn;
-
         if (pc.Coins >= 100)
         {
             allTexts.Add("Are you willing to buy an apple for $100 ?");

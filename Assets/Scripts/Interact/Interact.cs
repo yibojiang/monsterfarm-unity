@@ -6,15 +6,15 @@ public class Interact : MonoBehaviour {
 
 	public string interactMessage = "Interact";
 
-	private Collider2D collider2D_;
+//	private Collider2D collider2D_;
 
-	private ContactFilter2D filter_;
+//	private ContactFilter2D filter_;
 	// Use this for initialization
 	void Awake ()
 	{
-		collider2D_ = this.GetComponent<Collider2D>();
-		filter_ = new ContactFilter2D();
-		filter_.SetLayerMask(LayerMask.GetMask("Player"));
+//		collider2D_ = this.GetComponent<Collider2D>();
+//		filter_ = new ContactFilter2D();
+//		filter_.SetLayerMask(LayerMask.GetMask("Player"));
 	}
 	/*
 	// Update is called once per frame

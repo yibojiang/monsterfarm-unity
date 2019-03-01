@@ -23,26 +23,26 @@ public class GameTimeManager : MonoBehaviour {
     }
 
     private float _currentTime;
-    private Camera cam_;
-    ColorGradingModel colorGrading_;
-    ColorGradingModel.Settings colorGradingSettings_;
+    private Camera _cam;
+    ColorGradingModel _colorGrading;
+    ColorGradingModel.Settings _colorGradingSettings;
     public Image pointer;
-    private const float _daySeconds = 10f;
+    private const float _daySeconds = 60f;
     public int Day { get; private set; }
 
     // Use this for initialization
     void Start () {
-        cam_ = Camera.main;
-        var postProcess = cam_.GetComponent<PostProcessingBehaviour>();
-        colorGrading_ = postProcess.profile.colorGrading;
+        _cam = Camera.main;
+        var postProcess = _cam.GetComponent<PostProcessingBehaviour>();
+        _colorGrading = postProcess.profile.colorGrading;
         _currentTime = 0;
     }
 
     void ApplyTimeChanged(float time)
     {
-        colorGradingSettings_ = colorGrading_.settings;
-        var temp = time;
-        var blackout = time;
+        _colorGradingSettings = _colorGrading.settings;
+        float temp;
+        float blackout;
         if (time < 0.5f)
         {
             temp = (time * 2 * 100 - 50);
@@ -65,9 +65,9 @@ public class GameTimeManager : MonoBehaviour {
             blackout = 0f;
         }
         
-        colorGradingSettings_.basic.temperature = temp;
-        colorGradingSettings_.tonemapping.neutralBlackOut = blackout;
-        colorGrading_.settings = colorGradingSettings_;
+        _colorGradingSettings.basic.temperature = temp;
+        _colorGradingSettings.tonemapping.neutralBlackOut = blackout;
+        _colorGrading.settings = _colorGradingSettings;
     }
 
     public void NewDay()

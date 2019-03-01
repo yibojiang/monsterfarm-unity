@@ -6,21 +6,28 @@ using Pathfinding;
 using UnityEngine;
 
 public class MonsterPawn : MobPawn {
-	public AudioClip hitClip;
-	private bool _isFollowing = false;
-	private Seeker _seeker;
-	public Transform _target;
 	public Vector3 followOffset = new Vector3(0.2f, 0.1f,0 );
-	private IAstarAI _ai;
-	public bool canFeed;
 	public string favouriteItem;
-	public int Friendship { get; protected set; }
-	public int Age;
+	public Transform _target;
+	public AudioClip hitClip;
+	private Seeker _seeker;
+	private IAstarAI _ai;
+	
 	[CanBeNull] private RandomWalk behaviorWonder;
 	[CanBeNull] private AIPath _aiPath;
+	public int Friendship { get; protected set; }
+	public int Age;
+	public bool canFeed;
+	private bool _isFollowing = false;
+
+	public bool IsFollowing()
+	{
+		return _isFollowing;
+	}
+
 	public void GetHit (Vector3 pos) {
 		var hurtParticlePrefab = Resources.Load("Prefab/Effect_BloodHit");
-		var hurtPS = (GameObject)GameObject.Instantiate(hurtParticlePrefab, pos, Quaternion.identity);
+		GameObject.Instantiate(hurtParticlePrefab, pos, Quaternion.identity);
 		var am = AudioManager.Instance;
 		am.PlaySFX(hitClip);
 	}

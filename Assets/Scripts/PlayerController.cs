@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour
 
         public InventoryItem(string itemName, string prefabPath, int count)
         {
-            itemName = itemName;
-            prefabPath = prefabPath;
-            count = count;
+            this.itemName = itemName;
+            this.prefabPath = prefabPath;
+            this.count = count;
         }
     }
 
@@ -75,17 +75,16 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _cam = Camera.main;
-        inventoryList = new List<InventoryItem>(
-            new InventoryItem[]
-            {
-                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-                new InventoryItem("tree", "Prefab/tree", 0),
-                new InventoryItem("woodvat", "Prefab/woodvat", 0),
-                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-                new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-            });
+        inventoryList = new List<InventoryItem>
+        {
+            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+            new InventoryItem("tree", "Prefab/tree", 0),
+            new InventoryItem("woodvat", "Prefab/woodvat", 0),
+            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+        };
     }
 
     public void SetInGameState(InGameState inGameState)

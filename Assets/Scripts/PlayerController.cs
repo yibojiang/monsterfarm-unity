@@ -149,23 +149,28 @@ public class PlayerController : MonoBehaviour
             {
                 UIController.Instance.InputHandle(UIInputType.Up);
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 UIController.Instance.InputHandle(UIInputType.Down);
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 UIController.Instance.InputHandle(UIInputType.Left);
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 UIController.Instance.InputHandle(UIInputType.Right);
             }
-            else if (Input.GetKeyDown(KeyCode.Return))
+            
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 UIController.Instance.InputHandle(UIInputType.Confirm);
             }
-            else if (Input.GetKeyDown(KeyCode.Escape))
+            
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 UIController.Instance.InputHandle(UIInputType.Cancel);
             }

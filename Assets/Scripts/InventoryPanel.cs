@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MonsterFarm
@@ -7,7 +8,8 @@ namespace MonsterFarm
     {
         private int _selIdx;
         public GridLayoutGroup gridLayout;
-        public Image uiCursor;
+        public Image iconCursor;
+        public Image tabCursor;
         private Image[] iconList;
         private Vector2 _gridSize;
 
@@ -32,28 +34,28 @@ namespace MonsterFarm
 
             if (uiInputType == UIInputType.Up)
             {
-                if (_selIdx - 3 >= 0)
+                if (_selIdx - gridLayout.constraintCount >= 0)
                 {
-                    _selIdx -= 3;    
+                    _selIdx -= gridLayout.constraintCount;    
                 }
             }
 
             if (uiInputType == UIInputType.Down)
             {
-                if (_selIdx + 3 < iconList.Length)
+                if (_selIdx + gridLayout.constraintCount < iconList.Length)
                 {
-                    _selIdx += 3;    
+                    _selIdx += gridLayout.constraintCount;
                 }
             }
 
             _selIdx = Mathf.Clamp(_selIdx, 0, iconList.Length - 1);
-            uiCursor.rectTransform.position = iconList[_selIdx].rectTransform.position;
+            iconCursor.rectTransform.position = iconList[_selIdx].rectTransform.position;
         }
 
         private void Update()
         {
             float lerpValue = Mathf.PingPong(Time.time  * 4, 1f);
-            uiCursor.rectTransform.sizeDelta = Vector2.Lerp(
+            iconCursor.rectTransform.sizeDelta = Vector2.Lerp(
                 new Vector2(_gridSize.x, _gridSize.y), 
                 1.1f * new Vector2(_gridSize.x, _gridSize.y),
                 lerpValue

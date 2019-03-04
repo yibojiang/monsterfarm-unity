@@ -13,7 +13,10 @@ namespace MonsterFarm
 		Left,
 		Right,
 		Confirm,
-		Cancel
+		Cancel,
+		NextPage,
+		LastPage,
+		Interact,
 	}
 	public class UIController : MonoBehaviour
 	{	

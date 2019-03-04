@@ -6,19 +6,38 @@ namespace MonsterFarm
 {
     public class InventoryPanel : UIPanel
     {
-        private int _selIdx;
+        private int _selIdx = 0;
         public GridLayoutGroup gridLayout;
+        public GridLayoutGroup gridCounterLayout;
         public Image iconCursor;
         public Image tabCursor;
-        private Image[] iconList;
+        private Image[] _iconList;
+        private Text[] _counterTextList;
         private Vector2 _gridSize;
+        public GridLayoutGroup tabLayout;
+        private Image[] _tabList;
+
+        private int _tabIdx = 0;
 
         private void Awake()
         {
-            iconList = gridLayout.GetComponentsInChildren<Image>();
+            _iconList = gridLayout.GetComponentsInChildren<Image>();
+            _tabList = tabLayout.GetComponentsInChildren<Image>();
+            _counterTextList = tabLayout.GetComponentsInChildren<Text>();
             _gridSize = gridLayout.cellSize;
 
         }
+
+        public override void ShowPanel()
+        {
+            base.ShowPanel();
+            var pc = PlayerController.Instance;
+            foreach (var item in pc.items)
+            {
+                Debug.Log($"itemName: {item.Key}, itemCount: {item.Value}");
+            }
+        }
+
         public override void InputCallback(UIInputType uiInputType)
         {
             base.InputCallback(uiInputType);
@@ -26,40 +45,45 @@ namespace MonsterFarm
             {
                 _selIdx--;
             }
-            
-            if (uiInputType == UIInputType.Right)
+            else if (uiInputType == UIInputType.Right)
             {
                 _selIdx++;
             }
-
-            if (uiInputType == UIInputType.Up)
+            else if (uiInputType == UIInputType.Up)
             {
                 if (_selIdx - gridLayout.constraintCount >= 0)
                 {
                     _selIdx -= gridLayout.constraintCount;    
                 }
             }
-
-            if (uiInputType == UIInputType.Down)
+            else if (uiInputType == UIInputType.Down)
             {
-                if (_selIdx + gridLayout.constraintCount < iconList.Length)
+                if (_selIdx + gridLayout.constraintCount < _iconList.Length)
                 {
                     _selIdx += gridLayout.constraintCount;
                 }
             }
+            else if (uiInputType == UIInputType.LastPage)
+            {
+                _tabIdx--;
+            }
+            else if (uiInputType == UIInputType.NextPage)
+            {
+                _tabIdx++;
+            }
+            else if (uiInputType == UIInputType.Confirm)
+            {
+                Debug.Log("confirm");
+            }
+            else if (uiInputType == UIInputType.Cancel)
+            {
+                Debug.Log("cancel");
+            }
 
-            _selIdx = Mathf.Clamp(_selIdx, 0, iconList.Length - 1);
-            iconCursor.rectTransform.position = iconList[_selIdx].rectTransform.position;
-        }
-
-        private void Update()
-        {
-            float lerpValue = Mathf.PingPong(Time.time  * 4, 1f);
-            iconCursor.rectTransform.sizeDelta = Vector2.Lerp(
-                new Vector2(_gridSize.x, _gridSize.y), 
-                1.1f * new Vector2(_gridSize.x, _gridSize.y),
-                lerpValue
-            );
+            _selIdx = Mathf.Clamp(_selIdx, 0, _iconList.Length - 1);
+            _tabIdx = Mathf.Clamp(_tabIdx, 0, _tabList.Length - 1);
+            tabCursor.rectTransform.position = _tabList[_tabIdx].rectTransform.position;
+            iconCursor.rectTransform.position = _iconList[_selIdx].rectTransform.position;
         }
     }
 }

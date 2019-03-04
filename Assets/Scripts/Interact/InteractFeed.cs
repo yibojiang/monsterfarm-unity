@@ -30,7 +30,7 @@ public class InteractFeed : Interact
 			var pc = PlayerController.Instance;
 			if (pc.HasItem(mob.favouriteItem, 1))
 			{
-				pc.LoseItem(mob.favouriteItem, 1);
+				pc.LoseItemCount(mob.favouriteItem, 1);
 				mob.AddFriendShip(1);
 				Instantiate(happyEmojiPrefab, mob.transform.position + new Vector3(0f, 0.2f, 0f), Quaternion.identity);
 			}

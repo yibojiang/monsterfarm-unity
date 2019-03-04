@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using MonsterFarm;
+using UnityEngine.Serialization;
 
 public enum GameMode {
     Paused,
@@ -33,22 +35,21 @@ public class PlayerController : MonoBehaviour
     
     public int maxInvertory = 7;
     public int inventoryIdx = 0;
-    public Dictionary<string, int> items = new Dictionary<string, int>();
+    
     public int Coins { get; set; }
     public Text textCoins;
     public Text textInteract;
     public GameObject curBlueprint;
     
-    [SerializeField]
-    public List<InventoryItem> inventoryList;
+    public List<BlueprintItem> blueprintList;
     
     [System.Serializable]
-    public class InventoryItem {
+    public class BlueprintItem {
         public string itemName;
         public string prefabPath;
         public int count;
 
-        public InventoryItem(string itemName, string prefabPath, int count)
+        public BlueprintItem(string itemName, string prefabPath, int count)
         {
             this.itemName = itemName;
             this.prefabPath = prefabPath;
@@ -56,41 +57,105 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public class InventoryUIItem
+    {
+        public string itemName;
+
+        public int ItemCount
+        {
+            get { return PlayerController.Instance.items[itemName]; }
+        }
+
+        [CanBeNull] public Sprite sprite;
+
+        public InventoryUIItem()
+        {
+            
+        }
+        
+        public InventoryUIItem(string itemName)
+        {
+            this.itemName = itemName;
+            var tex = Resources.Load<Texture2D>($"UI/InventoryItemIcon/ui_{itemName}");
+            sprite = Sprite.Create(tex, new Rect(0f,0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+        }
+    }
+    
+    public Dictionary<string, int> items = new Dictionary<string, int>();
+    private Dictionary<string, Sprite> _itemSprite = new Dictionary<string, Sprite>();
+    private Dictionary<string, InventoryUIItem> _inventoryUIItemDict = new Dictionary<string, InventoryUIItem>();
+
+    public InventoryUIItem[] GetInventoryItems(int size, int offset)
+    {
+        InventoryUIItem[] tmpItems = new InventoryUIItem[size];
+        int idx = 0;
+        foreach (var item in items)
+        {
+            if (item.Value > 0 && _inventoryUIItemDict.ContainsKey(item.Key))
+            {
+                tmpItems[idx] = _inventoryUIItemDict[item.Key];
+                idx++;
+            }
+
+            if (idx >= size)
+            {
+                break;
+            }
+        }
+
+        return tmpItems;
+    }
+
     public bool HasItem(string itemName, int itemCount)
     {
         return (items.ContainsKey(itemName) && items[itemName] - itemCount >= 0);
     }
-    
-    public void GetItem(string itemName, int itemCount)
+
+    public int UseItem(string itemName)
     {
-        //return (items.ContainsKey(itemName) && items[itemName] - itemCount >= 0);
+        Debug.Log($"Use Item {itemName}");
+        if (items.ContainsKey(itemName) && items[itemName] > 0)
+        {
+            items[itemName]--;
+            // TODO: Use Apple
+            return items[itemName];
+        }
+
+        return 0;
+    }
+    
+    public void AddItemCount(string itemName, int itemCount)
+    {
         items[itemName] += itemCount;
     }
 
-    public void LoseItem(string itemName, int itemCount)
+    public void LoseItemCount(string itemName, int itemCount)
     {
         items[itemName] -= itemCount;
-    } 
+    }
 
     private void Awake()
     {
         _cam = Camera.main;
-        inventoryList = new List<InventoryItem>
+        blueprintList = new List<BlueprintItem>
         {
-            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-            new InventoryItem("tree", "Prefab/tree", 0),
-            new InventoryItem("woodvat", "Prefab/woodvat", 0),
-            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
-            new InventoryItem("statue_archer", "Prefab/statue_archer", 2),
+            new BlueprintItem("statue_archer", "Prefab/statue_archer", 2),
+            new BlueprintItem("tree", "Prefab/tree", 0),
+            new BlueprintItem("woodvat", "Prefab/woodvat", 0),
+            new BlueprintItem("statue_archer", "Prefab/statue_archer", 2),
+            new BlueprintItem("statue_archer", "Prefab/statue_archer", 2),
+            new BlueprintItem("statue_archer", "Prefab/statue_archer", 2),
+            new BlueprintItem("statue_archer", "Prefab/statue_archer", 2),
         };
+        
+        _inventoryUIItemDict.Add("apple", new InventoryUIItem("apple"));
     }
 
     public void SetInGameState(InGameState inGameState)
     {
         _ingameState = inGameState;
     }
+
     private void Update()
     {   
         if (Input.GetKeyDown(KeyCode.Tab)) {
@@ -127,7 +192,7 @@ public class PlayerController : MonoBehaviour
                             Destroy(curBlueprint);
                         }
 
-                        var item = inventoryList[inventoryIdx];
+                        var item = blueprintList[inventoryIdx];
 
                         if (item != null) {
                             try {

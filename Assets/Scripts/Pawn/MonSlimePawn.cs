@@ -24,7 +24,6 @@ public class MonSlimePawn : MonsterPawn
             Destroy(gameObject);
         }
         
-        
         if (Age == 3)
         {
             var monsterObj = Instantiate(Resources.Load(slimePrefabPaths[2], typeof(GameObject))) as GameObject;

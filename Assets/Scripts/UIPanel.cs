@@ -4,12 +4,12 @@ namespace MonsterFarm
 {
     public class UIPanel : MonoBehaviour
     {
-        public void ShowPanel()
+        public virtual void ShowPanel()
         {
             this.gameObject.SetActive(true);
         }
     
-        public void HidePanel()
+        public virtual void HidePanel()
         {
             this.gameObject.SetActive(false);
         }

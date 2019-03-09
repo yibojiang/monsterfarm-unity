@@ -13,7 +13,7 @@ public class MonSlimePawn : MonsterPawn
     public override void AddAge()
     {
         base.AddAge();
-        Debug.Log(this.gameObject.name + " age: " + Age);
+        Debug.Log(gameObject.name + " age: " + Age);
         if (Age == 1)
         {
             var monsterObj = Instantiate(Resources.Load(slimePrefabPaths[1], typeof(GameObject))) as GameObject;
@@ -21,9 +21,8 @@ public class MonSlimePawn : MonsterPawn
             var monster = monsterObj.GetComponent<MonsterPawn>();
             monster.Age = Age;
             monster.AddFriendShip(Friendship);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-        
         
         if (Age == 3)
         {
@@ -32,7 +31,7 @@ public class MonSlimePawn : MonsterPawn
             monsterObj.GetComponent<MonsterPawn>().Age = Age;
             var monster = monsterObj.GetComponent<MonsterPawn>();
             monster.AddFriendShip(Friendship);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         if (Age >= 5)
@@ -43,7 +42,7 @@ public class MonSlimePawn : MonsterPawn
                 monsterObj.transform.position = transform.position;
                 monsterObj.GetComponent<MonsterPawn>().Age = 0;
             }
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         
         

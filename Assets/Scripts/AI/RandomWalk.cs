@@ -21,6 +21,8 @@ namespace MonsterFarm
 		private int _idIdle = 0;
 
 		private bool _isWondering = false;
+
+		private MobPawn _mob;
 		// Use this for initialization
 
 		void Awake()
@@ -28,6 +30,7 @@ namespace MonsterFarm
 			_sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
 			_animSM = _sprite.gameObject.GetComponent<Animator>();
 			_rigidBody = GetComponent<Rigidbody2D>();
+			_mob = GetComponent<MobPawn>();
 			foreach (var p in _animSM.parameters)
 			{
 				if (p.name == "IsAttacking")
@@ -115,8 +118,8 @@ namespace MonsterFarm
 				if (movingVel.magnitude > 0.1) {
 					_lastMovingVel = movingVel;
 				}
-
-				_rigidBody.MovePosition(_rigidBody.position + movingVel * Time.fixedDeltaTime);
+				
+				_mob.SetVel(movingVel);
 
 				if (_idDirectionX != 0)
 				{

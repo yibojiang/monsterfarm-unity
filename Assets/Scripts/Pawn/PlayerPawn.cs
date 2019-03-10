@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerPawn : MobPawn {
 	
-	public SpriteRenderer sprite_;
-	public float maxMovingSpeed = 1.0f;
-	private Vector3 _movingVel;
+	public SpriteRenderer _sprite;
 	private Animator _animSm;
 
 	public float acc = 3f;
@@ -28,13 +26,14 @@ public class PlayerPawn : MobPawn {
 	public bool isTalking = false;
 		
 	
-	public Vector3 controlMovement;
+	public Vector2 controlMovement;
 
 	private Camera _cam;
 
-	private void Awake()
+	protected void Awake()
 	{
-		_animSm = sprite_.gameObject.GetComponent<Animator>();
+		base.Awake();
+		_animSm = _sprite.gameObject.GetComponent<Animator>();
 		_cam = Camera.main;
 	}
 
@@ -131,7 +130,7 @@ public class PlayerPawn : MobPawn {
 
 	
 
-	public void SetControlMovement(Vector3 dir)
+	public void SetControlMovement(Vector2 dir)
 	{
 		controlMovement = dir.normalized * acc;
 	}
@@ -156,9 +155,9 @@ public class PlayerPawn : MobPawn {
 			shootTarget.gameObject.SetActive(false);
 		}
 
-		transform.position = transform.position + _movingVel * Time.fixedDeltaTime;
+		_rigidBody.MovePosition(_rigidBody.position + _movingVel * Time.fixedDeltaTime);
+		// transform.position = transform.position + _movingVel * Time.fixedDeltaTime;
 		_animSm.SetFloat("Speed", _movingVel.magnitude);
-		// var direction = (Mathf.Atan2(movingVel.y, movingVel.x));
 		_animSm.SetFloat("DirectionX", _lastMovingVel.x);
 		_animSm.SetFloat("DirectionY", _lastMovingVel.y);
 		

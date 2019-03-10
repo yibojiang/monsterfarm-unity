@@ -5,8 +5,9 @@ public class MonSlimePawn : MonsterPawn
     private const int spawnCount = 2;
     private string[] slimePrefabPaths = {"Prefab/Monster/mon_slime_tiny", "Prefab/Monster/mon_slime", "Prefab/Monster/mon_slime_large"};
 
-    MonSlimePawn()
+    protected void Awake()
     {
+        base.Awake();
         favouriteItem = "apple";
     }
 

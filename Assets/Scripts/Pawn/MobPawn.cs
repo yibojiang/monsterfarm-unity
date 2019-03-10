@@ -3,11 +3,18 @@ using UnityEngine;
 
 public class MobPawn : BasePawn
 {
+    public List<MobPawn> Followers { get; private set; }
     public Interact interactTarget;
 
     public bool outDoor = true;
+    protected Vector2 _movingVel;
+    public float maxMovingSpeed = 1.0f;
+    protected Rigidbody2D _rigidBody;
 
-    public List<MobPawn> Followers { get; private set; }
+    protected void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
@@ -28,5 +35,15 @@ public class MobPawn : BasePawn
     public virtual void AddFollower(MobPawn mob)
     {
         Followers.Add(mob);
+    }
+
+    public virtual void SetVel(Vector2 movingVel)
+    {
+        this._movingVel = movingVel;
+    }
+
+    void FixedUpdate()
+    {
+        _rigidBody.MovePosition(_rigidBody.position + _movingVel * Time.fixedDeltaTime);
     }
 }

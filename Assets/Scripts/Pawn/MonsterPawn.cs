@@ -41,8 +41,9 @@ public class MonsterPawn : MobPawn {
 		if (_ai != null) _ai.onSearchPath -= Update;
 	}
 
-	private void Awake()
+	protected void Awake()
 	{
+		base.Awake();
 		behaviorWonder = GetComponent<RandomWalk>();
 		_aiPath = GetComponent<AIPath>();
 	}

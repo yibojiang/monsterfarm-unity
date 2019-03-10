@@ -14,7 +14,6 @@ public class MonSlimePawn : MonsterPawn
     public override void AddAge()
     {
         base.AddAge();
-        Debug.Log(gameObject.name + " age: " + Age);
         if (Age == 1)
         {
             var monsterObj = Instantiate(Resources.Load(slimePrefabPaths[1], typeof(GameObject))) as GameObject;

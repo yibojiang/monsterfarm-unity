@@ -15,7 +15,7 @@ public class MonsterPawn : MobPawn {
 	
 	[CanBeNull] private RandomWalk behaviorWonder;
 	[CanBeNull] private AIPath _aiPath;
-	public int Friendship { get; protected set; }
+	public int Friendship { get; private set; }
 	public int Age;
 	public bool canFeed;
 	private bool _isFollowing = false;

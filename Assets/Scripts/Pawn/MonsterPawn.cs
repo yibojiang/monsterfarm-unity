@@ -25,11 +25,12 @@ public class MonsterPawn : MobPawn {
 		return _isFollowing;
 	}
 
-	public void GetHit (Vector3 pos) {
-		var hurtParticlePrefab = Resources.Load("Prefab/Effect_BloodHit");
+	public void GetHit (Vector3 pos, int damage) {
+		var hurtParticlePrefab = Resources.Load("Prefab/fx_bloodhit");
 		GameObject.Instantiate(hurtParticlePrefab, pos, Quaternion.identity);
 		var am = AudioManager.Instance;
 		am.PlaySFX(hitClip);
+		Hurt(damage);
 	}
 
 	void OnEnable () {
@@ -67,7 +68,7 @@ public class MonsterPawn : MobPawn {
 	// Update is called once per frame
 	void Update () {
 
-		if (_ai != null && _target != null)
+		if (_ai != null && _target)
 		{
 			_ai.destination = _target.position;
 			var dist = _target.position - transform.position;

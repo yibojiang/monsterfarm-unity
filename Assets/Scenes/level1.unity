@@ -6797,6 +6797,8 @@ MonoBehaviour:
   interactTarget: {fileID: 0}
   outDoor: 1
   maxMovingSpeed: 1
+  hp: 0
+  alive: 1
   followOffset: {x: 0.2, y: 0.1, z: 0}
   favouriteItem: 
   _target: {fileID: 0}
@@ -21642,11 +21644,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4062336193007434, guid: 11c15843584404ff1ab3dadb62df417d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.7772841
+      value: 20.99
       objectReference: {fileID: 0}
     - target: {fileID: 4062336193007434, guid: 11c15843584404ff1ab3dadb62df417d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.415457
+      value: 16.13
       objectReference: {fileID: 0}
     - target: {fileID: 4062336193007434, guid: 11c15843584404ff1ab3dadb62df417d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -45843,6 +45845,11 @@ Prefab:
     - target: {fileID: 4908119368322526, guid: cbd7d54c127544569b652a9fe7b9061f, type: 2}
       propertyPath: m_RootOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114677845312349934, guid: cbd7d54c127544569b652a9fe7b9061f,
+        type: 2}
+      propertyPath: hp
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbd7d54c127544569b652a9fe7b9061f, type: 2}

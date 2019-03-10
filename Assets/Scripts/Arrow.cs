@@ -7,6 +7,7 @@ public class Arrow : MonoBehaviour {
 	private float lifeTime_ = 0.5f;
 	private float life_;
 	private bool hasShoot_ = false;
+	private int _damage = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +39,7 @@ public class Arrow : MonoBehaviour {
 		if (col.gameObject.CompareTag("Monster")) {
 			var monster = col.gameObject.GetComponent<MonsterPawn>();
 			var contact = col.GetContact(0);
-			monster.GetHit(new Vector3(contact.point.x, contact.point.y, 0));
+			monster.GetHit(new Vector3(contact.point.x, contact.point.y, 0), _damage);
 			Destroy(this.gameObject);
 		}
 	}

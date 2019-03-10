@@ -53,8 +53,6 @@ public class PlayerPawn : MobPawn {
 	}
 
 	private void Update() {
-
-		
 		if (Input.GetKeyDown(KeyCode.E)) {
 			if (interactTarget != null && !isTalking) {
 				interactTarget.InteractAction();
@@ -175,5 +173,10 @@ public class PlayerPawn : MobPawn {
 			eulerAngles.z = Mathf.Atan2(shootingDir.y, shootingDir.x) * Mathf.Rad2Deg;
 			shootTarget.transform.localEulerAngles = eulerAngles;
 		}
+	}
+
+	public override void Die()
+	{
+		Debug.Log("Game Over");
 	}
 }

@@ -26,8 +26,8 @@ public class MonsterPawn : MobPawn {
 	}
 
 	public void GetHit (Vector3 pos, int damage) {
-		var hurtParticlePrefab = Resources.Load("Prefab/fx_bloodhit");
-		GameObject.Instantiate(hurtParticlePrefab, pos, Quaternion.identity);
+		var fxBloodhitPrefab = Resources.Load("Prefab/fx_bloodhit");
+		GameObject.Instantiate(fxBloodhitPrefab, pos, Quaternion.identity);
 		var am = AudioManager.Instance;
 		am.PlaySFX(hitClip);
 		Hurt(damage);

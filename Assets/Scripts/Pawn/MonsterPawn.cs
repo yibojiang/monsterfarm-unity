@@ -63,33 +63,18 @@ public class MonsterPawn : MobPawn {
 			PlayerController.Instance.playerPawn.AddFollower(this);
 		}
 	}
-
-	IEnumerator RandomOffsetCoroutine()
-	{
-		float timer = 0f;
-		float interval = 3.0f;
-		while (true)
-		{
-			timer += Time.deltaTime;
-			if (timer > interval)
-			{
-				timer -= interval;
-				interval = Random.Range(2f, 6f);
-				float len = 0.5f;
-				float rad = Random.Range(0, 2 * Mathf.PI);
-				followOffset = new Vector3(len * Mathf.Cos(rad), len * Mathf.Sin(rad), 0);
-			}
-			yield return new WaitForEndOfFrame();
-		}
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		if (_ai != null && _target != null)
 		{
-			_ai.destination = _target.position + followOffset;
+			_ai.destination = _target.position;
+			var dist = _target.position - transform.position;
+			if (dist.magnitude < 0.5f)
+			{
+				_ai.destination = transform.position;
+			}
 		}
 	}
 
@@ -107,8 +92,6 @@ public class MonsterPawn : MobPawn {
 		{
 			behaviorWonder.StopWondering();
 		}
-		
-		StartCoroutine("RandomOffsetCoroutine");
 	}
 
 	public void UnFollowTarget()
@@ -121,7 +104,5 @@ public class MonsterPawn : MobPawn {
 		{
 			behaviorWonder.StartWondering();
 		}
-		
-		StopCoroutine("RandomOffsetCoroutine");
 	}
 }

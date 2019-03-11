@@ -25,13 +25,13 @@ public class MonsterPawn : MobPawn {
 		return _isFollowing;
 	}
 
-//	public void GetHit (Vector3 pos, int damage) {
-//		var fxBloodhitPrefab = Resources.Load("Prefab/fx_bloodhit");
-//		GameObject.Instantiate(fxBloodhitPrefab, pos, Quaternion.identity);
-//		var am = AudioManager.Instance;
-//		am.PlaySFX(hitClip);
-//		Hurt(damage);
-//	}
+	public void GetHit (Vector3 pos, int damage) {
+		var fxBloodhitPrefab = Resources.Load("Prefab/fx_bloodhit");
+		GameObject.Instantiate(fxBloodhitPrefab, pos, Quaternion.identity);
+		var am = AudioManager.Instance;
+		am.PlaySFX(hitClip);
+		Hurt(damage);
+	}
 
 	void OnEnable () {
 		_ai = GetComponent<IAstarAI>();

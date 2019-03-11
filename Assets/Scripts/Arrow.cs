@@ -33,11 +33,11 @@ public class Arrow : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col) {		
 		Debug.Log(col.collider.gameObject.gameObject.name);
-		if (col.collider.gameObject.CompareTag("Hitbox")) {
-			//var monster = col.gameObject.GetComponent<MonsterPawn>();
-			var hitbox = col.collider.gameObject.GetComponent<Hitbox>();
+		if (col.gameObject.CompareTag("Monster")) {
+			var monster = col.gameObject.GetComponent<MonsterPawn>();
+//			var hitbox = col.collider.gameObject.GetComponent<Hitbox>();
 			var contact = col.GetContact(0);
-			hitbox.GetHit(new Vector3(contact.point.x, contact.point.y, 0), _damage);
+			monster.GetHit(new Vector3(contact.point.x, contact.point.y, 0), _damage);
 			Destroy(this.gameObject);
 		}
 	}

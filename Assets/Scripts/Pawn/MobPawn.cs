@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class MobAttributeData
+{
+    public int hp;
+    public int hitDamage;
+}
+
 public class MobPawn : BasePawn
 {
     public List<MobPawn> Followers { get; private set; }
@@ -13,6 +20,7 @@ public class MobPawn : BasePawn
     public int hp;
     public bool alive = true;
 
+    public MobAttributeData data;
     protected void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();

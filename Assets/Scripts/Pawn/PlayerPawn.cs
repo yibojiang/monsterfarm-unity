@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class PlayerPawn : MobPawn {
 	
 	public SpriteRenderer _sprite;
@@ -27,6 +26,7 @@ public class PlayerPawn : MobPawn {
 	public Vector2 controlMovement;
 
 	private Camera _cam;
+	public Image _fade;
 
 	public bool IsInvincible { get; set;  } = false;
 
@@ -83,7 +83,7 @@ public class PlayerPawn : MobPawn {
 
 		_animSm.SetBool("IsAiming", _isAiming);
 
-		if (!interactTarget) {
+		if (interactTarget != null) {
 			PlayerController.Instance.textInteract.gameObject.SetActive(true);
 		}
 		else {

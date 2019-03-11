@@ -23,6 +23,12 @@ public class AudioManager : MonoBehaviour {
 		audio_.PlayOneShot(clip);
 	}
 
+	public void PlayBGM(AudioClip clip)
+	{
+		audio_.clip = clip;
+		audio_.Play();
+	}
+
 	public void PlayVoice(AudioClip clip) {
 
 	}

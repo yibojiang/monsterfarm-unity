@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95609608404700056}
   - component: {fileID: 114864022708326404}
   m_Layer: 0
-  m_Name: Smoke_Arrow
+  m_Name: smoke_arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

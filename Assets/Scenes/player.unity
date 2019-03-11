@@ -1411,7 +1411,7 @@ MonoBehaviour:
   Hp: 0
   alive: 1
   data:
-    hp: 5
+    hp: 1
     hitDamage: 1
   _sprite: {fileID: 1590985005}
   acc: 2500

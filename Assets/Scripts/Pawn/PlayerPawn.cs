@@ -83,18 +83,12 @@ public class PlayerPawn : MobPawn {
 
 		_animSm.SetBool("IsAiming", _isAiming);
 
-		if (interactTarget!= null) {
+		if (!interactTarget) {
 			PlayerController.Instance.textInteract.gameObject.SetActive(true);
 		}
 		else {
 			PlayerController.Instance.textInteract.gameObject.SetActive(false);
 		}
-		
-		// Debug.Log("idx: " + inventoryIdx.ToString());
-		// When currect select item is not null
-		// if (inventoryList[inventoryIdx] != null) {
-
-		// }
 	}
 
 	void AimStart() {
@@ -177,8 +171,11 @@ public class PlayerPawn : MobPawn {
 	public override void Hurt(Vector2 pos, int damage)
 	{
 		base.Hurt(pos, damage);
-		StartCoroutine(RecoverActionCo());
-		StartCoroutine(HitBackCo(pos));
+		if (alive)
+		{
+			StartCoroutine(RecoverActionCo());
+			StartCoroutine(HitBackCo(pos));	
+		}
 	}
 
 	IEnumerator HitBackCo(Vector2 pos)
@@ -192,7 +189,7 @@ public class PlayerPawn : MobPawn {
 		{
 			timer += Time.fixedDeltaTime;
 			//_rigidBody.MovePosition(_rigidBody.position + hitDir * 5f * Time.fixedDeltaTime);
-			_rigidBody.position = _rigidBody.position + hitDir * 5f * Time.fixedDeltaTime;
+			_rigidBody.position = _rigidBody.position + hitDir * 4f * Time.fixedDeltaTime;
 			yield return new WaitForFixedUpdate();
 		}
 	}
@@ -218,6 +215,15 @@ public class PlayerPawn : MobPawn {
 
 	public override void Die()
 	{
+		alive = false;
+		IsInvincible = false;
+		_isAiming = false;
+		_lastMovingVel = Vector2.zero;
+		_movingVel = Vector2.zero;
+		controlMovement = Vector2.zero;
+		var angle = _sprite.transform.eulerAngles;
+		angle.z = -90;
+		_sprite.transform.eulerAngles = angle;
 		PlayerController.Instance.GameOver();
 	}
 	
@@ -238,7 +244,7 @@ public class PlayerPawn : MobPawn {
 
 	private void OnCollisionStay2D(Collision2D other)
 	{
-		if (!IsInvincible)
+		if (alive && !IsInvincible)
 		{
 			if (other.gameObject.CompareTag("Monster")) {
 				var monster = other.gameObject.GetComponent<MonsterPawn>();

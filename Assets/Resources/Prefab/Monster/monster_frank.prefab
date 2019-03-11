@@ -38,8 +38,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4084536329382468}
   - component: {fileID: 58662364968691168}
+  - component: {fileID: 114642926293451154}
   m_Layer: 0
-  m_Name: damage_col
+  m_Name: hitattack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +182,7 @@ Rigidbody2D:
   m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -307,6 +308,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
+--- !u!114 &114642926293451154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471931820402592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdb9e35d24b4bce960c8bd2d07beaf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114662417911929124
 MonoBehaviour:
   m_ObjectHideFlags: 1

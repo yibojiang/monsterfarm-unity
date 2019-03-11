@@ -9,11 +9,6 @@ public class Arrow : MonoBehaviour {
 	private float life_;
 	private bool hasShoot_ = false;
 	private int _damage = 1;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {

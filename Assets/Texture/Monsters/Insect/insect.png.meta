@@ -11,6 +11,10 @@ TextureImporter:
     21300012: battlefield1_1
     21300014: battlefield1_2
     21300016: battlefield1_3
+    21300018: insect_0
+    21300020: insect_1
+    21300022: insect_2
+    21300024: insect_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -54,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 49
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,101 +97,81 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: battlefield1_0
+      name: insect_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22a847fd26352d441b9a2d4e856e24dc
+      spriteID: f0a92549778c86d429c4817741813c48
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: battlefield1_1
+      name: insect_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e3447aeb30c8054dbffac16021bd6d2
+      spriteID: 646386f06be81764e97ad8e5002bf666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: battlefield1_2
+      name: insect_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dc6ce4c98a8f3240838d294f28f5e87
+      spriteID: a89a6e43015f55149993ef13bdf4b65b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: battlefield1_3
+      name: insect_3
       rect:
         serializedVersion: 2
         x: 144
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96671acc232f2da44b0b1274b989ca44
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: battlefield1_4
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be9ecad6be49cfd42bcdf6236ffe3a20
+      spriteID: 3db2c3307549533498ba1632a58d18c5
       vertices: []
       indices: 
       edges: []

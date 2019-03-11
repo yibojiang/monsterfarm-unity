@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4850996794530418}
   - component: {fileID: 61624040592476890}
   m_Layer: 0
-  m_Name: statue_hunter
+  m_Name: Statue_Hunter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4073608038030788}
   - component: {fileID: 61775639858890076}
   m_Layer: 0
-  m_Name: statue_saber
+  m_Name: Statue_Saber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

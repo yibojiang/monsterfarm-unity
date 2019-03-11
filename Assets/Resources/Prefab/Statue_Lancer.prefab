@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4181937830568254}
   - component: {fileID: 61388108793161044}
   m_Layer: 0
-  m_Name: statue_lancer
+  m_Name: Statue_Lancer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

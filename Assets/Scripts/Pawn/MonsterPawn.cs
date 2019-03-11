@@ -19,6 +19,8 @@ public class MonsterPawn : MobPawn {
 	public int Age;
 	public bool canFeed;
 	private bool _isFollowing = false;
+	public SpriteRenderer _sprite;
+
 	public bool IsFollowing()
 	{
 		return _isFollowing;

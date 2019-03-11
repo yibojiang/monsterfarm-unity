@@ -19,6 +19,9 @@ public class MobPawn : BasePawn
     protected Rigidbody2D _rigidBody;
     public int maxHp;
     public int Hp;
+    protected SpriteRenderer _sprite;
+    protected Animator _animSm;
+    public int _idAlive;
 
     public int HitDamage
     {
@@ -31,9 +34,19 @@ public class MobPawn : BasePawn
     public MobAttributeData data;
     protected void Awake()
     {
+        _sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
+        _animSm = _sprite.gameObject.GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
         maxHp = data.hp;
         Hp = maxHp;
+        
+        foreach (var p in _animSm.parameters)
+        {
+            if (p.name == "Alive")
+            {
+                _idAlive = Animator.StringToHash("Alive");
+            }
+        }
     }
 
     private void Start()
@@ -79,6 +92,10 @@ public class MobPawn : BasePawn
     {
         Debug.Log("Die");
         alive = false;
+        if (_idAlive != 0)
+        {
+            _animSm.SetBool(_idAlive, false);    
+        }
         Destroy(this.gameObject);
     }
 

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114479234236844666}
   - component: {fileID: 95725494591129598}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4084536329382468}
   - component: {fileID: 58662364968691168}
   m_Layer: 0
-  m_Name: Hitbox
+  m_Name: damage_col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4908119368322526}
-  - component: {fileID: 114761247242315550}
   - component: {fileID: 61161402401226038}
   - component: {fileID: 50198290912882754}
   - component: {fileID: 114677845312349934}
@@ -78,6 +77,23 @@ GameObject:
   m_Layer: 0
   m_Name: monster_frank
   m_TagString: Monster
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1862768459053298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4619410770586862}
+  - component: {fileID: 61288827901314388}
+  - component: {fileID: 114180847633041024}
+  m_Layer: 12
+  m_Name: hitbox
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +124,19 @@ Transform:
   m_Father: {fileID: 4908119368322526}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4619410770586862
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862768459053298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4908119368322526}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4908119368322526
 Transform:
   m_ObjectHideFlags: 1
@@ -121,6 +150,7 @@ Transform:
   - {fileID: 4479514457004334}
   - {fileID: 4988037377441566}
   - {fileID: 4084536329382468}
+  - {fileID: 4619410770586862}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,7 +214,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.11}
+  m_Offset: {x: 0, y: 0.04}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -195,7 +225,32 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47, y: 0.21}
+  m_Size: {x: 0.47, y: 0.18}
+  m_EdgeRadius: 0
+--- !u!61 &61288827901314388
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862768459053298}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.42}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.61, y: 0.86}
   m_EdgeRadius: 0
 --- !u!95 &95725494591129598
 Animator:
@@ -215,6 +270,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114180847633041024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862768459053298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c90b100a7ff4f4f823974eee4c0a3e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitClip: {fileID: 8300000, guid: 6228cc0dfaf8b5646934d2b4b23e5b59, type: 3}
 --- !u!114 &114245857871422800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,21 +341,6 @@ MonoBehaviour:
   hitClip: {fileID: 8300000, guid: 6228cc0dfaf8b5646934d2b4b23e5b59, type: 3}
   Age: 0
   canFeed: 0
---- !u!114 &114761247242315550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1591826872803750}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b7ea39e408e5274f9ef03a88fa3fa9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingVel: {x: -3, y: 0, z: 0}
-  maxSpeed: 3
-  sprite: {fileID: 212445530188546902}
-  dir: -1
 --- !u!212 &212445530188546902
 SpriteRenderer:
   m_ObjectHideFlags: 1

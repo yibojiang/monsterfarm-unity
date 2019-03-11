@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using MonsterFarm;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour {
@@ -35,11 +36,13 @@ public class Arrow : MonoBehaviour {
 		transform.position = transform.position + movingVel_ * Time.fixedDeltaTime * 20f;
 	}
 
-	void OnCollisionEnter2D (Collision2D col) {
-		if (col.gameObject.CompareTag("Monster")) {
-			var monster = col.gameObject.GetComponent<MonsterPawn>();
+	void OnCollisionEnter2D (Collision2D col) {		
+		Debug.Log(col.collider.gameObject.gameObject.name);
+		if (col.collider.gameObject.CompareTag("Hitbox")) {
+			//var monster = col.gameObject.GetComponent<MonsterPawn>();
+			var hitbox = col.collider.gameObject.GetComponent<Hitbox>();
 			var contact = col.GetContact(0);
-			monster.GetHit(new Vector3(contact.point.x, contact.point.y, 0), _damage);
+			hitbox.GetHit(new Vector3(contact.point.x, contact.point.y, 0), _damage);
 			Destroy(this.gameObject);
 		}
 	}

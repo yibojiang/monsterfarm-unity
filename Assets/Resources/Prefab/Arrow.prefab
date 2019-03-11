@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114468867919873646}
   - component: {fileID: 61637294335526292}
   - component: {fileID: 50357094914548804}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

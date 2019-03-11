@@ -332,7 +332,6 @@ MonoBehaviour:
   hitClip: {fileID: 8300000, guid: 6228cc0dfaf8b5646934d2b4b23e5b59, type: 3}
   Age: 0
   canFeed: 0
-  hitDamage: 0
 --- !u!212 &212445530188546902
 SpriteRenderer:
   m_ObjectHideFlags: 1

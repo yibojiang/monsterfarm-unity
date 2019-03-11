@@ -4,8 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class MobAttributeData
 {
-    public int hp;
-    public int hitDamage;
+    public int hp = 2;
+    public int hitDamage = 1;
 }
 
 public class MobPawn : BasePawn
@@ -17,13 +17,23 @@ public class MobPawn : BasePawn
     protected Vector2 _movingVel;
     public float maxMovingSpeed = 1.0f;
     protected Rigidbody2D _rigidBody;
-    public int hp;
+    public int maxHp;
+    public int Hp;
+
+    public int HitDamage
+    {
+        get { return data.hitDamage; }
+    }
+
     public bool alive = true;
+    
 
     public MobAttributeData data;
     protected void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        maxHp = data.hp;
+        Hp = maxHp;
     }
 
     private void Start()
@@ -52,13 +62,13 @@ public class MobPawn : BasePawn
         this._movingVel = movingVel;
     }
 
-    public virtual void Hurt(int damage)
+    public virtual void Hurt(Vector2 pos, int damage)
     {
         if (alive)
         {
-            hp -= damage;
-            Debug.Log($"hurt: {damage}, Hp: {hp}");
-            if (hp <= 0)
+            Hp -= damage;
+            Debug.Log($"hurt: {damage}, Hp: {Hp}");
+            if (Hp <= 0)
             {
                 Die();
             }    

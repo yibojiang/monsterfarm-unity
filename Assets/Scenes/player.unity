@@ -1407,8 +1407,12 @@ MonoBehaviour:
   interactTarget: {fileID: 0}
   outDoor: 1
   maxMovingSpeed: 5
-  hp: 0
+  maxHp: 0
+  Hp: 0
   alive: 1
+  data:
+    hp: 5
+    hitDamage: 1
   _sprite: {fileID: 1590985005}
   acc: 2500
   drag: 0.95

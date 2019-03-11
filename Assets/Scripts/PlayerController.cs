@@ -256,4 +256,10 @@ public class PlayerController : MonoBehaviour
         Coins += coins;
         textCoins.text = string.Format("X {0}", Coins.ToString("N0"));
     }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
+    
 }

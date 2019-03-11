@@ -19,8 +19,6 @@ public class MonsterPawn : MobPawn {
 	public int Age;
 	public bool canFeed;
 	private bool _isFollowing = false;
-	public int hitDamage;
-
 	public bool IsFollowing()
 	{
 		return _isFollowing;
@@ -31,7 +29,7 @@ public class MonsterPawn : MobPawn {
 		GameObject.Instantiate(fxBloodhitPrefab, pos, Quaternion.identity);
 		var am = AudioManager.Instance;
 		am.PlaySFX(hitClip);
-		Hurt(damage);
+		Hurt(pos, damage);
 	}
 
 	void OnEnable () {

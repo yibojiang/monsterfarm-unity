@@ -24,11 +24,11 @@ public class PlayerPawn : MobPawn {
 	public AudioClip arrowSFX;
 
 	public bool isTalking = false;
-		
-	
 	public Vector2 controlMovement;
 
 	private Camera _cam;
+
+	public bool IsInvincible { get; set;  } = false;
 
 	protected void Awake()
 	{
@@ -154,7 +154,6 @@ public class PlayerPawn : MobPawn {
 		}
 
 		_rigidBody.MovePosition(_rigidBody.position + _movingVel * Time.fixedDeltaTime);
-		// transform.position = transform.position + _movingVel * Time.fixedDeltaTime;
 		_animSm.SetFloat("Speed", _movingVel.magnitude);
 		_animSm.SetFloat("DirectionX", _lastMovingVel.x);
 		_animSm.SetFloat("DirectionY", _lastMovingVel.y);
@@ -175,8 +174,81 @@ public class PlayerPawn : MobPawn {
 		}
 	}
 
+	public override void Hurt(Vector2 pos, int damage)
+	{
+		base.Hurt(pos, damage);
+		StartCoroutine(RecoverActionCo());
+		StartCoroutine(HitBackCo(pos));
+	}
+
+	IEnumerator HitBackCo(Vector2 pos)
+	{
+		float timer = 0f;
+		float hitBackDuration = 0.1f;
+		Vector2 hitDir = _rigidBody.position - pos;
+		hitDir.Normalize();
+		
+		while (timer < hitBackDuration)
+		{
+			timer += Time.fixedDeltaTime;
+			//_rigidBody.MovePosition(_rigidBody.position + hitDir * 5f * Time.fixedDeltaTime);
+			_rigidBody.position = _rigidBody.position + hitDir * 5f * Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
+		}
+	}
+
+	IEnumerator RecoverActionCo()
+	{
+		float timer = 0f;
+		float invincibleDuration = 1f;
+		IsInvincible = true;
+		var color = _sprite.color;
+		while (timer < invincibleDuration)
+		{
+			timer += Time.deltaTime;
+			color.a = Mathf.PingPong(timer * 15, 1);
+			_sprite.color = color;
+			yield return new WaitForEndOfFrame();
+		}
+
+		color.a = 1f;
+		_sprite.color = color;
+		IsInvincible = false;
+	}
+
 	public override void Die()
 	{
-		Debug.Log("Game Over");
+		PlayerController.Instance.GameOver();
+	}
+	
+//	void OnCollisionEnter2D (Collision2D col) {
+//		if (!IsInvincible)
+//		{
+//			if (col.gameObject.CompareTag("Monster")) {
+//				var monster = col.gameObject.GetComponent<MonsterPawn>();
+//				var contact = col.GetContact(0);
+//				Hurt(col.rigidbody.position, monster.HitDamage);
+//				var hitDir = _rigidBody.position - contact.rigidbody.position;
+//				//_rigidBody.MovePosition(_rigidBody.position - hitDir.normalized * 100);
+//				//_rigidBody.position = _rigidBody.position - hitDir.normalized * .5f;
+////				_rigidBody.AddForce(hitDir * 50000);
+//			}	
+//		}
+//	}
+
+	private void OnCollisionStay2D(Collision2D other)
+	{
+		if (!IsInvincible)
+		{
+			if (other.gameObject.CompareTag("Monster")) {
+				var monster = other.gameObject.GetComponent<MonsterPawn>();
+				var contact = other.GetContact(0);
+				Hurt(other.rigidbody.position, monster.HitDamage);
+				var hitDir = _rigidBody.position - contact.rigidbody.position;
+				//_rigidBody.MovePosition(_rigidBody.position - hitDir.normalized * 100);
+				//_rigidBody.position = _rigidBody.position - hitDir.normalized * .5f;
+//				_rigidBody.AddForce(hitDir * 50000);
+			}	
+		}
 	}
 }

@@ -11,6 +11,7 @@ public class MobPawn : BasePawn
     public float maxMovingSpeed = 1.0f;
     protected Rigidbody2D _rigidBody;
     public int hp;
+    public int maxHp;
     public bool alive = true;
 
     protected void Awake()

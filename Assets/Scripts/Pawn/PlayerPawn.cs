@@ -37,6 +37,11 @@ public class PlayerPawn : MobPawn {
 		_cam = Camera.main;
 	}
 
+	private void Start()
+	{
+		PlayerController.Instance.UpdatePlayerUI(hp, maxHp);
+	}
+
 	public override void SetInteractTarget(Interact target)
 	{
 		if (target == null)
@@ -173,6 +178,12 @@ public class PlayerPawn : MobPawn {
 			eulerAngles.z = Mathf.Atan2(shootingDir.y, shootingDir.x) * Mathf.Rad2Deg;
 			shootTarget.transform.localEulerAngles = eulerAngles;
 		}
+	}
+
+	public override void Hurt(int damage)
+	{
+		base.Hurt(damage);
+		PlayerController.Instance.UpdatePlayerUI(hp, maxHp);
 	}
 
 	public override void Die()

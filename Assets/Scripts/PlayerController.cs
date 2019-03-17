@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     public Text textCoins;
     public Text textInteract;
     public GameObject curBlueprint;
+    public Image uiHp;
+    public Image uiMaxHp;
     
     public List<BlueprintItem> blueprintList;
     
@@ -150,6 +152,16 @@ public class PlayerController : MonoBehaviour
         
         _inventoryUIItemDict.Add("apple", new InventoryUIItem("apple"));
     }
+
+    public void UpdatePlayerUI(int hp, int maxHp)
+    {
+        var tmpSize = uiMaxHp.rectTransform.sizeDelta;
+        tmpSize.x = hp * 20;
+        uiHp.rectTransform.sizeDelta = tmpSize;
+        tmpSize.x = maxHp * 20;
+        uiMaxHp.rectTransform.sizeDelta = tmpSize;
+    }
+    
 
     public void SetInGameState(InGameState inGameState)
     {

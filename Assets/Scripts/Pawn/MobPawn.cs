@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class MobAttributeData
+{
+    public int hp = 2;
+    public int hitDamage = 1;
+}
+
 public class MobPawn : BasePawn
 {
     public List<MobPawn> Followers { get; private set; }
@@ -10,16 +17,39 @@ public class MobPawn : BasePawn
     protected Vector2 _movingVel;
     public float maxMovingSpeed = 1.0f;
     protected Rigidbody2D _rigidBody;
-    public int hp;
     public int maxHp;
-    public bool alive = true;
+    public int Hp;
+    protected SpriteRenderer _sprite;
+    protected Animator _animSm;
+    public int _idAlive;
 
-    protected void Awake()
+    public int HitDamage
     {
-        _rigidBody = GetComponent<Rigidbody2D>();
+        get { return data.hitDamage; }
     }
 
-    private void Start()
+    public bool alive = true;
+    
+
+    public MobAttributeData data;
+    protected void Awake()
+    {
+        _sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
+        _animSm = _sprite.gameObject.GetComponent<Animator>();
+        _rigidBody = GetComponent<Rigidbody2D>();
+        maxHp = data.hp;
+        Hp = maxHp;
+        
+        foreach (var p in _animSm.parameters)
+        {
+            if (p.name == "Alive")
+            {
+                _idAlive = Animator.StringToHash("Alive");
+            }
+        }
+    }
+
+    protected void Start()
     {
         Followers = new List<MobPawn>();
         if (outDoor) {
@@ -45,13 +75,13 @@ public class MobPawn : BasePawn
         this._movingVel = movingVel;
     }
 
-    public virtual void Hurt(int damage)
+    public virtual void Hurt(Vector2 pos, int damage)
     {
         if (alive)
         {
-            hp -= damage;
-            Debug.Log($"hurt: {damage}, Hp: {hp}");
-            if (hp <= 0)
+            Hp -= damage;
+            Debug.Log($"hurt: {damage}, Hp: {Hp}");
+            if (Hp <= 0)
             {
                 Die();
             }    
@@ -62,6 +92,10 @@ public class MobPawn : BasePawn
     {
         Debug.Log("Die");
         alive = false;
+        if (_idAlive != 0)
+        {
+            _animSm.SetBool(_idAlive, false);    
+        }
         Destroy(this.gameObject);
     }
 

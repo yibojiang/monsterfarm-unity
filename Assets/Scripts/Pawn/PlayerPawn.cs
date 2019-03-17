@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class PlayerPawn : MobPawn {
 	
 	public SpriteRenderer _sprite;
@@ -24,11 +23,12 @@ public class PlayerPawn : MobPawn {
 	public AudioClip arrowSFX;
 
 	public bool isTalking = false;
-		
-	
 	public Vector2 controlMovement;
 
 	private Camera _cam;
+	public Image _fade;
+
+	public bool IsInvincible { get; set;  } = false;
 
 	protected void Awake()
 	{
@@ -37,9 +37,10 @@ public class PlayerPawn : MobPawn {
 		_cam = Camera.main;
 	}
 
-	private void Start()
+	protected void Start()
 	{
-		PlayerController.Instance.UpdatePlayerUI(hp, maxHp);
+		base.Start();
+		PlayerController.Instance.UpdatePlayerUI(Hp, maxHp);
 	}
 
 	public override void SetInteractTarget(Interact target)
@@ -88,18 +89,12 @@ public class PlayerPawn : MobPawn {
 
 		_animSm.SetBool("IsAiming", _isAiming);
 
-		if (interactTarget!= null) {
+		if (interactTarget != null) {
 			PlayerController.Instance.textInteract.gameObject.SetActive(true);
 		}
 		else {
 			PlayerController.Instance.textInteract.gameObject.SetActive(false);
 		}
-		
-		// Debug.Log("idx: " + inventoryIdx.ToString());
-		// When currect select item is not null
-		// if (inventoryList[inventoryIdx] != null) {
-
-		// }
 	}
 
 	void AimStart() {
@@ -159,7 +154,6 @@ public class PlayerPawn : MobPawn {
 		}
 
 		_rigidBody.MovePosition(_rigidBody.position + _movingVel * Time.fixedDeltaTime);
-		// transform.position = transform.position + _movingVel * Time.fixedDeltaTime;
 		_animSm.SetFloat("Speed", _movingVel.magnitude);
 		_animSm.SetFloat("DirectionX", _lastMovingVel.x);
 		_animSm.SetFloat("DirectionY", _lastMovingVel.y);
@@ -180,14 +174,94 @@ public class PlayerPawn : MobPawn {
 		}
 	}
 
-	public override void Hurt(int damage)
+	public override void Hurt(Vector2 pos, int damage)
 	{
-		base.Hurt(damage);
-		PlayerController.Instance.UpdatePlayerUI(hp, maxHp);
+		base.Hurt(pos, damage);
+		if (alive)
+		{
+			StartCoroutine(RecoverActionCo());
+			StartCoroutine(HitBackCo(pos));	
+		}
+		PlayerController.Instance.UpdatePlayerUI(Hp, maxHp);
+	}
+
+	IEnumerator HitBackCo(Vector2 pos)
+	{
+		float timer = 0f;
+		float hitBackDuration = 0.1f;
+		Vector2 hitDir = _rigidBody.position - pos;
+		hitDir.Normalize();
+		
+		while (timer < hitBackDuration)
+		{
+			timer += Time.fixedDeltaTime;
+			//_rigidBody.MovePosition(_rigidBody.position + hitDir * 5f * Time.fixedDeltaTime);
+			_rigidBody.position = _rigidBody.position + hitDir * 4f * Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
+		}
+	}
+
+	IEnumerator RecoverActionCo()
+	{
+		float timer = 0f;
+		float invincibleDuration = 1f;
+		IsInvincible = true;
+		var color = _sprite.color;
+		while (timer < invincibleDuration)
+		{
+			timer += Time.deltaTime;
+			color.a = Mathf.PingPong(timer * 15, 1);
+			_sprite.color = color;
+			yield return new WaitForEndOfFrame();
+		}
+
+		color.a = 1f;
+		_sprite.color = color;
+		IsInvincible = false;
 	}
 
 	public override void Die()
 	{
-		Debug.Log("Game Over");
+		alive = false;
+		IsInvincible = false;
+		_isAiming = false;
+		_lastMovingVel = Vector2.zero;
+		_movingVel = Vector2.zero;
+		controlMovement = Vector2.zero;
+		var angle = _sprite.transform.eulerAngles;
+		angle.z = -90;
+		_sprite.transform.eulerAngles = angle;
+		PlayerController.Instance.GameOver();
+	}
+	
+//	void OnCollisionEnter2D (Collision2D col) {
+//		if (!IsInvincible)
+//		{
+//			if (col.gameObject.CompareTag("Monster")) {
+//				var monster = col.gameObject.GetComponent<MonsterPawn>();
+//				var contact = col.GetContact(0);
+//				Hurt(col.rigidbody.position, monster.HitDamage);
+//				var hitDir = _rigidBody.position - contact.rigidbody.position;
+//				//_rigidBody.MovePosition(_rigidBody.position - hitDir.normalized * 100);
+//				//_rigidBody.position = _rigidBody.position - hitDir.normalized * .5f;
+////				_rigidBody.AddForce(hitDir * 50000);
+//			}	
+//		}
+//	}
+
+	private void OnCollisionStay2D(Collision2D other)
+	{
+		if (alive && !IsInvincible)
+		{
+			if (other.gameObject.CompareTag("Monster")) {
+				var monster = other.gameObject.GetComponent<MonsterPawn>();
+				var contact = other.GetContact(0);
+				Hurt(other.rigidbody.position, monster.HitDamage);
+				var hitDir = _rigidBody.position - contact.rigidbody.position;
+				//_rigidBody.MovePosition(_rigidBody.position - hitDir.normalized * 100);
+				//_rigidBody.position = _rigidBody.position - hitDir.normalized * .5f;
+//				_rigidBody.AddForce(hitDir * 50000);
+			}	
+		}
 	}
 }

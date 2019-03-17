@@ -19,19 +19,20 @@ public class MonsterPawn : MobPawn {
 	public int Age;
 	public bool canFeed;
 	private bool _isFollowing = false;
+	//public SpriteRenderer _sprite;
 
 	public bool IsFollowing()
 	{
 		return _isFollowing;
 	}
 
-//	public void GetHit (Vector3 pos, int damage) {
-//		var fxBloodhitPrefab = Resources.Load("Prefab/fx_bloodhit");
-//		GameObject.Instantiate(fxBloodhitPrefab, pos, Quaternion.identity);
-//		var am = AudioManager.Instance;
-//		am.PlaySFX(hitClip);
-//		Hurt(damage);
-//	}
+	public void GetHit (Vector3 pos, int damage) {
+		var fxBloodhitPrefab = Resources.Load("Prefab/fx_bloodhit");
+		GameObject.Instantiate(fxBloodhitPrefab, pos, Quaternion.identity);
+		var am = AudioManager.Instance;
+		am.PlaySFX(hitClip);
+		Hurt(pos, damage);
+	}
 
 	void OnEnable () {
 		_ai = GetComponent<IAstarAI>();

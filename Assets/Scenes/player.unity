@@ -1407,9 +1407,12 @@ MonoBehaviour:
   interactTarget: {fileID: 0}
   outDoor: 1
   maxMovingSpeed: 5
-  hp: 5
-  maxHp: 5
+  maxHp: 0
+  Hp: 0
   alive: 1
+  data:
+    hp: 5
+    hitDamage: 1
   _sprite: {fileID: 1590985005}
   acc: 2500
   drag: 0.95
@@ -1417,6 +1420,7 @@ MonoBehaviour:
   arrowSFX: {fileID: 8300000, guid: ad7b047025c08774db2a9af891ce3946, type: 3}
   isTalking: 0
   controlMovement: {x: 0, y: 0}
+  _fade: {fileID: 0}
 --- !u!50 &717782658
 Rigidbody2D:
   serializedVersion: 4

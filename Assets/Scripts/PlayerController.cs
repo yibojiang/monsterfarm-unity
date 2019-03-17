@@ -169,7 +169,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
+        if (!playerPawn.alive)
+        {
+            return;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Tab)) {
             if (_ingameState == InGameState.Play)
             {
@@ -268,4 +273,10 @@ public class PlayerController : MonoBehaviour
         Coins += coins;
         textCoins.text = string.Format("X {0}", Coins.ToString("N0"));
     }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
+    
 }

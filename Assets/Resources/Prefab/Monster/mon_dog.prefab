@@ -58,7 +58,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4476477516343682}
   - component: {fileID: 212421388087409288}
-  - component: {fileID: 114927013072200304}
   - component: {fileID: 95406663798562188}
   m_Layer: 0
   m_Name: Sprite
@@ -288,6 +287,7 @@ MonoBehaviour:
   maxMovingSpeed: 1
   maxHp: 0
   Hp: 0
+  _idAlive: 0
   alive: 1
   data:
     hp: 2
@@ -298,18 +298,6 @@ MonoBehaviour:
   hitClip: {fileID: 0}
   Age: 0
   canFeed: 0
---- !u!114 &114927013072200304
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1759425862848586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!114 &114960236447786952
 MonoBehaviour:
   m_ObjectHideFlags: 1

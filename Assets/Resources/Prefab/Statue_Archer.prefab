@@ -20,9 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4588951462959590}
   - component: {fileID: 212462035283131722}
-  - component: {fileID: 114916755587703702}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +37,7 @@ GameObject:
   - component: {fileID: 4790829279036076}
   - component: {fileID: 61463145507876656}
   m_Layer: 0
-  m_Name: Statue_Archer
+  m_Name: statue_archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,18 +95,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114916755587703702
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413130374413824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!212 &212462035283131722
 SpriteRenderer:
   m_ObjectHideFlags: 1

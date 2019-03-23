@@ -20,9 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4866676866793864}
   - component: {fileID: 212194733923954920}
-  - component: {fileID: 114912959639250630}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +37,7 @@ GameObject:
   - component: {fileID: 4850996794530418}
   - component: {fileID: 61624040592476890}
   m_Layer: 0
-  m_Name: Statue_Hunter
+  m_Name: statue_hunter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,18 +95,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114912959639250630
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1529571416759522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!212 &212194733923954920
 SpriteRenderer:
   m_ObjectHideFlags: 1

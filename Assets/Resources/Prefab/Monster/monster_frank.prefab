@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4479514457004334}
   - component: {fileID: 212445530188546902}
-  - component: {fileID: 114479234236844666}
   - component: {fileID: 95725494591129598}
   m_Layer: 0
   m_Name: sprite
@@ -282,18 +281,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingVel: {x: 0, y: 0}
   maxSpeed: 5
---- !u!114 &114479234236844666
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1262242281910472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!114 &114662417911929124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,6 +309,7 @@ MonoBehaviour:
   maxMovingSpeed: 1
   maxHp: 0
   Hp: 0
+  _idAlive: 0
   alive: 1
   data:
     hp: 5

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4804145006623322}
   - component: {fileID: 212610711488788552}
-  - component: {fileID: 114661230554127252}
   - component: {fileID: 95321640853514068}
   m_Layer: 0
   m_Name: sprite
@@ -289,18 +288,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &114661230554127252
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145337130932290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!114 &114853136289350924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,6 +304,7 @@ MonoBehaviour:
   maxMovingSpeed: 1
   maxHp: 0
   Hp: 0
+  _idAlive: 0
   alive: 1
   data:
     hp: 2

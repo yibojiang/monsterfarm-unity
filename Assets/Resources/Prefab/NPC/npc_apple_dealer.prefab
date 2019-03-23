@@ -53,7 +53,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4755773410814294}
   - component: {fileID: 212677198601478304}
-  - component: {fileID: 114444325654985614}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -194,18 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactMessage: Buy Apple
---- !u!114 &114444325654985614
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721496630271484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!114 &114976617092219508
 MonoBehaviour:
   m_ObjectHideFlags: 1

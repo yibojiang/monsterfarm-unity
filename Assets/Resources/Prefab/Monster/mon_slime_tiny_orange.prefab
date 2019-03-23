@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4591790089589104}
   - component: {fileID: 212165110630199344}
-  - component: {fileID: 114395404119233194}
   - component: {fileID: 95391955459724324}
   m_Layer: 0
   m_Name: Sprite
@@ -223,18 +222,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &114395404119233194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1239958975109434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!114 &114459116449437502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,8 +284,13 @@ MonoBehaviour:
   interactTarget: {fileID: 0}
   outDoor: 1
   maxMovingSpeed: 1
-  hp: 0
+  maxHp: 0
+  Hp: 0
+  _idAlive: 0
   alive: 1
+  data:
+    hp: 2
+    hitDamage: 1
   followOffset: {x: 0.2, y: 0.1, z: 0}
   favouriteItem: apple
   _target: {fileID: 0}

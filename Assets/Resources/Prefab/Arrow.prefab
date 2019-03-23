@@ -20,12 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4824996251013996}
   - component: {fileID: 212538536545107746}
-  - component: {fileID: 114802410554491988}
   - component: {fileID: 114468867919873646}
   - component: {fileID: 61637294335526292}
   - component: {fileID: 50357094914548804}
   m_Layer: 13
-  m_Name: Arrow
+  m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,18 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988d2688491d91b449a8fef6e8ce54dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114802410554491988
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1320874545102720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!212 &212538536545107746
 SpriteRenderer:
   m_ObjectHideFlags: 1

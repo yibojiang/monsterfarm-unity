@@ -152,16 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 212125824676923662, guid: 06ec6976f6afd384989c92a6e05a0152,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212125824676923662, guid: 06ec6976f6afd384989c92a6e05a0152,
-        type: 2}
-      propertyPath: m_SpriteSortPoint
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06ec6976f6afd384989c92a6e05a0152, type: 2}
   m_IsPrefabAsset: 0
@@ -453,20 +443,6 @@ Prefab:
     - target: {fileID: 4841124721068102, guid: 8742d0292e8700e43b9b5bb3f381c961, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759425862848586, guid: 8742d0292e8700e43b9b5bb3f381c961, type: 2}
-      propertyPath: m_Name
-      value: sprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 212421388087409288, guid: 8742d0292e8700e43b9b5bb3f381c961,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212421388087409288, guid: 8742d0292e8700e43b9b5bb3f381c961,
-        type: 2}
-      propertyPath: m_SpriteSortPoint
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8742d0292e8700e43b9b5bb3f381c961, type: 2}

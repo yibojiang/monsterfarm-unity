@@ -24,7 +24,8 @@ public class UpdateDrawOrder : MonoBehaviour {
 		var sprites = GameObject.FindObjectsOfType<SpriteRenderer>();
 		foreach (var sprite in sprites)
 		{
-			sprite.sortingOrder = 2;
+			Debug.Log(sprite.gameObject.name);
+			sprite.sortingOrder = 0;
 			sprite.spriteSortPoint = SpriteSortPoint.Pivot;
 		}
 	}

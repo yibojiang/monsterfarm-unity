@@ -9,7 +9,7 @@ public class UpdateDrawOrder : MonoBehaviour {
 	public int offset = 0;
 	
 	[MenuItem("Tools/DestroyAllDrawOrder")]
-	static void DoSomething()
+	static void DestroyAllDrawOrder()
 	{
 		var drawOrders = GameObject.FindObjectsOfType<UpdateDrawOrder>();
 		foreach (var drawCom in drawOrders)
@@ -17,6 +17,18 @@ public class UpdateDrawOrder : MonoBehaviour {
 			DestroyImmediate(drawCom);
 		}
 	}
+
+	[MenuItem("Tools/ResetDrawOrder")]
+	static void ResetDrawOrder()
+	{
+		var sprites = GameObject.FindObjectsOfType<SpriteRenderer>();
+		foreach (var sprite in sprites)
+		{
+			sprite.sortingOrder = 2;
+			sprite.spriteSortPoint = SpriteSortPoint.Pivot;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		sprite_ = this.gameObject.GetComponent<SpriteRenderer>();

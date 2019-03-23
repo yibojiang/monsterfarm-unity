@@ -8046,31 +8046,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 50198290912882754, guid: cbd7d54c127544569b652a9fe7b9061f,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212445530188546902, guid: cbd7d54c127544569b652a9fe7b9061f,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212445530188546902, guid: cbd7d54c127544569b652a9fe7b9061f,
-        type: 2}
-      propertyPath: m_SpriteSortPoint
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212874156669720852, guid: cbd7d54c127544569b652a9fe7b9061f,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 979
-      objectReference: {fileID: 0}
-    - target: {fileID: 212874156669720852, guid: cbd7d54c127544569b652a9fe7b9061f,
-        type: 2}
-      propertyPath: m_SpriteSortPoint
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbd7d54c127544569b652a9fe7b9061f, type: 2}
   m_IsPrefabAsset: 0

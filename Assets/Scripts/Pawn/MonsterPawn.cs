@@ -113,12 +113,6 @@ public class MonsterPawn : MobPawn {
 		if (_ai != null && _target)
 		{
 			SetDestination(_target.position, 0.5f);
-//			_ai.destination = _target.position;
-//			var dist = _target.position - transform.position;
-//			if (dist.magnitude < _minDest)
-//			{
-//				_ai.destination = transform.position;
-//			}
 		}
 		
 		
@@ -149,6 +143,15 @@ public class MonsterPawn : MobPawn {
 		if (behaviorWonder != null)
 		{
 			behaviorWonder.StartWondering();
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+//		Debug.Log(other.gameObject.name);
+		if (other.CompareTag("Player"))
+		{
+			_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn.transform);
 		}
 	}
 }

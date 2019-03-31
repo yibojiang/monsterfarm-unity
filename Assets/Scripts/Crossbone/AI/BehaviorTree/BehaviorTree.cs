@@ -84,7 +84,7 @@ namespace Crossbone.AI.BehaviorTree
                 }
 
                 data["wait_timer"] = (float)data["wait_timer"] + updateInterval;
-                Debug.Log(data["wait_timer"]);
+//                Debug.Log(data["wait_timer"]);
                 if ((float)data["wait_timer"] >= (float)data["wait_interval"])
                 {
                     data["wait_timer"] = 0f;
@@ -116,11 +116,17 @@ namespace Crossbone.AI.BehaviorTree
 //                }
                 Transform target = (Transform)data["chase_target"];
                 mob.SetDestination(target.position, 0.1f);
+
+                var dist = target.position - mob.transform.position;
+                if (dist.magnitude > 10f)
+                {
+                    data["chase_target"] = null;
+                    return NodeState.Failure;
+                }
                 
                 if (mob.DestinationReached() || mob.DestinationCannotReached())
                 {
                     Debug.Log("ChaseEnded");
-//                    data["is_chasing"] = false;
                     return NodeState.Success;
                 }
                 else
@@ -135,7 +141,6 @@ namespace Crossbone.AI.BehaviorTree
             Sequence wonder = new Sequence(new List<Node>(){detect, randomLocation, moveTo, wait});
             Sequence chaseAttack = new Sequence(new List<Node>(){hasTarget, chase, attack});   
             Node root = new Selector(new List<Node>(){wonder, chaseAttack});
-//            Node root = new Selector(new List<Node>(){wonder});
             BehaviorTree bt = new BehaviorTree(root, data, updateInterval, mob); 
             return bt;
         }

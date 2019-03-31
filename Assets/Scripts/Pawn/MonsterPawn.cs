@@ -16,11 +16,18 @@ public class MonsterPawn : MobPawn {
 	
 	[CanBeNull] private RandomWalk behaviorWonder;
 	[CanBeNull] private AIPath _aiPath;
+	
+	private Animator _animSM;
 	public int Friendship { get; private set; }
 	public int Age;
 	public bool canFeed;
 	private bool _isFollowing = false;
 	private BehaviorTree _bt;
+	
+	private int _idIsAttacking = 0;
+	private int _idDirectionX = 0;
+	private int _idDirectionY = 0;
+	private int _idIdle = 0;
 
 	public bool IsFollowing()
 	{
@@ -49,6 +56,30 @@ public class MonsterPawn : MobPawn {
 		behaviorWonder = GetComponent<RandomWalk>();
 		_aiPath = GetComponent<AIPath>();
 		_ai = GetComponent<IAstarAI>();
+		_animSM = _sprite.gameObject.GetComponent<Animator>();
+		_seeker = GetComponent<Seeker>();
+		
+		foreach (var p in _animSM.parameters)
+		{
+			if (p.name == "IsAttacking")
+			{
+				_idIsAttacking = Animator.StringToHash("IsAttacking");
+			}
+			else if (p.name == "DirectionX")
+			{
+				_idDirectionX = Animator.StringToHash("DirectionX");	
+			}
+			else if (p.name == "DirectionX")
+			{
+				_idDirectionY = Animator.StringToHash("DirectionY");	
+			} 
+		}
+
+		_idIdle = Animator.StringToHash("Idle");
+		if (!_animSM.HasState(0, _idIdle))
+		{
+			_idIdle = 0;
+		}
 	}
 
 	private void Start()
@@ -75,11 +106,10 @@ public class MonsterPawn : MobPawn {
 
 	public override void SetDestination(Vector3 targetPosition, float minDist)
 	{
-//		Debug.Log("SetDestination");
 //		_ai.destination = targetPosition;
 //		_aiPath.canMove = true;
 //		_aiPath.destination = targetPosition;
-//		_aiPath.endReachedDistance = minDist;
+		_aiPath.endReachedDistance = minDist;
 		_ai.destination = targetPosition;
 		_ai.SearchPath();
 	}
@@ -105,45 +135,48 @@ public class MonsterPawn : MobPawn {
 //		Debug.Log("pathPending: " + _ai.pathPending);
 //		Debug.Log("reachedEndOfPath: " + _ai.reachedEndOfPath);
 //		Debug.Log("reachedDestination: " + _ai.reachedDestination);
-		if (Input.GetKeyDown(KeyCode.Y))
-		{
-			_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn.transform);
-		}
 
-		if (_ai != null && _target)
+		if (_ai != null && _target && !_ai.pathPending)
 		{
 			SetDestination(_target.position, 0.5f);
 		}
 		
-		
+		if (_idDirectionX != 0)
+		{
+			_animSM.SetFloat(_idDirectionX, _ai.velocity.x);	
+		}
+				
+		if (_idDirectionY != 0)
+		{
+			_animSM.SetFloat(_idDirectionY,_ai.velocity.y);
+		}
 	}
 
 	public void FollowTarget(Transform target)
 	{
 		_isFollowing = true;
-		_aiPath.canMove = true;
-		if (!_seeker)
-		{
-			_seeker = gameObject.AddComponent<Seeker>();	
-		}
+		_ai.maxSpeed = 1.5f;
+		
+		_bt.Stop();
 
 		_target = target;
-		if (behaviorWonder != null)
-		{
-			behaviorWonder.StopWondering();
-		}
+//		if (behaviorWonder != null)
+//		{
+//			behaviorWonder.StopWondering();
+//		}
 	}
 
 	public void UnFollowTarget()
 	{
 		_isFollowing = false;
-		_aiPath.canMove = false;
 		_target = null;
 		
-		if (behaviorWonder != null)
-		{
-			behaviorWonder.StartWondering();
-		}
+		_bt.Run();
+		
+//		if (behaviorWonder != null)
+//		{
+//			behaviorWonder.StartWondering();
+//		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)

@@ -56,7 +56,7 @@ namespace MonsterFarm
 		
 		void Start ()
 		{
-			StartWondering();
+//			StartWondering();
 		}
 
 		public void StartWondering()

@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using MonsterFarm;
 using Pathfinding;
 using UnityEngine;
+using Crossbone.AI.BehaviorTree;
 
 public class MonsterPawn : MobPawn {
 	public Vector3 followOffset = new Vector3(0.2f, 0.1f,0 );
@@ -19,7 +20,7 @@ public class MonsterPawn : MobPawn {
 	public int Age;
 	public bool canFeed;
 	private bool _isFollowing = false;
-	//public SpriteRenderer _sprite;
+	private BehaviorTree _bt;
 
 	public bool IsFollowing()
 	{
@@ -35,12 +36,11 @@ public class MonsterPawn : MobPawn {
 	}
 
 	void OnEnable () {
-		_ai = GetComponent<IAstarAI>();
-		if (_ai != null) _ai.onSearchPath += Update;
+//		if (_ai != null) _ai.onSearchPath += Update;
 	}
 
 	void OnDisable () {
-		if (_ai != null) _ai.onSearchPath -= Update;
+//		if (_ai != null) _ai.onSearchPath -= Update;
 	}
 
 	protected void Awake()
@@ -48,8 +48,15 @@ public class MonsterPawn : MobPawn {
 		base.Awake();
 		behaviorWonder = GetComponent<RandomWalk>();
 		_aiPath = GetComponent<AIPath>();
+		_ai = GetComponent<IAstarAI>();
 	}
 
+	private void Start()
+	{
+		base.Start();
+		_bt = BehaviorTree.CreateWonderChaseBehavior(this);
+		_bt.Run();
+	}
 
 	public virtual void AddAge()
 	{
@@ -65,19 +72,53 @@ public class MonsterPawn : MobPawn {
 			PlayerController.Instance.playerPawn.AddFollower(this);
 		}
 	}
-	
+
+	public override void SetDestination(Vector3 targetPosition, float minDist)
+	{
+//		Debug.Log("SetDestination");
+		
+//		_ai.destination = targetPosition;
+//		_aiPath.canMove = true;
+//		_aiPath.destination = targetPosition;
+//		_aiPath.endReachedDistance = minDist;
+		_ai.destination = targetPosition;
+		_ai.SearchPath();
+	}
+
+	public override bool DestinationReached()
+	{
+//		if (_aiPath.reachedEndOfPath)
+//		{
+//			_aiPath.canMove = false;
+//		}
+//		return _aiPath.reachedEndOfPath;
+		return _ai.reachedDestination;
+	}
+
+	public override bool DestinationCannotReached()
+	{
+		
+		return !_ai.pathPending && _ai.reachedEndOfPath;
+	}
+
 	// Update is called once per frame
 	void Update () {
+		Debug.Log("pathPending: " + _ai.pathPending);
+		Debug.Log("reachedEndOfPath: " + _ai.reachedEndOfPath);
+		Debug.Log("reachedDestination: " + _ai.reachedDestination);
 
 		if (_ai != null && _target)
 		{
-			_ai.destination = _target.position;
-			var dist = _target.position - transform.position;
-			if (dist.magnitude < 0.5f)
-			{
-				_ai.destination = transform.position;
-			}
+			SetDestination(_target.position, 0.5f);
+//			_ai.destination = _target.position;
+//			var dist = _target.position - transform.position;
+//			if (dist.magnitude < _minDest)
+//			{
+//				_ai.destination = transform.position;
+//			}
 		}
+		
+		
 	}
 
 	public void FollowTarget(Transform target)

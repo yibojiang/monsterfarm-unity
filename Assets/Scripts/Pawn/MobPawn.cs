@@ -49,6 +49,21 @@ public class MobPawn : BasePawn
         }
     }
 
+    public virtual void SetDestination(Vector3 targetPosition, float minDest)
+    {
+        
+    }
+
+    public virtual bool DestinationReached()
+    {
+        return true;
+    }
+
+    public virtual bool DestinationCannotReached()
+    {
+        return false;
+    }
+
     protected void Start()
     {
         Followers = new List<MobPawn>();

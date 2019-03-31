@@ -100,8 +100,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1326244116392168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.587, y: -0.03, z: -0.060546875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.24, y: 1.09, z: -0.060546875}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 4955325561725642}
   - {fileID: 4804145006623322}
@@ -169,7 +169,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.22
 --- !u!61 &61626857231487558
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -241,8 +241,8 @@ MonoBehaviour:
   radius: 0.3
   height: 0.3
   repathRate: 0.5
-  canSearch: 1
-  canMove: 0
+  canSearch: 0
+  canMove: 1
   maxSpeed: 1
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
@@ -256,8 +256,8 @@ MonoBehaviour:
   rotationSpeed: 360
   slowdownDistance: 0.6
   pickNextWaypointDist: 1
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
+  endReachedDistance: 0.1
+  alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
@@ -302,8 +302,8 @@ MonoBehaviour:
   interactTarget: {fileID: 0}
   outDoor: 1
   maxMovingSpeed: 1
-  maxHp: 0
-  Hp: 0
+  maxHp: 2
+  Hp: 2
   _idAlive: 0
   alive: 1
   data:
@@ -349,8 +349,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 35323b41c4f583f4baf6f3b6958740a6, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300024, guid: 2fee09a8941af2b489b922b89471d3f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

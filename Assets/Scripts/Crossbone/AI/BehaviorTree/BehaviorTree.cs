@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Crossbone.AI.BehaviorTree
 {
@@ -182,7 +184,7 @@ namespace Crossbone.AI.BehaviorTree
             ActionNode chase = new ActionNode(() =>
             {   
                 Transform target = (Transform)data["chase_target"];
-                mob.SetDestination(target.position, 0.1f, 1.5f);
+                mob.SetDestination(target.position, 0.1f, 1.8f);
 
                 var dist = target.position - mob.transform.position;
                 if (dist.magnitude > 10f)
@@ -225,7 +227,21 @@ namespace Crossbone.AI.BehaviorTree
         {
             _data[key] = value;
         }
-        
+
+        public T GetValue<T>(string key)
+        {
+            if (!_data.ContainsKey(key))
+            {
+                Debug.LogError("Key doesn't exist");
+            }
+            
+            return (T)_data[key];
+        }
+
+        public bool HasKey(string key)
+        {
+            return _data.ContainsKey(key);
+        }
 
         public IEnumerator Evaluate()
         {

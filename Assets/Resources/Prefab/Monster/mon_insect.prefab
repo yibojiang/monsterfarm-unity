@@ -360,6 +360,8 @@ MonoBehaviour:
   hitClip: {fileID: 0}
   Age: 0
   canFeed: 0
+  aiType: 0
+  normalSpeed: 1.4
 --- !u!212 &212610711488788552
 SpriteRenderer:
   m_ObjectHideFlags: 1

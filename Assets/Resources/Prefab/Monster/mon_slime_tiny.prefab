@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 114487779393776790}
   - component: {fileID: 114918124152364698}
   - component: {fileID: 114207650096201744}
-  - component: {fileID: 114695315749420746}
   - component: {fileID: 61152342273062982}
   m_Layer: 0
   m_Name: mon_slime_tiny
@@ -222,6 +221,8 @@ MonoBehaviour:
   hitClip: {fileID: 0}
   Age: 0
   canFeed: 1
+  aiType: 0
+  normalSpeed: 1
 --- !u!114 &114487779393776790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,8 +238,8 @@ MonoBehaviour:
   radius: 0.3
   height: 0.3
   repathRate: 0.5
-  canSearch: 1
-  canMove: 0
+  canSearch: 0
+  canMove: 1
   maxSpeed: 1
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
@@ -271,19 +272,6 @@ MonoBehaviour:
   interactMessage: Feed Apple
   happyEmojiPrefab: {fileID: 1496992243733124, guid: 6c072f4f01c50f0479ef094ab3765337,
     type: 2}
---- !u!114 &114695315749420746
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1825426318081440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58f059a2dba4f44aaab85323ad875e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingVel: {x: 0, y: 0}
-  maxSpeed: 5
 --- !u!114 &114918124152364698
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -149,6 +149,30 @@ public class MonsterPawn : MobPawn {
 		{
 			_animSM.SetFloat(_idDirectionY,_ai.velocity.y);
 		}
+
+		if (_idIsAttacking != 0)
+		{
+			if (_animSM.GetBool(_idIsAttacking) == true)
+			{
+				_animSM.SetBool(_idIsAttacking, false);	
+			}
+
+			if (_bt.HasKey("chase_target"))
+			{
+				var chaseTarget = _bt.GetValue<Transform>("chase_target");
+				
+				if (chaseTarget)
+				{
+					var dist = chaseTarget.position - transform.position;
+//					Debug.Log(dist.magnitude);
+					if (dist.sqrMagnitude < 12f)
+					{
+//						Debug.Log("attack");
+						_animSM.SetBool(_idIsAttacking, true);
+					}	
+				}
+			}	
+		}
 	}
 
 	public void FollowTarget(Transform target)

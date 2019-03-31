@@ -76,7 +76,6 @@ public class MonsterPawn : MobPawn {
 	public override void SetDestination(Vector3 targetPosition, float minDist)
 	{
 //		Debug.Log("SetDestination");
-		
 //		_ai.destination = targetPosition;
 //		_aiPath.canMove = true;
 //		_aiPath.destination = targetPosition;
@@ -103,9 +102,13 @@ public class MonsterPawn : MobPawn {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log("pathPending: " + _ai.pathPending);
-		Debug.Log("reachedEndOfPath: " + _ai.reachedEndOfPath);
-		Debug.Log("reachedDestination: " + _ai.reachedDestination);
+//		Debug.Log("pathPending: " + _ai.pathPending);
+//		Debug.Log("reachedEndOfPath: " + _ai.reachedEndOfPath);
+//		Debug.Log("reachedDestination: " + _ai.reachedDestination);
+		if (Input.GetKeyDown(KeyCode.Y))
+		{
+			_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn.transform);
+		}
 
 		if (_ai != null && _target)
 		{

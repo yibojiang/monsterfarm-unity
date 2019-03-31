@@ -22,15 +22,28 @@ namespace Crossbone.AI.BehaviorTree
             data.Add("is_waiting", false);
             data.Add("wait_timer", 0f);
             data.Add("wait_interval", 2f);
+            data.Add("chase_target", null);
             float updateInterval = 0.5f;
+
+            ActionNode detect = new ActionNode(() =>
+            {
+                if (data["chase_target"] != null)
+                {
+                    return NodeState.Failure;
+                }
+                else
+                {
+                    return NodeState.Success;
+                }
+            });
+                
             ActionNode randomLocation = new ActionNode(() =>
-            {   
+            {
                 if ((bool)data["is_moving"] != true)
                 {
-                    var rad = Random.Range(0f, 2*Mathf.PI);
+                    var rad = Random.Range(0f, 2 * Mathf.PI);
                     var len = Random.Range(1.5f, 2.5f);
                     data["move_loc"] = mob.transform.position + len * new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
-                    Debug.Log(data["move_loc"]);
                 }
 
                 return NodeState.Success; 
@@ -67,8 +80,7 @@ namespace Crossbone.AI.BehaviorTree
                 if ((bool) data["is_waiting"] == false)
                 {
                     data["is_waiting"] = true;
-//                    data["wait_interval"] = Random.Range(1.5f, 2.5f);
-                    data["wait_interval"] = 2f;
+                    data["wait_interval"] = Random.Range(1.5f, 2.5f);
                 }
 
                 data["wait_timer"] = (float)data["wait_timer"] + updateInterval;
@@ -84,12 +96,46 @@ namespace Crossbone.AI.BehaviorTree
                 return NodeState.Running;
             });
 
+            ActionNode hasTarget = new ActionNode(() =>
+            {
+                if (data["chase_target"] != null)
+                {
+                    return NodeState.Success;
+                }
+                else
+                {
+                    return NodeState.Failure;
+                }
+            });
+            
+            ActionNode chase = new ActionNode(() =>
+            {   
+//                if ((bool)data["is_chasing"] == false)
+//                {
+//                    data["is_chasing"] = true;   
+//                }
+                Transform target = (Transform)data["chase_target"];
+                mob.SetDestination(target.position, 0.1f);
+                
+                if (mob.DestinationReached() || mob.DestinationCannotReached())
+                {
+                    Debug.Log("ChaseEnded");
+//                    data["is_chasing"] = false;
+                    return NodeState.Success;
+                }
+                else
+                {   
+                    Debug.Log("Chasing");
+                    return NodeState.Running;
+                }
+            });
+
             ActionNode attack = new ActionNode(() => { return NodeState.Success; });
             
-            Sequence wonder = new Sequence(new List<Node>(){randomLocation, moveTo, wait});
-//            Sequence chase = new Sequence(new List<Node>());   
-//            Node root = new Selector(new List<Node>(){wonder, chase});
-            Node root = new Selector(new List<Node>(){wonder});
+            Sequence wonder = new Sequence(new List<Node>(){detect, randomLocation, moveTo, wait});
+            Sequence chaseAttack = new Sequence(new List<Node>(){hasTarget, chase, attack});   
+            Node root = new Selector(new List<Node>(){wonder, chaseAttack});
+//            Node root = new Selector(new List<Node>(){wonder});
             BehaviorTree bt = new BehaviorTree(root, data, updateInterval, mob); 
             return bt;
         }
@@ -102,6 +148,12 @@ namespace Crossbone.AI.BehaviorTree
             _data = data;
 //            root.SetBehaviorTree(this);
         }
+
+        public void SetKeyValue(string key, object value)
+        {
+            _data[key] = value;
+        }
+        
 
         public IEnumerator Evaluate()
         {

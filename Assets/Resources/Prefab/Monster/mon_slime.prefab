@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520659898107424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.579797, y: -0.7698629, z: -0.060546875}
+  m_LocalPosition: {x: 3.1570196, y: 0.6188163, z: -0.060546875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4142999417551890}
@@ -237,8 +237,8 @@ MonoBehaviour:
   radius: 0.3
   height: 0.3
   repathRate: 0.5
-  canSearch: 1
-  canMove: 0
+  canSearch: 0
+  canMove: 1
   maxSpeed: 1
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
@@ -251,7 +251,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 1
+  pickNextWaypointDist: 0.6
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1

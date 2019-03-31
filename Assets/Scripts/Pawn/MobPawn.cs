@@ -49,7 +49,7 @@ public class MobPawn : BasePawn
         }
     }
 
-    public virtual void SetDestination(Vector3 targetPosition, float minDest)
+    public virtual void SetDestination(Vector3 targetPosition, float minDest, float speedFactor)
     {
         
     }

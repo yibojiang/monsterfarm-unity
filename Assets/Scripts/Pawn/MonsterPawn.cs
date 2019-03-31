@@ -6,6 +6,11 @@ using Pathfinding;
 using UnityEngine;
 using Crossbone.AI.BehaviorTree;
 
+public enum AIType
+{
+	WonderAndChase,
+	Wonder,
+}
 public class MonsterPawn : MobPawn {
 	public Vector3 followOffset = new Vector3(0.2f, 0.1f,0 );
 	public string favouriteItem;
@@ -29,6 +34,9 @@ public class MonsterPawn : MobPawn {
 	private int _idDirectionY = 0;
 	private int _idIdle = 0;
 
+	public AIType aiType;
+	public float normalSpeed = 1f;
+
 	public bool IsFollowing()
 	{
 		return _isFollowing;
@@ -40,14 +48,7 @@ public class MonsterPawn : MobPawn {
 		var am = AudioManager.Instance;
 		am.PlaySFX(hitClip);
 		Hurt(pos, damage);
-	}
-
-	void OnEnable () {
-//		if (_ai != null) _ai.onSearchPath += Update;
-	}
-
-	void OnDisable () {
-//		if (_ai != null) _ai.onSearchPath -= Update;
+		_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn);
 	}
 
 	protected void Awake()
@@ -72,7 +73,7 @@ public class MonsterPawn : MobPawn {
 			else if (p.name == "DirectionX")
 			{
 				_idDirectionY = Animator.StringToHash("DirectionY");	
-			} 
+			}
 		}
 
 		_idIdle = Animator.StringToHash("Idle");
@@ -85,7 +86,15 @@ public class MonsterPawn : MobPawn {
 	private void Start()
 	{
 		base.Start();
-		_bt = BehaviorTree.CreateWonderChaseBehavior(this);
+		if (aiType == AIType.Wonder)
+		{
+			_bt = BehaviorTree.CreateWonderBehavior(this);	
+		}
+		else if (aiType == AIType.WonderAndChase)
+		{
+			_bt = BehaviorTree.CreateWonderChaseBehavior(this);
+		}
+		
 		_bt.Run();
 	}
 
@@ -104,23 +113,16 @@ public class MonsterPawn : MobPawn {
 		}
 	}
 
-	public override void SetDestination(Vector3 targetPosition, float minDist)
+	public override void SetDestination(Vector3 targetPosition, float minDist, float speedFactor)
 	{
-//		_ai.destination = targetPosition;
-//		_aiPath.canMove = true;
-//		_aiPath.destination = targetPosition;
 		_aiPath.endReachedDistance = minDist;
 		_ai.destination = targetPosition;
 		_ai.SearchPath();
+		_ai.maxSpeed = normalSpeed * speedFactor;
 	}
 
 	public override bool DestinationReached()
-	{
-//		if (_aiPath.reachedEndOfPath)
-//		{
-//			_aiPath.canMove = false;
-//		}
-//		return _aiPath.reachedEndOfPath;
+	{;
 		return _ai.reachedDestination;
 	}
 
@@ -132,13 +134,10 @@ public class MonsterPawn : MobPawn {
 
 	// Update is called once per frame
 	void Update () {
-//		Debug.Log("pathPending: " + _ai.pathPending);
-//		Debug.Log("reachedEndOfPath: " + _ai.reachedEndOfPath);
-//		Debug.Log("reachedDestination: " + _ai.reachedDestination);
 
 		if (_ai != null && _target && !_ai.pathPending)
 		{
-			SetDestination(_target.position, 0.5f);
+			SetDestination(_target.position, 0.5f, 1.3f);
 		}
 		
 		if (_idDirectionX != 0)
@@ -155,15 +154,8 @@ public class MonsterPawn : MobPawn {
 	public void FollowTarget(Transform target)
 	{
 		_isFollowing = true;
-		_ai.maxSpeed = 1.5f;
-		
 		_bt.Stop();
-
 		_target = target;
-//		if (behaviorWonder != null)
-//		{
-//			behaviorWonder.StopWondering();
-//		}
 	}
 
 	public void UnFollowTarget()
@@ -172,16 +164,10 @@ public class MonsterPawn : MobPawn {
 		_target = null;
 		
 		_bt.Run();
-		
-//		if (behaviorWonder != null)
-//		{
-//			behaviorWonder.StartWondering();
-//		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-//		Debug.Log(other.gameObject.name);
 		if (other.CompareTag("Player"))
 		{
 			_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn.transform);

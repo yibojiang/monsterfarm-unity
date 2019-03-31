@@ -13,11 +13,83 @@ namespace Crossbone.AI.BehaviorTree
         private bool _isRunning = false;
         private Dictionary<string, object> _data;
 
+        public static BehaviorTree CreateWonderBehavior(MobPawn mob)
+        {
+            var data = new Dictionary<string, object>();
+            data.Add("move_loc", new Vector3(0, 0, 0));
+            data.Add("is_moving", false);
+            data.Add("is_waiting", false);
+            data.Add("wait_timer", 0f);
+            data.Add("wait_interval", 2f);
+            float updateInterval = 0.5f;
+            ActionNode randomLocation = new ActionNode(() =>
+            {
+                if ((bool)data["is_moving"] != true)
+                {
+                    var rad = Random.Range(0f, 2 * Mathf.PI);
+                    var len = Random.Range(1.5f, 2.5f);
+                    data["move_loc"] = mob.transform.position + len * new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
+                }
+
+                return NodeState.Success; 
+            });
+
+            ActionNode moveTo = new ActionNode(() =>
+            {
+                if ((bool) data["is_waiting"] == true)
+                {
+                    return NodeState.Success;
+                }
+
+                if ((bool)data["is_moving"] == false)
+                {
+                    data["is_moving"] = true;
+                    mob.SetDestination((Vector3)data["move_loc"], 0.1f, 0.6f);
+                }
+                
+                if (mob.DestinationReached() || mob.DestinationCannotReached())
+                {
+//                    Debug.Log("DestinationEnded");
+                    data["is_moving"] = false;
+                    return NodeState.Success;
+                }
+                else
+                {   
+//                    Debug.Log("Moving");
+                    return NodeState.Running;
+                }
+            });
+            
+            ActionNode wait = new ActionNode(() =>
+            {
+                if ((bool) data["is_waiting"] == false)
+                {
+                    data["is_waiting"] = true;
+                    data["wait_interval"] = Random.Range(1.5f, 2.5f);
+                }
+
+                data["wait_timer"] = (float)data["wait_timer"] + updateInterval;
+                if ((float)data["wait_timer"] >= (float)data["wait_interval"])
+                {
+                    data["wait_timer"] = 0f;
+                    data["is_waiting"] = false;
+                    return NodeState.Success;
+                }
+                
+//                Debug.Log("Waiting");
+                return NodeState.Running;
+            });
+            
+            Sequence wonder = new Sequence(new List<Node>(){randomLocation, moveTo, wait});
+            Node root = new Selector(new List<Node>(){wonder});
+            BehaviorTree bt = new BehaviorTree(root, data, updateInterval, mob); 
+            return bt;
+        }
+
         public static BehaviorTree CreateWonderChaseBehavior(MobPawn mob)
         {
             var data = new Dictionary<string, object>();
             data.Add("move_loc", new Vector3(0, 0, 0));
-            data.Add("is_chasing", false);
             data.Add("is_moving", false);
             data.Add("is_waiting", false);
             data.Add("wait_timer", 0f);
@@ -59,18 +131,18 @@ namespace Crossbone.AI.BehaviorTree
                 if ((bool)data["is_moving"] == false)
                 {
                     data["is_moving"] = true;
-                    mob.SetDestination((Vector3)data["move_loc"], 0.1f);
+                    mob.SetDestination((Vector3)data["move_loc"], 0.1f, 0.8f);
                 }
                 
                 if (mob.DestinationReached() || mob.DestinationCannotReached())
                 {
-                    Debug.Log("DestinationEnded");
+//                    Debug.Log("DestinationEnded");
                     data["is_moving"] = false;
                     return NodeState.Success;
                 }
                 else
                 {   
-                    Debug.Log("Moving");
+//                    Debug.Log("Moving");
                     return NodeState.Running;
                 }
             });
@@ -84,7 +156,6 @@ namespace Crossbone.AI.BehaviorTree
                 }
 
                 data["wait_timer"] = (float)data["wait_timer"] + updateInterval;
-//                Debug.Log(data["wait_timer"]);
                 if ((float)data["wait_timer"] >= (float)data["wait_interval"])
                 {
                     data["wait_timer"] = 0f;
@@ -92,7 +163,7 @@ namespace Crossbone.AI.BehaviorTree
                     return NodeState.Success;
                 }
                 
-                Debug.Log("Waiting");
+//                Debug.Log("Waiting");
                 return NodeState.Running;
             });
 
@@ -110,12 +181,8 @@ namespace Crossbone.AI.BehaviorTree
             
             ActionNode chase = new ActionNode(() =>
             {   
-//                if ((bool)data["is_chasing"] == false)
-//                {
-//                    data["is_chasing"] = true;   
-//                }
                 Transform target = (Transform)data["chase_target"];
-                mob.SetDestination(target.position, 0.1f);
+                mob.SetDestination(target.position, 0.1f, 1.5f);
 
                 var dist = target.position - mob.transform.position;
                 if (dist.magnitude > 10f)

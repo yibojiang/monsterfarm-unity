@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4921435116968558}
   - component: {fileID: 61856285585117608}
   m_Layer: 0
-  m_Name: Tree_Red
+  m_Name: tree_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,9 +36,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4056011187058460}
   - component: {fileID: 212227869359870866}
-  - component: {fileID: 114301700650705672}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,18 +95,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.18}
   m_EdgeRadius: 0
---- !u!114 &114301700650705672
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788308281753528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!212 &212227869359870866
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -142,7 +129,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1002
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 215d551966d607c4888c0e04569b0634, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -153,4 +140,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

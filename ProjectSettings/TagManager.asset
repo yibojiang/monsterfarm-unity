@@ -19,10 +19,10 @@ TagManager:
   - Player
   - Ground
   - Wall
-  - Hitbox
+  - Hitbody
   - Bullet
-  - 
-  - 
+  - HitAttack
+  - Sensor
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 2928287075
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

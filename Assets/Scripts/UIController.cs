@@ -35,10 +35,19 @@ namespace MonsterFarm
 
 		private Stack<List<UIPanel>> _panelStack = new Stack<List<UIPanel>>();
 		public Image uiFade;
-		// Use this for initialization
-		void Start () {
+
 		
+		// Use this for initialization
+		void Start ()
+		{
+			
 		}
+
+		public void UpdatePlayerHP()
+		{
+			
+		}
+		
 
 		public List<UIPanel> GetCurrentPanel()
 		{

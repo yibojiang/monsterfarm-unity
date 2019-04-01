@@ -7,7 +7,7 @@ public class PlayerStart : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+		SceneManager.LoadScene("player", LoadSceneMode.Additive);
 	}
 
 	void Start() {

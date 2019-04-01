@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114483164830058782}
   - component: {fileID: 114731613219410442}
   - component: {fileID: 114237759002642540}
-  - component: {fileID: 114349230260307042}
   - component: {fileID: 61711063836134672}
   m_Layer: 0
   m_Name: mon_slime_large
@@ -41,10 +40,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4339739207330538}
   - component: {fileID: 212125824676923662}
-  - component: {fileID: 114273237590215550}
   - component: {fileID: 95438708597503994}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,39 +208,21 @@ MonoBehaviour:
   interactTarget: {fileID: 0}
   outDoor: 1
   maxMovingSpeed: 1
-  hp: 0
+  maxHp: 0
+  Hp: 0
+  _idAlive: 0
   alive: 1
+  data:
+    hp: 2
+    hitDamage: 1
   followOffset: {x: 0.2, y: 0.1, z: 0}
   favouriteItem: apple
   _target: {fileID: 0}
   hitClip: {fileID: 0}
   Age: 2
   canFeed: 1
---- !u!114 &114273237590215550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1676460404520840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
---- !u!114 &114349230260307042
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1287562245925476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58f059a2dba4f44aaab85323ad875e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingVel: {x: 0, y: 0}
-  maxSpeed: 5
+  aiType: 0
+  normalSpeed: 1
 --- !u!114 &114483164830058782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,8 +238,8 @@ MonoBehaviour:
   radius: 0.3
   height: 0.3
   repathRate: 0.5
-  canSearch: 1
-  canMove: 0
+  canSearch: 0
+  canMove: 1
   maxSpeed: 1
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
@@ -353,7 +333,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1010
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 63896d191cf534d3e92a0032b1630829, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -364,4 +344,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

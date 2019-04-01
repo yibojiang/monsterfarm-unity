@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074902, b: 0.3587254, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -194,6 +194,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 212022899688471906, guid: 0d5af99dbc2684a23ae22c6103d05120,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212022899688471906, guid: 0d5af99dbc2684a23ae22c6103d05120,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d5af99dbc2684a23ae22c6103d05120, type: 2}
   m_IsPrefabAsset: 0
@@ -281,7 +291,12 @@ Prefab:
     - target: {fileID: 212086174943378062, guid: d4ef8c8223ec0f54b9dd8a8b2f6decda,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 995
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212086174943378062, guid: d4ef8c8223ec0f54b9dd8a8b2f6decda,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4ef8c8223ec0f54b9dd8a8b2f6decda, type: 2}
@@ -325,6 +340,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 212558404227098168, guid: 8bb58c5a41a8ee14ebe202c7cafd7302,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212558404227098168, guid: 8bb58c5a41a8ee14ebe202c7cafd7302,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bb58c5a41a8ee14ebe202c7cafd7302, type: 2}
   m_IsPrefabAsset: 0
@@ -366,6 +391,16 @@ Prefab:
     - target: {fileID: 4839085866640504, guid: d4ef8c8223ec0f54b9dd8a8b2f6decda, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212086174943378062, guid: d4ef8c8223ec0f54b9dd8a8b2f6decda,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212086174943378062, guid: d4ef8c8223ec0f54b9dd8a8b2f6decda,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4ef8c8223ec0f54b9dd8a8b2f6decda, type: 2}
@@ -411,6 +446,63 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8742d0292e8700e43b9b5bb3f381c961, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &856762258
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.587
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.060546875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736460264688228, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288335396375022, guid: 05f7a66e47d3173449887d93dfb82fb3,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 212610711488788552, guid: 05f7a66e47d3173449887d93dfb82fb3,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212610711488788552, guid: 05f7a66e47d3173449887d93dfb82fb3,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 05f7a66e47d3173449887d93dfb82fb3, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &879485401
 GameObject:
@@ -474,8 +566,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1366680221
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -7177,6 +7269,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 212165110630199344, guid: 89a1a812316f89943ba97318e7f6c699,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212165110630199344, guid: 89a1a812316f89943ba97318e7f6c699,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89a1a812316f89943ba97318e7f6c699, type: 2}
   m_IsPrefabAsset: 0
@@ -7218,6 +7320,16 @@ Prefab:
     - target: {fileID: 4454867235070126, guid: c81a6fcc1e281564695ab07d6f2e8778, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212473320014526354, guid: c81a6fcc1e281564695ab07d6f2e8778,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212473320014526354, guid: c81a6fcc1e281564695ab07d6f2e8778,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c81a6fcc1e281564695ab07d6f2e8778, type: 2}
@@ -7285,8 +7397,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1366680221
+  m_SortingLayer: -1
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -8016,6 +8128,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4921435116968558, guid: 6dca6ea3fea6b9e4993da48261d5158a, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212227869359870866, guid: 6dca6ea3fea6b9e4993da48261d5158a,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212227869359870866, guid: 6dca6ea3fea6b9e4993da48261d5158a,
+        type: 2}
+      propertyPath: m_SpriteSortPoint
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

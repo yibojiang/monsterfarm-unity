@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4019623121577150}
   - component: {fileID: 212502542582508422}
   - component: {fileID: 95383767186931426}
-  - component: {fileID: 114326103958376952}
   - component: {fileID: 114100287504240770}
   m_Layer: 0
   m_Name: fx_bloodhit
@@ -73,18 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0.3
---- !u!114 &114326103958376952
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1031649236380054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 15
 --- !u!212 &212502542582508422
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -119,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1013
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 336eaaae6f76176418fabc29023f8ac9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -130,4 +117,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour {
 			//Debug.Log(body.gameObject.name);
 			// Not working
 //			body.MovePosition(targetAnchor.position);
-			body.transform.position = targetAnchor.position + offset;
+			body.position = targetAnchor.position + offset;
 			for (int i = 0; i < playerPawn.Followers.Count; i++)
 			{
 				var follower = playerPawn.Followers[i]; 

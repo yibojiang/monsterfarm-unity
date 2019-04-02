@@ -15,7 +15,7 @@ namespace Crossbone.AI.BehaviorTree
         private bool _isRunning = false;
         private Dictionary<string, object> _data;
 
-        public static BehaviorTree CreateWonderBehavior(MobPawn mob)
+        public static BehaviorTree CreateWanderBehavior(MobPawn mob)
         {
             var data = new Dictionary<string, object>();
             data.Add("move_loc", new Vector3(0, 0, 0));
@@ -82,13 +82,13 @@ namespace Crossbone.AI.BehaviorTree
                 return NodeState.Running;
             });
             
-            Sequence wonder = new Sequence(new List<Node>(){randomLocation, moveTo, wait});
-            Node root = new Selector(new List<Node>(){wonder});
+            Sequence wander = new Sequence(new List<Node>(){randomLocation, moveTo, wait});
+            Node root = new Selector(new List<Node>(){wander});
             BehaviorTree bt = new BehaviorTree(root, data, updateInterval, mob); 
             return bt;
         }
 
-        public static BehaviorTree CreateWonderChaseBehavior(MobPawn mob)
+        public static BehaviorTree CreateWanderChaseBehavior(MobPawn mob)
         {
             var data = new Dictionary<string, object>();
             data.Add("move_loc", new Vector3(0, 0, 0));
@@ -207,9 +207,9 @@ namespace Crossbone.AI.BehaviorTree
 
             ActionNode attack = new ActionNode(() => { return NodeState.Success; });
             
-            Sequence wonder = new Sequence(new List<Node>(){detect, randomLocation, moveTo, wait});
+            Sequence wander = new Sequence(new List<Node>(){detect, randomLocation, moveTo, wait});
             Sequence chaseAttack = new Sequence(new List<Node>(){hasTarget, chase, attack});   
-            Node root = new Selector(new List<Node>(){wonder, chaseAttack});
+            Node root = new Selector(new List<Node>(){wander, chaseAttack});
             BehaviorTree bt = new BehaviorTree(root, data, updateInterval, mob); 
             return bt;
         }

@@ -8,8 +8,8 @@ using Crossbone.AI.BehaviorTree;
 
 public enum AIType
 {
-	WonderAndChase,
-	Wonder,
+	WanderAndChase,
+	Wander,
 }
 public class MonsterPawn : MobPawn {
 	public Vector3 followOffset = new Vector3(0.2f, 0.1f,0 );
@@ -19,7 +19,6 @@ public class MonsterPawn : MobPawn {
 	private Seeker _seeker;
 	private IAstarAI _ai;
 	
-	[CanBeNull] private RandomWalk behaviorWonder;
 	[CanBeNull] private AIPath _aiPath;
 	
 	private Animator _animSM;
@@ -54,7 +53,6 @@ public class MonsterPawn : MobPawn {
 	protected void Awake()
 	{
 		base.Awake();
-		behaviorWonder = GetComponent<RandomWalk>();
 		_aiPath = GetComponent<AIPath>();
 		_ai = GetComponent<IAstarAI>();
 		_animSM = _sprite.gameObject.GetComponent<Animator>();
@@ -86,13 +84,13 @@ public class MonsterPawn : MobPawn {
 	private void Start()
 	{
 		base.Start();
-		if (aiType == AIType.Wonder)
+		if (aiType == AIType.Wander)
 		{
-			_bt = BehaviorTree.CreateWonderBehavior(this);	
+			_bt = BehaviorTree.CreateWanderBehavior(this);	
 		}
-		else if (aiType == AIType.WonderAndChase)
+		else if (aiType == AIType.WanderAndChase)
 		{
-			_bt = BehaviorTree.CreateWonderChaseBehavior(this);
+			_bt = BehaviorTree.CreateWanderChaseBehavior(this);
 		}
 		
 		_bt.Run();

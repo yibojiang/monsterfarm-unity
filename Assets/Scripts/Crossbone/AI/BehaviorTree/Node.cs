@@ -1,5 +1,3 @@
-using UnityEditorInternal;
-
 namespace Crossbone.AI.BehaviorTree
 {
     public enum NodeState

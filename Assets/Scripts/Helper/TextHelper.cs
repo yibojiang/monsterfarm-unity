@@ -17,7 +17,8 @@ public class TextHelper : MonoBehaviour
 		var srcColor = text.color;
 		while (true)
 		{
-			text.color = Color.Lerp(srcColor, targetColor, ((int)Time.time / 2) == 0 ? Time.time % 1 : 1f - Time.time % 1 );
+			var lerpValue = ((int) Time.time % 2) == 0 ? Time.time % 1 : 1f - Time.time % 1;
+			text.color = Color.Lerp(srcColor, targetColor, lerpValue);
 			yield return null;
 		}
 	}

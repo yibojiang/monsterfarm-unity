@@ -12,7 +12,6 @@ public enum AIType
 	Wander,
 }
 public class MonsterPawn : MobPawn {
-	public Vector3 followOffset = new Vector3(0.2f, 0.1f,0 );
 	public string favouriteItem;
 	public Transform _target;
 	public AudioClip hitClip;
@@ -120,7 +119,7 @@ public class MonsterPawn : MobPawn {
 	}
 
 	public override bool DestinationReached()
-	{;
+	{
 		return _ai.reachedDestination;
 	}
 
@@ -162,10 +161,8 @@ public class MonsterPawn : MobPawn {
 				if (chaseTarget)
 				{
 					var dist = chaseTarget.position - transform.position;
-//					Debug.Log(dist.magnitude);
 					if (dist.sqrMagnitude < 12f)
 					{
-//						Debug.Log("attack");
 						_animSM.SetBool(_idIsAttacking, true);
 					}	
 				}

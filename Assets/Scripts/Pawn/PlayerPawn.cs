@@ -58,6 +58,15 @@ public class PlayerPawn : MobPawn {
 		}
 	}
 
+	public void CancelAmining()
+	{
+		if (_arrow) {
+			Destroy(_arrow);
+		}
+		_isAiming = false;
+	}
+	
+
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.E)) {
 			if (interactTarget != null && !isTalking) {
@@ -69,23 +78,7 @@ public class PlayerPawn : MobPawn {
 			}
 		}
 
-		if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftShift)) {
-			if (!_isAiming) {
-				AimStart();
-			}
-			_isAiming = true;
-
-			if (Input.GetMouseButtonDown(0)) {
-				_animSm.SetTrigger("Shoot");
-				Shoot();
-			}
-		}
-		else {
-			if (_arrow) {
-				Destroy(_arrow);
-			}
-			_isAiming = false;
-		}
+		
 
 		_animSm.SetBool("IsAiming", _isAiming);
 
@@ -97,15 +90,25 @@ public class PlayerPawn : MobPawn {
 		}
 	}
 
-	void AimStart() {
-		var arrowPrefab = Resources.Load("Prefab/Arrow");
-		_arrow = (GameObject)GameObject.Instantiate(arrowPrefab, shootTarget.position, Quaternion.identity);
-		_arrow.transform.parent = shootTarget;
-		_arrow.transform.localRotation = Quaternion.identity;
-		_arrow.GetComponent<BoxCollider2D>().enabled = false;
+	public void MeleeAttack()
+	{
+		_animSm.SetTrigger("MeleeAttack");
+	}
+
+	public void AimStart() {
+		if (!_isAiming)
+		{
+			var arrowPrefab = Resources.Load("Prefab/Arrow");
+			_arrow = (GameObject) GameObject.Instantiate(arrowPrefab, shootTarget.position, Quaternion.identity);
+			_arrow.transform.parent = shootTarget;
+			_arrow.transform.localRotation = Quaternion.identity;
+			_arrow.GetComponent<BoxCollider2D>().enabled = false;
+		}
+		_isAiming = true;
 	}
 	
-	void Shoot() {
+	public void Shoot() {
+		_animSm.SetTrigger("Shoot");
 		var am = AudioManager.Instance;
 		am.PlaySFX(arrowSFX);
 		var arrowSmokePrefab = Resources.Load("Prefab/Smoke_Arrow");

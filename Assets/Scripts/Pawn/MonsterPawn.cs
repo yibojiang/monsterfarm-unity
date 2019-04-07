@@ -20,7 +20,6 @@ public class MonsterPawn : MobPawn {
 	
 	[CanBeNull] private AIPath _aiPath;
 	
-	private Animator _animSM;
 	public int Friendship { get; private set; }
 	public int Age;
 	public bool canFeed;
@@ -54,10 +53,10 @@ public class MonsterPawn : MobPawn {
 		base.Awake();
 		_aiPath = GetComponent<AIPath>();
 		_ai = GetComponent<IAstarAI>();
-		_animSM = _sprite.gameObject.GetComponent<Animator>();
+		_animSm = _sprite.gameObject.GetComponent<Animator>();
 		_seeker = GetComponent<Seeker>();
 		
-		foreach (var p in _animSM.parameters)
+		foreach (var p in _animSm.parameters)
 		{
 			if (p.name == "IsAttacking")
 			{
@@ -74,7 +73,7 @@ public class MonsterPawn : MobPawn {
 		}
 
 		_idIdle = Animator.StringToHash("Idle");
-		if (!_animSM.HasState(0, _idIdle))
+		if (!_animSm.HasState(0, _idIdle))
 		{
 			_idIdle = 0;
 		}
@@ -139,19 +138,19 @@ public class MonsterPawn : MobPawn {
 		
 		if (_idDirectionX != 0)
 		{
-			_animSM.SetFloat(_idDirectionX, _ai.velocity.x);	
+			_animSm.SetFloat(_idDirectionX, _ai.velocity.x);	
 		}
 				
 		if (_idDirectionY != 0)
 		{
-			_animSM.SetFloat(_idDirectionY,_ai.velocity.y);
+			_animSm.SetFloat(_idDirectionY,_ai.velocity.y);
 		}
 
 		if (_idIsAttacking != 0)
 		{
-			if (_animSM.GetBool(_idIsAttacking) == true)
+			if (_animSm.GetBool(_idIsAttacking) == true)
 			{
-				_animSM.SetBool(_idIsAttacking, false);	
+				_animSm.SetBool(_idIsAttacking, false);	
 			}
 
 			if (_bt.HasKey("chase_target"))
@@ -162,7 +161,7 @@ public class MonsterPawn : MobPawn {
 				var dist = chaseTarget.position - transform.position;
 				if (dist.sqrMagnitude < 12f)
 				{
-					_animSM.SetBool(_idIsAttacking, true);
+					_animSm.SetBool(_idIsAttacking, true);
 				}	
 			}	
 		}

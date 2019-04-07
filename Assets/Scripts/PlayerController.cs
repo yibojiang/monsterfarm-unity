@@ -14,6 +14,23 @@ public enum InGameState {
     Play,
     UI
 }
+
+public enum WeaponType
+{
+    Sword,
+    Bow
+}
+
+public class Weapon
+{
+    public WeaponType weaponType { get; }
+
+    public Weapon(WeaponType weaponType)
+    {
+        this.weaponType = weaponType;
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController _instance;
@@ -44,7 +61,9 @@ public class PlayerController : MonoBehaviour
     public Image uiMaxHp;
     
     public List<BlueprintItem> blueprintList;
-    
+    public List<Weapon> weapons = new List<Weapon>();
+    public int weaponIdx;
+
     [System.Serializable]
     public class BlueprintItem {
         public string itemName;
@@ -153,6 +172,12 @@ public class PlayerController : MonoBehaviour
         _inventoryUIItemDict.Add("apple", new InventoryUIItem("apple"));
     }
 
+    private void Start()
+    {
+        weapons.Add(new Weapon(WeaponType.Bow));
+        weapons.Add(new Weapon(WeaponType.Sword));
+    }
+
     public void UpdatePlayerUI(int hp, int maxHp)
     {
         var tmpSize = uiMaxHp.rectTransform.sizeDelta;
@@ -167,6 +192,21 @@ public class PlayerController : MonoBehaviour
     {
         _ingameState = inGameState;
     }
+
+    public WeaponType GetCurrentWeaponType()
+    {
+        return weapons[weaponIdx].weaponType;
+    }
+
+    public void SwitchWeapon()
+    {
+        weaponIdx++;
+        if (weaponIdx >= weapons.Count)
+        {
+            weaponIdx = 0;
+        }
+    }
+    
 
     private void Update()
     {
@@ -185,6 +225,35 @@ public class PlayerController : MonoBehaviour
         
         if (_ingameState == InGameState.Play)
         {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SwitchWeapon();    
+            }
+
+            if (GetCurrentWeaponType() == WeaponType.Bow)
+            {
+                if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftShift)) {
+                    playerPawn.AimStart();                
+
+                    if (Input.GetMouseButtonDown(0)) {
+                        playerPawn.Shoot();
+                    }
+                }
+                else
+                {
+                    playerPawn.CancelAmining();
+                }    
+            }
+            else if (GetCurrentWeaponType() == WeaponType.Sword)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    playerPawn.MeleeAttack();
+                }    
+            }
+
+            
+
             var mousePos = Input.mousePosition;
             if (curBlueprint) {
                 var pos = _cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, _cam.nearClipPlane));

@@ -102,10 +102,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4908119368322526}
   - component: {fileID: 50198290912882754}
-  - component: {fileID: 114677845312349934}
-  - component: {fileID: 114426182250199176}
   - component: {fileID: 114667466023255204}
-  - component: {fileID: 61161402401226038}
+  - component: {fileID: 114426182250199176}
+  - component: {fileID: 114677845312349934}
   - component: {fileID: 58467700014497708}
   m_Layer: 0
   m_Name: monster_frank
@@ -202,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1591826872803750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.39, y: 0.3, z: -0.060546875}
+  m_LocalPosition: {x: 7.687825, y: 0.04303813, z: -0.060546875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4479514457004334}
@@ -238,8 +237,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
-  m_LinearDrag: 0
+  m_Mass: 2
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -292,31 +291,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!61 &61161402401226038
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1591826872803750}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.04}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.47, y: 0.18}
-  m_EdgeRadius: 0
 --- !u!61 &61288827901314388
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -428,7 +402,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 1
+  pickNextWaypointDist: 0.6
   endReachedDistance: 0.1
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
@@ -448,14 +422,13 @@ MonoBehaviour:
   interactTarget: {fileID: 0}
   outDoor: 1
   maxMovingSpeed: 1
-  maxHp: 0
+  maxHp: 2
   Hp: 0
   _idAlive: 0
   alive: 1
   data:
     hp: 5
     hitDamage: 1
-  followOffset: {x: 0.2, y: 0.1, z: 0}
   favouriteItem: 
   _target: {fileID: 0}
   hitClip: {fileID: 8300000, guid: 6228cc0dfaf8b5646934d2b4b23e5b59, type: 3}
@@ -543,7 +516,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 997
+  m_SortingOrder: 999
   m_Sprite: {fileID: 21300000, guid: 652f7141592889a499a9caa036b3b277, type: 3}
   m_Color: {r: 0.119482, g: 0.124617256, b: 0.14150941, a: 1}
   m_FlipX: 0

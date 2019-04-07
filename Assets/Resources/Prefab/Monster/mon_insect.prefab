@@ -71,7 +71,6 @@ GameObject:
   - component: {fileID: 50889298919319960}
   - component: {fileID: 114286541097733570}
   - component: {fileID: 114547581465512602}
-  - component: {fileID: 114093372581783196}
   - component: {fileID: 114853136289350924}
   m_Layer: 0
   m_Name: mon_insect
@@ -258,19 +257,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114093372581783196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1326244116392168}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58f059a2dba4f44aaab85323ad875e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingVel: {x: 0, y: 0}
-  maxSpeed: 5
 --- !u!114 &114286541097733570
 MonoBehaviour:
   m_ObjectHideFlags: 1

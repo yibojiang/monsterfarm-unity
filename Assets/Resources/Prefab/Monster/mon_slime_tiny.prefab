@@ -221,7 +221,7 @@ MonoBehaviour:
   hitClip: {fileID: 0}
   Age: 0
   canFeed: 1
-  aiType: 0
+  aiType: 1
   normalSpeed: 1
 --- !u!114 &114487779393776790
 MonoBehaviour:

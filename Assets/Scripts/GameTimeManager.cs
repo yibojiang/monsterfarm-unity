@@ -27,7 +27,7 @@ public class GameTimeManager : MonoBehaviour {
     ColorGradingModel _colorGrading;
     ColorGradingModel.Settings _colorGradingSettings;
     public Image pointer;
-    private const float _daySeconds = 60f;
+    private const float _daySeconds = 300f;
     public int Day { get; private set; }
 
     // Use this for initialization

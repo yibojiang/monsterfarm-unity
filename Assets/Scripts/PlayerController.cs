@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
             if (curBlueprint) {
                 var pos = _cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, _cam.nearClipPlane));
                 curBlueprint.transform.position = pos - new Vector3(0f, 0.5f, 0f);
-                if (Input.GetMouseButton(0)) {
+                if (Input.GetMouseButtonDown(0)) {
                     var bp = curBlueprint.GetComponent<BuildBlueprint>();
                     bp.EnableCollider();
                     Destroy(bp);

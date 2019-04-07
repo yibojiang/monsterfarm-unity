@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -223,24 +224,25 @@ namespace Crossbone.AI.BehaviorTree
 //            root.SetBehaviorTree(this);
         }
 
-        public void SetKeyValue(string key, object value)
+        public void SetKeyValue<T>(string key, T value)
         {
-            _data[key] = value;
+            _data[key] = (object)value;
         }
 
+        [CanBeNull]
         public T GetValue<T>(string key)
         {
-            if (!_data.ContainsKey(key))
+            if (!_data.ContainsKey(key) || _data[key] == null)
             {
                 Debug.LogError("Key doesn't exist");
             }
-            
-            return (T)_data[key];
+
+            return (T) _data[key];
         }
 
         public bool HasKey(string key)
         {
-            return _data.ContainsKey(key);
+            return _data.ContainsKey(key) && _data[key] != null;
         }
 
         public IEnumerator Evaluate()

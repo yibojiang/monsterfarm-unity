@@ -69,13 +69,13 @@ public class PlayerPawn : MobPawn {
 			}
 		}
 
-		if (Input.GetMouseButton(1)) {
+		if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftShift)) {
 			if (!_isAiming) {
 				AimStart();
 			}
 			_isAiming = true;
 
-			if (Input.GetMouseButtonUp(0)) {
+			if (Input.GetMouseButtonDown(0)) {
 				_animSm.SetTrigger("Shoot");
 				Shoot();
 			}

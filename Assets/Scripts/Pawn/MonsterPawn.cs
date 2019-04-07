@@ -46,7 +46,7 @@ public class MonsterPawn : MobPawn {
 		var am = AudioManager.Instance;
 		am.PlaySFX(hitClip);
 		Hurt(pos, damage);
-		_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn);
+		_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn.transform);
 	}
 
 	protected void Awake()
@@ -155,17 +155,15 @@ public class MonsterPawn : MobPawn {
 			}
 
 			if (_bt.HasKey("chase_target"))
+//			if (_chaseTarget)
 			{
-				var chaseTarget = _bt.GetValue<Transform>("chase_target");
-				
-				if (chaseTarget)
+				Transform chaseTarget = _bt.GetValue<Transform>("chase_target");
+//				Transform chaseTarget = (Transform)_bt._data["chase_target"];
+				var dist = chaseTarget.position - transform.position;
+				if (dist.sqrMagnitude < 12f)
 				{
-					var dist = chaseTarget.position - transform.position;
-					if (dist.sqrMagnitude < 12f)
-					{
-						_animSM.SetBool(_idIsAttacking, true);
-					}	
-				}
+					_animSM.SetBool(_idIsAttacking, true);
+				}	
 			}	
 		}
 	}
@@ -189,7 +187,7 @@ public class MonsterPawn : MobPawn {
 	{
 		if (other.CompareTag("Player"))
 		{
-			_bt.SetKeyValue("chase_target", PlayerController.Instance.playerPawn.transform);
+			_bt.SetKeyValue("chase_target", other.transform);
 		}
 	}
 }

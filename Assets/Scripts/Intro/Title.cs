@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using MonsterFarm;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,10 @@ public class Title : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E))
 		{
-			SceneManager.LoadScene("intro", LoadSceneMode.Single);
+			UIController.Instance.FadeOut(1f, () =>
+			{
+				SceneManager.LoadScene("intro", LoadSceneMode.Single);	
+			});
 		}
 	}
 }

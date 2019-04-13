@@ -28,19 +28,84 @@ namespace MonsterFarm
 			{
 				if (!_instance) {
 					_instance = (UIController) FindObjectOfType(typeof(UIController));
+					if (!_instance)
+					{
+						GameObject go = new GameObject();
+						_instance = go.AddComponent<UIController>();
+						go.name = "UIController";
+					}
 				}
+				
+				
 				return _instance;	
 			}
 		}
 
 		private Stack<List<UIPanel>> _panelStack = new Stack<List<UIPanel>>();
 		public Image uiFade;
-
 		
 		// Use this for initialization
-		void Start ()
+		void Awake ()
 		{
-			
+			var canvas = GameObject.FindObjectOfType<Canvas>();
+			if (canvas != null)
+			{
+				var uiFadePreafab = Resources.Load("Prefab/UI/ui_fade");
+				GameObject uiFadeObj = (GameObject)Instantiate(uiFadePreafab, canvas.transform);
+				uiFade = uiFadeObj.GetComponent<Image>();
+				uiFade.gameObject.SetActive(false);
+			}
+		}
+		
+		public void FadeOut(float duration, Action callback)
+		{
+			FadeTo(new Color(0, 0, 0, 0), Color.black, duration, callback);
+		}
+		
+		public void FadeIn(float duration, Action callback)
+		{
+			FadeTo(Color.black,new Color(0, 0, 0, 0), duration, callback);
+		}
+		
+		public void FadeOutIn(float duration, Action fadeOutCallback ,Action fadeInCallback)
+		{
+			FadeOut(duration / 2, () =>
+			{
+				if (fadeOutCallback != null)
+				{
+					fadeOutCallback();
+				}
+
+				FadeIn(duration / 2, () =>
+				{
+					if (fadeInCallback != null)
+					{
+						fadeInCallback();
+					}
+				});
+			});
+		}
+
+	public void FadeTo(Color from, Color to, float duration, Action callback)
+		{
+			StartCoroutine(FadeCo(from, to, duration, callback));
+		}
+
+		private IEnumerator FadeCo(Color from, Color to, float duration, Action callback)
+		{
+			uiFade.gameObject.SetActive(true);
+			float timer = 0f;
+			while (timer < duration)
+			{
+				uiFade.color = Color.Lerp(from, to,timer/duration);
+				timer += Time.unscaledDeltaTime;
+				yield return null;	
+			}
+
+			if (callback != null)
+			{
+				callback();
+			}
 		}
 
 		public void UpdatePlayerHP()
@@ -61,7 +126,6 @@ namespace MonsterFarm
 			}
 		}
 	
-		// Update is called once per frame
 		public void PushPanel(UIPanel panel)
 		{
 			var newPanels = new List<UIPanel>();
@@ -126,6 +190,7 @@ namespace MonsterFarm
 				_inputAction(inputType);
 			}
 		}
+		
 	}
 
 }

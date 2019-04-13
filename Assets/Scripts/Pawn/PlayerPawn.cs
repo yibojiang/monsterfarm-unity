@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerPawn : MobPawn {
 	
-	public SpriteRenderer _sprite;
-	private Animator _animSm;
 
 	public float acc = 3f;
 	public float drag = 10f;

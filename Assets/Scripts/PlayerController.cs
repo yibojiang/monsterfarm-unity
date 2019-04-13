@@ -47,8 +47,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 _playerInput;
     private InGameState _ingameState = InGameState.Play;
     private Camera _cam;
-    public Image uiFade;
+    //public Image uiFade;
     public UIPanel inventoryPanel;
+    public UIPanel gameOverPanel;
     
     public int maxInvertory = 7;
     public int inventoryIdx = 0;
@@ -209,15 +210,14 @@ public class PlayerController : MonoBehaviour
     
 
     private void Update()
-    {
-        if (!playerPawn.alive)
-        {
-            return;
-        }
-        
+    {   
         if (Input.GetKeyDown(KeyCode.Tab)) {
             if (_ingameState == InGameState.Play)
             {
+                if (!playerPawn.alive)
+                {
+                    return;
+                }
                 _ingameState = InGameState.UI;
                 UIController.Instance.PushPanel(inventoryPanel);
             }
@@ -225,6 +225,16 @@ public class PlayerController : MonoBehaviour
         
         if (_ingameState == InGameState.Play)
         {
+            if (!playerPawn.alive)
+            {
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                playerPawn.Die();
+            }
+                
+                
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 SwitchWeapon();    
@@ -345,7 +355,9 @@ public class PlayerController : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over");
+        Debug.Log("Die");
+        UIController.Instance.PushPanel(gameOverPanel);
+        _ingameState = InGameState.UI;
     }
     
 }

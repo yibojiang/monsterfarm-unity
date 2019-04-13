@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5683ab792f823d64198a2228ad35ac6b
+guid: 2eaf77a2db34740008abb78a8bbd7b04
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Silkscreen
+  fontName: Kongtext
   fontNames:
-  - Silkscreen
+  - Kongtext
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 2

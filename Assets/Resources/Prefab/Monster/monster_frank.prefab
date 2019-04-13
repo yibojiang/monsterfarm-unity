@@ -52,7 +52,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4515350261792790}
   - component: {fileID: 212397073357802358}
-  - component: {fileID: 114137536251686730}
   m_Layer: 0
   m_Name: shadow
   m_TagString: Untagged
@@ -175,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1588112502784116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.687825, y: 0.04303813, z: -0.060546875}
+  m_LocalPosition: {x: 24.417921, y: 16.684597, z: -0.060546875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4393155873044246}
@@ -275,7 +274,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.96
+  m_Radius: 3
 --- !u!58 &58935593666245252
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -334,18 +333,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114137536251686730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1501170755430346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477bb4a564127b64b841783631a076df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0
 --- !u!114 &114350691638319562
 MonoBehaviour:
   m_ObjectHideFlags: 1

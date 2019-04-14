@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using MonsterFarm;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Portal : MonoBehaviour {
 
@@ -10,6 +12,7 @@ public class Portal : MonoBehaviour {
 	public bool toOutDoor;
 	public bool changeBgm = false;
 	public AudioClip bgmClip;
+	public Action enterCallback;
 
 	void OnTriggerEnter2D(Collider2D col) {
 		// Debug.Log(col.gameObject.name);
@@ -45,7 +48,12 @@ public class Portal : MonoBehaviour {
 				if (changeBgm)
 				{
 					AudioManager.Instance.PlayBGM(bgmClip);
-				}	
+				}
+
+				if (enterCallback != null)
+				{
+					enterCallback();
+				}
 			}, null
 			);
 			

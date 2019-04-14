@@ -12,30 +12,8 @@ public enum ConnectDirection {
 	Up = 3,
 	Entrance = 4,
 }
-public class DungeonGenerator : MonoBehaviour
+public class DungeonGenerator
 {
-
-	public int width = 30;
-
-	public int height = 30;
-	// Use this for initialization
-	void Start ()
-	{
-		int numOfRooms = 5;
-		int counter = 0;
-		List<Room> rooms = new List<Room>();
-		GenerateRoom(-1, 0, ConnectDirection.Left, rooms, ref counter, numOfRooms);
-		for (int i = 0; i < rooms.Count; i++)
-		{
-			Debug.Log("id: " + rooms[i].id);
-			for (int j = 0; j < 4; j++)
-			{
-				Debug.Log((ConnectDirection)j + ": " + rooms[i].connections[j]);
-			}
-
-			Debug.Log("-----------------------");
-		}
-	}
 
 	public static void Shuffle<T>(IList<T> list)
 	{
@@ -54,7 +32,7 @@ public class DungeonGenerator : MonoBehaviour
 		}
 	}
 
-	public ConnectDirection getCounterDireaction(ConnectDirection direction)
+	public static ConnectDirection GetCounterDireaction(ConnectDirection direction)
 	{
 		if (direction == ConnectDirection.Up)
 		{
@@ -74,12 +52,11 @@ public class DungeonGenerator : MonoBehaviour
 		}
 	}
 	
-	public Room GenerateRoom(int fromRoomId, int roomId, ConnectDirection direction, List<Room> rooms, ref int counter, int numOfRooms)
+	public static Room GenerateRoom(int fromRoomId, int roomId, ConnectDirection direction, Dictionary<int, Room> rooms, int numOfRooms)
 	{
 		Room room = new Room(roomId);
-		counter++;
-		room.connections[(int)getCounterDireaction(direction)] = fromRoomId;
-		ConnectDirection counterDirection = getCounterDireaction(direction);
+		room.connections[(int)GetCounterDireaction(direction)] = fromRoomId;
+		ConnectDirection counterDirection = GetCounterDireaction(direction);
 		var dirs = new List<ConnectDirection>();
 		for (int i = 0; i < 4; i++)
 		{
@@ -94,21 +71,68 @@ public class DungeonGenerator : MonoBehaviour
 		int maxConnection = Random.Range(1, 3);
 		for (int i = 0; i < maxConnection; i++)
 		{
-			if (counter > numOfRooms)
+			if (rooms.Count >= numOfRooms)
 			{
 				break;
 			}
 
-			var generatedRoom = GenerateRoom(roomId, roomId+i+1, dirs[i], rooms, ref counter, numOfRooms);
+			var generatedRoom = GenerateRoom(roomId, roomId+i+1, dirs[i], rooms, numOfRooms);
 			room.connections[(int)dirs[i]] = generatedRoom.id;
 		}
 
-		rooms.Add(room);
+		rooms[room.id] = room;
 		return room;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	public static void GenerateBFSRoom(Dictionary<int, Room> rooms, int numOfRooms)
+	{
+		Queue<Room> pendingRooms = new Queue<Room>();
+		Queue<ConnectDirection> pendingDirection = new Queue<ConnectDirection>();
+		var entranceRoom = new Room(0); 
+		pendingRooms.Enqueue(entranceRoom);
+		pendingDirection.Enqueue(ConnectDirection.Up);
+		rooms[0] = entranceRoom;
+		int currentLength = 1;
+		while (pendingRooms.Count > 0)
+		{
+			int popCounter = currentLength;
+			currentLength = 0;
+			while (popCounter > 0)
+			{
+				Room room = pendingRooms.Dequeue();
+
+				ConnectDirection enterDir = pendingDirection.Dequeue();
+				ConnectDirection counterDirection = GetCounterDireaction(enterDir);
+				
+				var dirs = new List<ConnectDirection>();
+				for (int i = 0; i < 4; i++)
+				{
+					if (i != (int)counterDirection)
+					{
+						dirs.Add((ConnectDirection)i);		
+					}
+				}
 		
+				Shuffle(dirs);
+				int maxConnection = Random.Range(1, 3);
+				for (int i = 0; i < maxConnection; i++)
+				{
+					if (rooms.Count >= numOfRooms)
+					{
+						break;
+					}
+
+					Room connectedRoom = new Room(rooms.Count);
+					rooms[connectedRoom.id] = connectedRoom;
+					connectedRoom.connections[(int) GetCounterDireaction(dirs[i])] = room.id;
+					room.connections[(int) dirs[i]] = connectedRoom.id; 
+					pendingRooms.Enqueue(connectedRoom);
+					pendingDirection.Enqueue(dirs[i]);
+					currentLength++;
+				}
+
+				popCounter--;
+			}
+		}
 	}
 }

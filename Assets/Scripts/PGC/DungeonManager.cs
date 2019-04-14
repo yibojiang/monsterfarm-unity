@@ -47,20 +47,26 @@ public class DungeonManager : MonoBehaviour {
 
 	public void GenerateTiles()
 	{
+		int roomWidth = 6;
+		int roomHeight = 6;
+		int hallWayWidth = 2;
+		int hallWayLength = 2;
 		groundMap.ClearAllTiles();
-		for (int i = 2; i < 8; i++)
+		for (int i = hallWayLength; i < hallWayLength + roomWidth; i++)
 		{
-			for (int j = 2; j < 8; j++)
+			for (int j = hallWayLength; j < hallWayLength + roomHeight; j++)
 			{
 				groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);		
 			}
+			
+			//wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, hallWayLength + roomHeight, 0)), wallTiles[0]);
 		}
 
 		if (GetCurrentRoom().Up != -1)
 		{
-			for (int i = 4; i < 6; i++)
+			for (int i = hallWayLength + roomWidth/2 - hallWayWidth/2; i < hallWayLength + roomWidth/2 + hallWayWidth/2; i++)
 			{
-				for (int j = 7; j < 10; j++)
+				for (int j = hallWayLength + roomHeight; j < hallWayLength + roomHeight + hallWayLength; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
 				}
@@ -75,9 +81,9 @@ public class DungeonManager : MonoBehaviour {
 		
 		if (GetCurrentRoom().Down != -1)
 		{
-			for (int i = 4; i < 6; i++)
+			for (int i = hallWayLength + roomWidth/2 - hallWayWidth/2; i < hallWayLength + roomWidth/2 + hallWayWidth/2; i++)
 			{
-				for (int j = 0; j < 3; j++)
+				for (int j = 0; j < hallWayLength; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
 				}
@@ -92,9 +98,9 @@ public class DungeonManager : MonoBehaviour {
 		
 		if (GetCurrentRoom().Left != -1)
 		{
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < hallWayLength; i++)
 			{
-				for (int j = 4; j < 6; j++)
+				for (int j = hallWayLength + roomHeight/2 - hallWayWidth/2; j < hallWayLength + roomHeight/2 + hallWayWidth/2; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
 				}
@@ -109,13 +115,14 @@ public class DungeonManager : MonoBehaviour {
 		
 		if (GetCurrentRoom().Right != -1)
 		{
-			for (int i = 7; i < 10; i++)
+			for (int i = hallWayLength + roomWidth; i < hallWayLength + roomWidth + hallWayLength; i++)
 			{
-				for (int j = 4; j < 6; j++)
+				for (int j = hallWayLength + roomHeight/2 - hallWayWidth/2; j < hallWayLength + roomHeight/2 + hallWayWidth/2; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
 				}
 			}
+			
 			portals[0].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Right; 

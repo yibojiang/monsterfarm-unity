@@ -47,11 +47,15 @@ public class DungeonManager : MonoBehaviour {
 
 	public void GenerateTiles()
 	{
-		int roomWidth = 6;
+		int roomWidth = 10;
 		int roomHeight = 6;
-		int hallWayWidth = 2;
+		int hallWayWidth = 4;
 		int hallWayLength = 2;
 		groundMap.ClearAllTiles();
+		portals[0].transform.position = new Vector3(hallWayLength+roomWidth+hallWayLength, hallWayLength+roomHeight/2);
+		portals[1].transform.position = new Vector3((hallWayLength + roomWidth + hallWayLength)/2, 0 );
+		portals[2].transform.position = new Vector3(0, hallWayLength+roomHeight/2);
+		portals[3].transform.position = new Vector3((hallWayLength + roomWidth + hallWayLength)/2, hallWayLength + roomHeight + hallWayLength );
 		for (int i = hallWayLength; i < hallWayLength + roomWidth; i++)
 		{
 			for (int j = hallWayLength; j < hallWayLength + roomHeight; j++)
@@ -71,12 +75,16 @@ public class DungeonManager : MonoBehaviour {
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
 				}
 			}
-			
+			portals[3].gameObject.SetActive(true);
 			portals[3].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Up; 
 				GenerateTiles();
 			};
+		}
+		else
+		{
+			portals[3].gameObject.SetActive(false);
 		}
 		
 		if (GetCurrentRoom().Down != -1)
@@ -89,11 +97,16 @@ public class DungeonManager : MonoBehaviour {
 				}
 			}
 			
+			portals[1].gameObject.SetActive(true);
 			portals[1].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Down; 
 				GenerateTiles();
 			};
+		}
+		else
+		{
+			portals[1].gameObject.SetActive(false);
 		}
 		
 		if (GetCurrentRoom().Left != -1)
@@ -105,13 +118,18 @@ public class DungeonManager : MonoBehaviour {
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
 				}
 			}
-			
+			portals[2].gameObject.SetActive(true);
 			portals[2].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Left; 
 				GenerateTiles();
 			};
 		}
+		else
+		{
+			portals[2].gameObject.SetActive(false);
+		}
+		
 		
 		if (GetCurrentRoom().Right != -1)
 		{
@@ -122,12 +140,16 @@ public class DungeonManager : MonoBehaviour {
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
 				}
 			}
-			
+			portals[0].gameObject.SetActive(true);
 			portals[0].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Right; 
 				GenerateTiles();
 			};
+		}
+		else
+		{
+			portals[0].gameObject.SetActive(false);
 		}
 	}
 	// Update is called once per frame

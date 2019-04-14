@@ -115,7 +115,8 @@ public class MonsterPawn : MobPawn {
 	public override void SetDestination(Vector3 targetPosition, float minDist, float speedFactor)
 	{
 		_aiPath.endReachedDistance = minDist;
-		_aiPath.destination = targetPosition;
+		var offset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 1);
+		_aiPath.destination = targetPosition + offset.normalized;
 		_aiPath.SearchPath();
 		_aiPath.maxSpeed = normalSpeed * speedFactor;
 	}

@@ -17,6 +17,8 @@ public class DungeonManager : MonoBehaviour {
 	Dictionary<int, Room> rooms = new Dictionary<int, Room>();
 	public int currentRoomId = 0;
 	public Portal[] portals;
+	public Transform[] spawnPoints;
+	public List<GameObject> monsters = new List<GameObject>();
 	
 	// Use this for initialization
 	void Start ()
@@ -36,7 +38,7 @@ public class DungeonManager : MonoBehaviour {
 			Debug.Log("-----------------------");
 		}
 
-		GenerateTiles();
+		GenerateRoom();
 
 	}
 
@@ -45,13 +47,38 @@ public class DungeonManager : MonoBehaviour {
 		return rooms[currentRoomId];
 	}
 
-	public void GenerateTiles()
+	public void GenerateMonsters()
 	{
-		int roomWidth = 10;
-		int roomHeight = 6;
+		for (int i = 0; i < monsters.Count; i++)
+		{
+			Destroy(monsters[i]);
+		}
+		
+		monsters.Clear();
+		
+		var room = GetCurrentRoom();
+		for (int i = 0; i < room.monsters.Length; i++)
+		{
+			var monsterName = room.monsters[i];
+			Debug.Log(monsterName);
+			var prefab = Resources.Load<GameObject>(string.Format("Prefab/Monster/{0}", monsterName));
+			var monsterObj = (GameObject)Instantiate(prefab, spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
+			monsters.Add(monsterObj);
+		}
+	}
+
+	public void GenerateRoom()
+	{
+		GenerateMonsters();
+		groundMap.ClearAllTiles();
+		
+		var room = GetCurrentRoom();
+		int roomWidth = room.width;
+		int roomHeight = room.height;
 		int hallWayWidth = 4;
 		int hallWayLength = 2;
-		groundMap.ClearAllTiles();
+
+		
 		portals[0].transform.position = new Vector3(hallWayLength+roomWidth+hallWayLength, hallWayLength+roomHeight/2);
 		portals[1].transform.position = new Vector3((hallWayLength + roomWidth + hallWayLength)/2, 0 );
 		portals[2].transform.position = new Vector3(0, hallWayLength+roomHeight/2);
@@ -79,7 +106,7 @@ public class DungeonManager : MonoBehaviour {
 			portals[3].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Up; 
-				GenerateTiles();
+				GenerateRoom();
 			};
 		}
 		else
@@ -101,7 +128,7 @@ public class DungeonManager : MonoBehaviour {
 			portals[1].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Down; 
-				GenerateTiles();
+				GenerateRoom();
 			};
 		}
 		else
@@ -122,7 +149,7 @@ public class DungeonManager : MonoBehaviour {
 			portals[2].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Left; 
-				GenerateTiles();
+				GenerateRoom();
 			};
 		}
 		else
@@ -144,7 +171,7 @@ public class DungeonManager : MonoBehaviour {
 			portals[0].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Right; 
-				GenerateTiles();
+				GenerateRoom();
 			};
 		}
 		else
@@ -152,8 +179,5 @@ public class DungeonManager : MonoBehaviour {
 			portals[0].gameObject.SetActive(false);
 		}
 	}
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

@@ -7,6 +7,9 @@ public class Room
 {
 	public int id;
 	public string roomPrefab;
+	public string[] monsters;
+	public int width = 6;
+	public int height = 6;
 
 	public int Up
 	{
@@ -42,5 +45,15 @@ public class Room
 		connections.Add(-1);
 		connections.Add(-1);
 		connections.Add(-1);
+		string[] monsterPrefab = new[] {"mon_frank","mon_insect"};
+		int monsterCount = Random.Range(0, 3);
+		monsters = new string[monsterCount];
+		for (int i = 0; i < monsterCount; i++)
+		{
+			monsters[i] = monsterPrefab[Random.Range(0, monsterPrefab.Length)];
+		}
+
+		width = Random.Range(6, 10);
+		height = Random.Range(6, 10);
 	}
 }

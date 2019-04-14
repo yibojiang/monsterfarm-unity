@@ -21,6 +21,10 @@ public class Portal : MonoBehaviour {
 			var body = col.gameObject.GetComponent<Rigidbody2D>();
 			UIController.Instance.FadeOutIn(0.5f,() =>
 			{
+				if (enterCallback != null)
+				{
+					enterCallback();
+				}
 				body.position = targetAnchor.position + offset;
 				for (int i = 0; i < playerPawn.Followers.Count; i++)
 				{
@@ -50,10 +54,7 @@ public class Portal : MonoBehaviour {
 					AudioManager.Instance.PlayBGM(bgmClip);
 				}
 
-				if (enterCallback != null)
-				{
-					enterCallback();
-				}
+				
 			}, null
 			);
 			

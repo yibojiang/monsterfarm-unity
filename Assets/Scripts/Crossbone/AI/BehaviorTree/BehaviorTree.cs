@@ -46,8 +46,8 @@ namespace Crossbone.AI.BehaviorTree
 
                 if ((bool)data["is_moving"] == false)
                 {
-                    data["is_moving"] = true;
                     mob.SetDestination((Vector3)data["move_loc"], 0.1f, 0.6f);
+                    data["is_moving"] = true;
                 }
                 
                 if (mob.DestinationReached() || mob.DestinationCannotReached())

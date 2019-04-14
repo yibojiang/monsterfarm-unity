@@ -16,7 +16,6 @@ public class MonsterPawn : MobPawn {
 	public Transform _target;
 	public AudioClip hitClip;
 	private Seeker _seeker;
-	private IAstarAI _ai;
 	
 	[CanBeNull] private AIPath _aiPath;
 	
@@ -52,10 +51,14 @@ public class MonsterPawn : MobPawn {
 	{
 		base.Awake();
 		_aiPath = GetComponent<AIPath>();
-		_ai = GetComponent<IAstarAI>();
+		//_ai = GetComponent<IAstarAI>();
 		_animSm = _sprite.gameObject.GetComponent<Animator>();
 		_seeker = GetComponent<Seeker>();
-		
+		_aiPath.enabled = false;
+		_aiPath.enabled = true;
+
+		//Debug.Log(_seeker.GetCurrentPath());
+
 		foreach (var p in _animSm.parameters)
 		{
 			if (p.name == "IsAttacking")
@@ -64,11 +67,11 @@ public class MonsterPawn : MobPawn {
 			}
 			else if (p.name == "DirectionX")
 			{
-				_idDirectionX = Animator.StringToHash("DirectionX");	
+				_idDirectionX = Animator.StringToHash("DirectionX");
 			}
 			else if (p.name == "DirectionX")
 			{
-				_idDirectionY = Animator.StringToHash("DirectionY");	
+				_idDirectionY = Animator.StringToHash("DirectionY");
 			}
 		}
 
@@ -112,38 +115,37 @@ public class MonsterPawn : MobPawn {
 	public override void SetDestination(Vector3 targetPosition, float minDist, float speedFactor)
 	{
 		_aiPath.endReachedDistance = minDist;
-		_ai.destination = targetPosition;
-		_ai.SearchPath();
-		_ai.maxSpeed = normalSpeed * speedFactor;
+		_aiPath.destination = targetPosition;
+		_aiPath.SearchPath();
+		_aiPath.maxSpeed = normalSpeed * speedFactor;
 	}
 
 	public override bool DestinationReached()
 	{
-		return _ai.reachedDestination;
+		return _aiPath.reachedDestination;
 	}
 
 	public override bool DestinationCannotReached()
 	{
 		
-		return !_ai.pathPending && _ai.reachedEndOfPath;
+		return !_aiPath.pathPending && _aiPath.reachedEndOfPath;
 	}
 
 	// Update is called once per frame
 	void Update () {
-
-		if (_ai != null && _target && !_ai.pathPending)
+		if (_aiPath != null && _target && !_aiPath.pathPending)
 		{
 			SetDestination(_target.position, 0.5f, 1.3f);
 		}
 		
 		if (_idDirectionX != 0)
 		{
-			_animSm.SetFloat(_idDirectionX, _ai.velocity.x);	
+			_animSm.SetFloat(_idDirectionX, _aiPath.velocity.x);	
 		}
 				
 		if (_idDirectionY != 0)
 		{
-			_animSm.SetFloat(_idDirectionY,_ai.velocity.y);
+			_animSm.SetFloat(_idDirectionY,_aiPath.velocity.y);
 		}
 
 		if (_idIsAttacking != 0)

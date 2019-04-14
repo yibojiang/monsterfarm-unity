@@ -49,6 +49,15 @@ public class MobPawn : BasePawn
         }
     }
 
+    public virtual void AddHp(int hpAdd)
+    {
+        Hp += hpAdd;
+        if (Hp > maxHp)
+        {
+            Hp = maxHp;
+        } 
+    }
+
     public virtual void SetDestination(Vector3 targetPosition, float minDest, float speedFactor)
     {
         

@@ -16,6 +16,14 @@ public class InteractItem : Interact {
 			pc.items[itemName] = 0;
 		}
 		pc.items[itemName] += itemCount;
-		Destroy(this.transform.parent.gameObject);
+		if (transform.parent != null)
+		{
+			Destroy(this.transform.parent.gameObject);	
+		}
+		else
+		{
+			Destroy(this.gameObject);
+		}
+		
 	}
 }

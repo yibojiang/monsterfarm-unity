@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1455679408669748}
+  m_RootGameObject: {fileID: 1919292333759382}
   m_IsPrefabAsset: 1
---- !u!1 &1455679408669748
+--- !u!1 &1919292333759382
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4839085866640504}
-  - component: {fileID: 114099991659229518}
-  - component: {fileID: 212399242737992310}
-  - component: {fileID: 58658200107732398}
+  - component: {fileID: 4210527912773262}
+  - component: {fileID: 212865705774164542}
+  - component: {fileID: 58096962285161336}
+  - component: {fileID: 114925028153689712}
   m_Layer: 0
-  m_Name: item_apple
+  m_Name: item_pill
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4839085866640504
+--- !u!4 &4210527912773262
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1455679408669748}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.25, y: 3.34, z: 0.20874107}
+  m_GameObject: {fileID: 1919292333759382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 3.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58658200107732398
+--- !u!58 &58096962285161336
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1455679408669748}
+  m_GameObject: {fileID: 1919292333759382}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -57,26 +57,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114099991659229518
+--- !u!114 &114925028153689712
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1455679408669748}
+  m_GameObject: {fileID: 1919292333759382}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 467256a782e0be74e8df1c4f8995c7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactMessage: pick up
-  itemName: apple
+  interactMessage: Pick up
+  itemName: pill
   itemCount: 1
---- !u!212 &212399242737992310
+--- !u!212 &212865705774164542
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1455679408669748}
+  m_GameObject: {fileID: 1919292333759382}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -106,14 +106,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c7d49f297be504649a5c92d3f3d24fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e88dd9e30bc23c142a5975f2be597992, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.96, y: 1.92}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0

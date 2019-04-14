@@ -38,7 +38,7 @@ public class PlayerPawn : MobPawn {
 	protected void Start()
 	{
 		base.Start();
-		PlayerController.Instance.UpdatePlayerUI(Hp, maxHp);
+		PlayerController.Instance.UpdatePlayerUI();
 	}
 
 	public override void SetInteractTarget(Interact target)
@@ -183,7 +183,7 @@ public class PlayerPawn : MobPawn {
 			StartCoroutine(RecoverActionCo());
 			StartCoroutine(HitBackCo(pos));	
 		}
-		PlayerController.Instance.UpdatePlayerUI(Hp, maxHp);
+		PlayerController.Instance.UpdatePlayerUI();
 	}
 
 	IEnumerator HitBackCo(Vector2 pos)
@@ -249,6 +249,13 @@ public class PlayerPawn : MobPawn {
 //			}	
 //		}
 //	}
+
+	public override void AddHp(int hpAdd)
+	{
+		base.AddHp(hpAdd);
+		PlayerController.Instance.UpdatePlayerUI();
+		
+	}
 
 	private void OnCollisionStay2D(Collision2D other)
 	{

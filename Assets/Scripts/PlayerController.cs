@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _playerInput;
     private InGameState _ingameState = InGameState.Play;
     private Camera _cam;
-    //public Image uiFade;
+
     public UIPanel inventoryPanel;
     public UIPanel gameOverPanel;
     
@@ -140,6 +140,16 @@ public class PlayerController : MonoBehaviour
         {
             items[itemName]--;
             // TODO: Use Apple
+            if (itemName == "pill")
+            {
+                playerPawn.AddHp(3);
+            }
+            
+            if (itemName == "apple")
+            {
+                playerPawn.AddHp(1);
+            } 
+            
             return items[itemName];
         }
 
@@ -171,6 +181,7 @@ public class PlayerController : MonoBehaviour
         };
         
         _inventoryUIItemDict.Add("apple", new InventoryUIItem("apple"));
+        _inventoryUIItemDict.Add("pill", new InventoryUIItem("pill"));
     }
 
     private void Start()
@@ -179,12 +190,12 @@ public class PlayerController : MonoBehaviour
         weapons.Add(new Weapon(WeaponType.Sword));
     }
 
-    public void UpdatePlayerUI(int hp, int maxHp)
+    public void UpdatePlayerUI()
     {
         var tmpSize = uiMaxHp.rectTransform.sizeDelta;
-        tmpSize.x = hp * 20;
+        tmpSize.x = playerPawn.Hp * 20;
         uiHp.rectTransform.sizeDelta = tmpSize;
-        tmpSize.x = maxHp * 20;
+        tmpSize.x = playerPawn.maxHp * 20;
         uiMaxHp.rectTransform.sizeDelta = tmpSize;
     }
     

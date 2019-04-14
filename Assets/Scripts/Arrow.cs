@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour {
 	private Vector3 movingVel_;
-	private float lifeTime_ = 0.5f;
-	private float life_;
+	private float _lifeTime = 0.5f;
+	private float _life;
 	private bool hasShoot_ = false;
 	private int _damage = 1;
 	
 	// Update is called once per frame
 	void Update () {
 		if (hasShoot_) {
-			life_ += Time.deltaTime;
-			if (life_ > lifeTime_) {
+			_life += Time.deltaTime;
+			if (_life > _lifeTime) {
 				Destroy(this.gameObject);
 			}
 		}

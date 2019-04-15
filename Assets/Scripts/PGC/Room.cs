@@ -24,6 +24,7 @@ public class Room
 
 	public bool hasChest;
 	public ItemStruct chestItem;
+	public int groundTileIdx = 0;
 
 	public int Up
 	{
@@ -75,6 +76,9 @@ public class Room
 		ItemStruct[] allItems = new []{new ItemStruct("apple", 2), new ItemStruct("pill", 1), new ItemStruct("coins", 200) };
 		chestItem = allItems[Random.Range(0, allItems.Length)]; 
 		
+		
+		int[] allGroundTilesIdx = new[] {0,1,2};
+		groundTileIdx = allGroundTilesIdx[Random.Range(0, allGroundTilesIdx.Length)];
 
 		width = Random.Range(6, 10);
 		height = Random.Range(6, 10);

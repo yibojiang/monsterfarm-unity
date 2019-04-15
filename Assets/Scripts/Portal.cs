@@ -23,15 +23,14 @@ public class Portal : MonoBehaviour {
 	{
 //		Debug.Log(anchorObjName);
 		yield return new WaitForSeconds(delay);
-		targetAnchor = GameObject.Find(anchorObjName).transform;
-		body.position = targetAnchor.position + offset;
-		Debug.Log(targetAnchor);
+		var anchor = GameObject.Find(anchorObjName).transform;
+		body.position = anchor.position + offset;
 		for (int i = 0; i < playerPawn.Followers.Count; i++)
 		{
 			var follower = playerPawn.Followers[i]; 
 			float rad = Random.Range(0f, 2f * Mathf.PI);
 			float len = Random.Range(0.2f, 0.5f);
-			playerPawn.Followers[i].transform.position = targetAnchor.position + offset + len * new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f);
+			playerPawn.Followers[i].transform.position = anchor.position + offset + len * new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f);
 			if (toOutDoor)
 			{
 				follower.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
@@ -49,11 +48,6 @@ public class Portal : MonoBehaviour {
 			var body = col.gameObject.GetComponent<Rigidbody2D>();
 			UIController.Instance.FadeOutIn(0.5f,() =>
 			{
-				if (enterCallback != null)
-				{
-					enterCallback();
-				}
-
 				if (changeMap)
 				{
 					SceneManager.UnloadSceneAsync(unloadScene);
@@ -62,6 +56,10 @@ public class Portal : MonoBehaviour {
 				}
 				else
 				{
+					if (enterCallback != null)
+					{
+						enterCallback();
+					}
 					if (targetAnchor == null)
 					{
 						throw new Exception("cannot find anchor object: " + anchorObjName);

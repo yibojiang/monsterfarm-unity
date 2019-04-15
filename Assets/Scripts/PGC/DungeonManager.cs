@@ -129,7 +129,6 @@ public class DungeonManager : MonoBehaviour
 		int hallWayWidth = 4;
 		int hallWayLength = 2;
 
-		
 
 		for (int i = 0; i < roomWidth+hallWayLength*2; i++)
 		{
@@ -151,7 +150,7 @@ public class DungeonManager : MonoBehaviour
 		{
 			for (int j = hallWayLength; j < hallWayLength + roomHeight; j++)
 			{
-				groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+				groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[room.groundTileIdx]);
 				wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 			}
 			
@@ -164,7 +163,7 @@ public class DungeonManager : MonoBehaviour
 			{
 				for (int j = hallWayLength + roomHeight; j < hallWayLength + roomHeight + hallWayLength; j++)
 				{
-					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[room.groundTileIdx]);
 					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}
@@ -186,20 +185,14 @@ public class DungeonManager : MonoBehaviour
 			{
 				for (int j = 0; j < hallWayLength; j++)
 				{
-					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[room.groundTileIdx]);
 					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}
 			
-			portals[1].gameObject.SetActive(true);
-		
-			portals[1].enterCallback = () =>
-			{
-				currentRoomId = GetCurrentRoom().Down; 
-				GenerateRoom();
-			};
-			
 			portals[1].changeMap = false;
+			portals[1].gameObject.SetActive(true);
+			
 			if (room.Down == -2)
 			{
 				portals[1].changeMap = true;
@@ -207,6 +200,14 @@ public class DungeonManager : MonoBehaviour
 				portals[1].unloadScene = "dungeon";
 				portals[1].anchorObjName = "anchor_dungeon_entrance";
 				portals[1].enterCallback = null;
+			}
+			else
+			{
+				portals[1].enterCallback = () =>
+				{
+					currentRoomId = GetCurrentRoom().Down; 
+					GenerateRoom();
+				};	
 			}
 		}
 		else
@@ -220,7 +221,7 @@ public class DungeonManager : MonoBehaviour
 			{
 				for (int j = hallWayLength + roomHeight/2 - hallWayWidth/2; j < hallWayLength + roomHeight/2 + hallWayWidth/2; j++)
 				{
-					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[room.groundTileIdx]);
 					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}

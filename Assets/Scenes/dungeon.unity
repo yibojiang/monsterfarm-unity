@@ -983,8 +983,8 @@ MonoBehaviour:
   wallMap: {fileID: 1380394389}
   groundTiles:
   - {fileID: 11400000, guid: 96d651acc92a1b3469dfff271a3193c3, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 8d0573c21bff7a240a167c722958d223, type: 2}
+  - {fileID: 11400000, guid: 37070c29f1b53304e896e97046cae88a, type: 2}
   wallTiles:
   - {fileID: 11400000, guid: d839f3e504f245743b1d5c76188279b9, type: 2}
   - {fileID: 0}
@@ -1001,6 +1001,7 @@ MonoBehaviour:
   - {fileID: 518277390}
   - {fileID: 942570191}
   monsters: []
+  chests: []
 --- !u!1 &1539280765
 GameObject:
   m_ObjectHideFlags: 0

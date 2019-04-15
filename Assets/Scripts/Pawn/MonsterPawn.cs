@@ -10,6 +10,7 @@ public enum AIType
 {
 	WanderAndChase,
 	Wander,
+	Still,
 }
 public class MonsterPawn : MobPawn {
 	public string favouriteItem;
@@ -54,32 +55,40 @@ public class MonsterPawn : MobPawn {
 		//_ai = GetComponent<IAstarAI>();
 		_animSm = _sprite.gameObject.GetComponent<Animator>();
 		_seeker = GetComponent<Seeker>();
-		_aiPath.enabled = false;
-		_aiPath.enabled = true;
+		if (_aiPath != null)
+		{
+			_aiPath.enabled = false;
+			_aiPath.enabled = true;	
+		}
 
 		//Debug.Log(_seeker.GetCurrentPath());
-
-		foreach (var p in _animSm.parameters)
+		if (_animSm != null)
 		{
-			if (p.name == "IsAttacking")
+			foreach (var p in _animSm.parameters)
 			{
-				_idIsAttacking = Animator.StringToHash("IsAttacking");
-			}
-			else if (p.name == "DirectionX")
+				if (p.name == "IsAttacking")
+				{
+					_idIsAttacking = Animator.StringToHash("IsAttacking");
+				}
+				else if (p.name == "DirectionX")
+				{
+					_idDirectionX = Animator.StringToHash("DirectionX");
+				}
+				else if (p.name == "DirectionX")
+				{
+					_idDirectionY = Animator.StringToHash("DirectionY");
+				}
+			}	
+			
+			_idIdle = Animator.StringToHash("Idle");
+			if (!_animSm.HasState(0, _idIdle))
 			{
-				_idDirectionX = Animator.StringToHash("DirectionX");
-			}
-			else if (p.name == "DirectionX")
-			{
-				_idDirectionY = Animator.StringToHash("DirectionY");
+				_idIdle = 0;
 			}
 		}
+		
 
-		_idIdle = Animator.StringToHash("Idle");
-		if (!_animSm.HasState(0, _idIdle))
-		{
-			_idIdle = 0;
-		}
+		
 	}
 
 	private void Start()
@@ -87,14 +96,18 @@ public class MonsterPawn : MobPawn {
 		base.Start();
 		if (aiType == AIType.Wander)
 		{
-			_bt = BehaviorTree.CreateWanderBehavior(this);	
+			_bt = BehaviorTree.CreateWanderBehavior(this);
+			_bt.Run();
 		}
 		else if (aiType == AIType.WanderAndChase)
 		{
 			_bt = BehaviorTree.CreateWanderChaseBehavior(this);
+			_bt.Run();
 		}
-		
-		_bt.Run();
+		else if (aiType == AIType.Still)
+		{
+
+		}
 	}
 
 	public virtual void AddAge()

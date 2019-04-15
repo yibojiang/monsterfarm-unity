@@ -59,7 +59,7 @@ public class Room
 		connections.Add(-1);
 		connections.Add(-1);
 		connections.Add(-1);
-		string[] monsterPrefab = new[] {"mon_frank","mon_insect", "mon_dragon"};
+		string[] monsterPrefab = new[] {"mon_frank","mon_insect", "mon_dragon", "mon_trap"};
 		int monsterCount = Random.Range(0, 3);
 		monsters = new string[monsterCount];
 		for (int i = 0; i < monsterCount; i++)

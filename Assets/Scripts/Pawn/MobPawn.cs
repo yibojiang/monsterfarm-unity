@@ -39,14 +39,18 @@ public class MobPawn : BasePawn
         _rigidBody = GetComponent<Rigidbody2D>();
         maxHp = data.hp;
         Hp = maxHp;
-        
-        foreach (var p in _animSm.parameters)
+
+        if (_animSm != null)
         {
-            if (p.name == "Alive")
+            foreach (var p in _animSm.parameters)
             {
-                _idAlive = Animator.StringToHash("Alive");
-            }
+                if (p.name == "Alive")
+                {
+                    _idAlive = Animator.StringToHash("Alive");
+                }
+            }    
         }
+        
     }
 
     public virtual void AddHp(int hpAdd)

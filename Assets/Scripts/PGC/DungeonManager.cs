@@ -244,7 +244,7 @@ public class DungeonManager : MonoBehaviour
 			{
 				for (int j = hallWayLength + roomHeight/2 - hallWayWidth/2; j < hallWayLength + roomHeight/2 + hallWayWidth/2; j++)
 				{
-					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[room.groundTileIdx]);
 					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}

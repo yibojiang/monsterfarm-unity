@@ -38,7 +38,15 @@ public class InteractChest : Interact {
 		if (!opened)
 		{
 			_sprite.sprite = openSprite;
-			PlayerController.Instance.AddItemCount(itemName, count);
+			if (itemName == "coins")
+			{
+				PlayerController.Instance.AddCoins(count);
+			}
+			else
+			{
+				PlayerController.Instance.AddItemCount(itemName, count);
+			}
+			
 			allTexts.Add(string.Format("You've got x{0} {1}", count, itemName));
 			dm.SetText(allTexts);
 			dm.Show();

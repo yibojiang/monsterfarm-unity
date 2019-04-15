@@ -72,7 +72,7 @@ public class Room
 			hasChest = true;
 		}
 		
-		ItemStruct[] allItems = new []{new ItemStruct("apple", 2), new ItemStruct("pill", 1)};
+		ItemStruct[] allItems = new []{new ItemStruct("apple", 2), new ItemStruct("pill", 1), new ItemStruct("coins", 200) };
 		chestItem = allItems[Random.Range(0, allItems.Length)]; 
 		
 

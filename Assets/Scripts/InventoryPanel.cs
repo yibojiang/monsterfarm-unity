@@ -16,6 +16,8 @@ namespace MonsterFarm
         private Vector2 _gridSize;
         public GridLayoutGroup tabLayout;
         private Image[] _tabList;
+        public Image preview;
+        public Text txtPreview;
 
         private int _tabIdx = 0;
         private PlayerController.InventoryUIItem[] _uiItems;
@@ -26,6 +28,9 @@ namespace MonsterFarm
             _tabList = tabLayout.GetComponentsInChildren<Image>();
             _counterTextList = gridCounterLayout.GetComponentsInChildren<Text>();
             _gridSize = gridLayout.cellSize;
+            preview.gameObject.SetActive(false);
+            preview.sprite = null;
+            txtPreview.text = "";
         }
 
         public override void ShowPanel()
@@ -47,6 +52,29 @@ namespace MonsterFarm
                     _counterTextList[i].text = "";
                 }
                 
+            }
+            
+            if (_selIdx < _uiItems.Length && _uiItems[_selIdx] != null)
+            {
+                
+                var selItem = _uiItems[_selIdx].itemName;
+                if (selItem != null)
+                {
+                    preview.gameObject.SetActive(true);
+                    preview.sprite = _iconList[_selIdx].sprite;
+                    txtPreview.text = selItem;
+                }
+                else
+                {
+                    preview.gameObject.SetActive(false);
+                }
+                
+            }
+            else
+            {
+                preview.gameObject.SetActive(false);
+                preview.sprite = null;
+                txtPreview.text = "";
             }
 //            int idx = 0;
 //            foreach (var item in pc.items)
@@ -116,6 +144,31 @@ namespace MonsterFarm
 
             _selIdx = Mathf.Clamp(_selIdx, 0, _iconList.Length - 1);
             _tabIdx = Mathf.Clamp(_tabIdx, 0, _tabList.Length - 1);
+            
+            
+            if (_selIdx < _uiItems.Length && _uiItems[_selIdx] != null)
+            {
+                
+                var selItem = _uiItems[_selIdx].itemName;
+                if (selItem != null)
+                {
+                    preview.gameObject.SetActive(true);
+                    preview.sprite = _iconList[_selIdx].sprite;
+                    txtPreview.text = selItem;
+                }
+                else
+                {
+                    preview.gameObject.SetActive(false);
+                }
+                
+            }
+            else
+            {
+                preview.gameObject.SetActive(false);
+                preview.sprite = null;
+                txtPreview.text = "";
+            }
+            
             tabCursor.rectTransform.position = _tabList[_tabIdx].rectTransform.position;
             iconCursor.rectTransform.position = _iconList[_selIdx].rectTransform.position;
         }

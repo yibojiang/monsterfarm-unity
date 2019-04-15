@@ -82,6 +82,7 @@ namespace MonsterFarm
 					{
 						fadeInCallback();
 					}
+					uiFade.gameObject.SetActive(false);
 				});
 			});
 		}
@@ -106,6 +107,8 @@ namespace MonsterFarm
 			{
 				callback();
 			}
+
+			uiFade.color = to;
 		}
 
 		public void UpdatePlayerHP()

@@ -88,7 +88,8 @@ public class DungeonGenerator
 	{
 		Queue<Room> pendingRooms = new Queue<Room>();
 		Queue<ConnectDirection> pendingDirection = new Queue<ConnectDirection>();
-		var entranceRoom = new Room(0); 
+		var entranceRoom = new Room(0);
+		entranceRoom.Down = -2;
 		pendingRooms.Enqueue(entranceRoom);
 		pendingDirection.Enqueue(ConnectDirection.Up);
 		rooms[0] = entranceRoom;

@@ -3,7 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class DungeonManager : MonoBehaviour {
+public class DungeonManager : MonoBehaviour
+{
+	private static DungeonManager _instance;
+
+	public static DungeonManager Instance
+	{
+		get
+		{
+			if (_instance == null)
+			{
+				_instance = GameObject.FindObjectOfType<DungeonManager>();	
+			}
+
+			return _instance;
+		} 
+	}
 	public int width = 30;
 
 	public int height = 30;
@@ -19,6 +34,8 @@ public class DungeonManager : MonoBehaviour {
 	public Portal[] portals;
 	public Transform[] spawnPoints;
 	public List<GameObject> monsters = new List<GameObject>();
+	public List<GameObject> chests = new List<GameObject>();
+	public Dictionary<int, bool> chestState = new Dictionary<int, bool>();
 	
 	// Use this for initialization
 	void Start ()
@@ -65,10 +82,46 @@ public class DungeonManager : MonoBehaviour {
 		}
 	}
 
+	public void GenerateChests()
+	{
+		for (int i = 0; i < chests.Count; i++)
+		{
+			Destroy(chests[i]);
+		}
+		
+		chests.Clear();
+		
+		var room = GetCurrentRoom();
+		if (room.hasChest)
+		{
+			var prefab = Resources.Load("Prefab/Dungeon/chest");
+			var chestObj = (GameObject)Instantiate(prefab, spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
+			var chest = chestObj.GetComponent<InteractChest>(); 
+			chest.itemName = room.chestItem.itemName;
+			chest.GetComponent<InteractChest>().count = room.chestItem.count;
+			chests.Add(chestObj);
+
+			if (!chestState.ContainsKey(room.id))
+			{
+				chestState[room.id] = false;
+			}
+			else
+			{
+				if (chestState[room.id])
+				{
+					chest.opened = true;	
+				}
+			}
+		}
+		
+	}
+
 	public void GenerateRoom()
 	{
 		GenerateMonsters();
+		GenerateChests();
 		groundMap.ClearAllTiles();
+		wallMap.ClearAllTiles();
 		
 		var room = GetCurrentRoom();
 		int roomWidth = room.width;
@@ -77,15 +130,29 @@ public class DungeonManager : MonoBehaviour {
 		int hallWayLength = 2;
 
 		
+
+		for (int i = 0; i < roomWidth+hallWayLength*2; i++)
+		{
+			for (int j = 0; j < roomHeight+hallWayLength*2; j++)
+			{
+				wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), wallTiles[0]);
+			}
+		}
+
 		portals[0].transform.position = new Vector3(hallWayLength+roomWidth+hallWayLength, hallWayLength+roomHeight/2);
+		portals[0].GetComponent<BoxCollider2D>().size= new Vector2(0.4f,hallWayWidth); 
 		portals[1].transform.position = new Vector3((hallWayLength + roomWidth + hallWayLength)/2, 0 );
+		portals[1].GetComponent<BoxCollider2D>().size= new Vector2(hallWayWidth, 0.4f);
 		portals[2].transform.position = new Vector3(0, hallWayLength+roomHeight/2);
+		portals[2].GetComponent<BoxCollider2D>().size= new Vector2( 0.4f, hallWayWidth);
 		portals[3].transform.position = new Vector3((hallWayLength + roomWidth + hallWayLength)/2, hallWayLength + roomHeight + hallWayLength );
+		portals[3].GetComponent<BoxCollider2D>().size= new Vector2(hallWayWidth, 0.4f);
 		for (int i = hallWayLength; i < hallWayLength + roomWidth; i++)
 		{
 			for (int j = hallWayLength; j < hallWayLength + roomHeight; j++)
 			{
-				groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);		
+				groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+				wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 			}
 			
 			//wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, hallWayLength + roomHeight, 0)), wallTiles[0]);
@@ -98,6 +165,7 @@ public class DungeonManager : MonoBehaviour {
 				for (int j = hallWayLength + roomHeight; j < hallWayLength + roomHeight + hallWayLength; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}
 			portals[3].gameObject.SetActive(true);
@@ -119,15 +187,27 @@ public class DungeonManager : MonoBehaviour {
 				for (int j = 0; j < hallWayLength; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}
 			
 			portals[1].gameObject.SetActive(true);
+		
 			portals[1].enterCallback = () =>
 			{
 				currentRoomId = GetCurrentRoom().Down; 
 				GenerateRoom();
 			};
+			
+			portals[1].changeMap = false;
+			if (room.Down == -2)
+			{
+				portals[1].changeMap = true;
+				portals[1].loadScene = "level1";
+				portals[1].unloadScene = "dungeon";
+				portals[1].anchorObjName = "anchor_dungeon_entrance";
+				portals[1].enterCallback = null;
+			}
 		}
 		else
 		{
@@ -141,6 +221,7 @@ public class DungeonManager : MonoBehaviour {
 				for (int j = hallWayLength + roomHeight/2 - hallWayWidth/2; j < hallWayLength + roomHeight/2 + hallWayWidth/2; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}
 			portals[2].gameObject.SetActive(true);
@@ -163,6 +244,7 @@ public class DungeonManager : MonoBehaviour {
 				for (int j = hallWayLength + roomHeight/2 - hallWayWidth/2; j < hallWayLength + roomHeight/2 + hallWayWidth/2; j++)
 				{
 					groundMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), groundTiles[0]);
+					wallMap.SetTile(Vector3Int.CeilToInt(new Vector3(i, j, 0)), null);
 				}
 			}
 			portals[0].gameObject.SetActive(true);

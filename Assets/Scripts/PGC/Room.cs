@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class ItemStruct
+{
+	public string itemName;
+	public int count;
+
+	public ItemStruct(string itemName, int count)
+	{
+		this.itemName = itemName;
+		this.count = count;
+	}
+}
 
 public class Room
 {
@@ -10,6 +21,9 @@ public class Room
 	public string[] monsters;
 	public int width = 6;
 	public int height = 6;
+
+	public bool hasChest;
+	public ItemStruct chestItem;
 
 	public int Up
 	{
@@ -52,6 +66,15 @@ public class Room
 		{
 			monsters[i] = monsterPrefab[Random.Range(0, monsterPrefab.Length)];
 		}
+
+		if (monsterCount == 0)
+		{
+			hasChest = true;
+		}
+		
+		ItemStruct[] allItems = new []{new ItemStruct("apple", 2), new ItemStruct("pill", 1)};
+		chestItem = allItems[Random.Range(0, allItems.Length)]; 
+		
 
 		width = Random.Range(6, 10);
 		height = Random.Range(6, 10);

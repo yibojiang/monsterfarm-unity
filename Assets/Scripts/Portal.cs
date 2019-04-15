@@ -87,8 +87,6 @@ public class Portal : MonoBehaviour {
 				
 				
 				//TODO deal with prefab
-				
-			
 				if (toOutDoor) {
 					playerPawn.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
 				}

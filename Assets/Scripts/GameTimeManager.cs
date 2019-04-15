@@ -73,12 +73,12 @@ public class GameTimeManager : MonoBehaviour {
     public void NewDay()
     {
         Day++;
-        var monsters = FindObjectsOfType<MonsterPawn>();
-        for (int i = 0; i < monsters.Length; i++)
-        {
-            var monster = monsters[i];
-            monster.AddAge();
-        }
+//        var monsters = FindObjectsOfType<MonsterPawn>();
+//        for (int i = 0; i < monsters.Length; i++)
+//        {
+//            var monster = monsters[i];
+//            monster.AddAge();
+//        }
     }
 
     // Update is called once per frame

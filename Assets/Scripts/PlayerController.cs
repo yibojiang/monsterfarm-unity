@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public static bool isLoaded = false;
+
     public PlayerPawn playerPawn;
     private Vector3 _playerInput;
     private InGameState _ingameState = InGameState.Play;
@@ -138,16 +140,17 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Use Item {itemName}");
         if (items.ContainsKey(itemName) && items[itemName] > 0)
         {
-            items[itemName]--;
             // TODO: Use Apple
             if (itemName == "pill")
             {
                 playerPawn.AddHp(3);
+                items[itemName]--;
             }
             
             if (itemName == "apple")
             {
                 playerPawn.AddHp(1);
+                items[itemName]--; 
             } 
             
             return items[itemName];
@@ -158,6 +161,10 @@ public class PlayerController : MonoBehaviour
     
     public void AddItemCount(string itemName, int itemCount)
     {
+        if (!items.ContainsKey(itemName))
+        {
+            items[itemName] = 0;
+        }
         items[itemName] += itemCount;
     }
 
@@ -168,6 +175,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        isLoaded = true;
         _cam = Camera.main;
         blueprintList = new List<BlueprintItem>
         {
@@ -182,6 +190,8 @@ public class PlayerController : MonoBehaviour
         
         _inventoryUIItemDict.Add("apple", new InventoryUIItem("apple"));
         _inventoryUIItemDict.Add("pill", new InventoryUIItem("pill"));
+        _inventoryUIItemDict.Add("sword", new InventoryUIItem("sword"));
+        _inventoryUIItemDict.Add("bow", new InventoryUIItem("bow"));
     }
 
     private void Start()
@@ -240,11 +250,26 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
+            
+            if (Input.GetKeyDown(KeyCode.E)) {
+                if (playerPawn.interactTarget != null && !playerPawn.isTalking) {
+                    playerPawn.interactTarget.InteractAction();
+                }
+                else {
+                    var dm = DialogManager.Instance;
+                    dm.Next();
+                }
+            }
+            
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 playerPawn.Die();
             }
-                
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                AddCoins(10000);
+            }
                 
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -369,6 +394,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Die");
         UIController.Instance.PushPanel(gameOverPanel);
         _ingameState = InGameState.UI;
+        isLoaded = false;
     }
     
 }

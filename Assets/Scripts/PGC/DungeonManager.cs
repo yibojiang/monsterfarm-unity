@@ -27,17 +27,16 @@ public class DungeonManager : MonoBehaviour {
 		
 		rooms = new Dictionary<int, Room>();
 		DungeonGenerator.GenerateBFSRoom(rooms, numOfRooms);
-		for (int i = 0; i < rooms.Count; i++)
-		{
-			Debug.Log("id: " + rooms[i].id);
-			for (int j = 0; j < 4; j++)
-			{
-				Debug.Log((ConnectDirection)j + ": " + rooms[i].connections[j]);
-			}
-
-			Debug.Log("-----------------------");
-		}
-
+//		for (int i = 0; i < rooms.Count; i++)
+//		{
+//			Debug.Log("id: " + rooms[i].id);
+//			for (int j = 0; j < 4; j++)
+//			{
+//				Debug.Log((ConnectDirection)j + ": " + rooms[i].connections[j]);
+//			}
+//
+//			Debug.Log("-----------------------");
+//		}
 		GenerateRoom();
 
 	}
@@ -59,8 +58,7 @@ public class DungeonManager : MonoBehaviour {
 		var room = GetCurrentRoom();
 		for (int i = 0; i < room.monsters.Length; i++)
 		{
-			var monsterName = room.monsters[i];
-			Debug.Log(monsterName);
+			var monsterName = room.monsters[i];			
 			var prefab = Resources.Load<GameObject>(string.Format("Prefab/Monster/{0}", monsterName));
 			var monsterObj = (GameObject)Instantiate(prefab, spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
 			monsters.Add(monsterObj);

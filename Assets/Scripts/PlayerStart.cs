@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerStart : MonoBehaviour {
-
+public class PlayerStart : MonoBehaviour
+{
+	private bool teleport = false;
 	// Use this for initialization
 	void Awake () {
-		SceneManager.LoadScene("player", LoadSceneMode.Additive);
+		if (!PlayerController.isLoaded)
+		{
+			SceneManager.LoadScene("player", LoadSceneMode.Additive);
+			teleport = true;
+		}
+		
 	}
 
-	void Start() {
-		PlayerController.Instance.playerPawn.transform.position = transform.position;
+	void Start()
+	{
+		if (teleport)
+		{
+			PlayerController.Instance.playerPawn.transform.position = transform.position;	
+		}
 	}
+
 }

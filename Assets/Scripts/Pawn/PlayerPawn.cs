@@ -66,17 +66,6 @@ public class PlayerPawn : MobPawn {
 	
 
 	private void Update() {
-		if (Input.GetKeyDown(KeyCode.E)) {
-			if (interactTarget != null && !isTalking) {
-				interactTarget.InteractAction();
-			}
-			else {
-				var dm = DialogManager.Instance;
-				dm.Next();
-			}
-		}
-
-		
 
 		_animSm.SetBool("IsAiming", _isAiming);
 
